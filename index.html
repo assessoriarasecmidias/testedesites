@@ -610,129 +610,70 @@ h2 .gold { color: var(--gold); }
   50% { opacity: 0.3; }
 }
 
-/* ===== FAQ — Chat ===== */
-.chat-wrapper {
-  max-width: 620px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+/* ===== FAQ — Accordion tradicional ===== */
+.faq-list { display: flex; flex-direction: column; }
 
-.chat-hint {
-  font-size: 0.65rem;
-  color: rgba(245,242,233,0.25);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-family: 'Space Grotesk', sans-serif;
-  margin-bottom: 0.4rem;
-  text-align: right;
-}
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item:first-child { border-top: 1px solid var(--line); }
 
-.chat-avatar {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #0d0f1a;
-  flex-shrink: 0;
-}
-
-.chat-q {
-  display: flex;
-  justify-content: flex-end;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.chat-q.visible { opacity: 1; transform: translateY(0); }
-
-.chat-bubble-q {
-  background: rgba(201,168,76,0.08);
-  border: 1px solid rgba(201,168,76,0.15);
-  border-radius: 14px 14px 3px 14px;
-  padding: 0.7rem 1rem;
-  max-width: 75%;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.chat-bubble-q:hover { background: rgba(201,168,76,0.14); }
-.chat-bubble-q.answered { background: rgba(201,168,76,0.04); border-color: rgba(201,168,76,0.08); }
-
-.chat-bubble-q p {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
   color: var(--white);
-  line-height: 1.4;
-}
-
-.chat-a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.88rem, 1.5vw, 1rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left;
+  padding: 1.4rem 0;
+  cursor: pointer;
   display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.5s ease, opacity 0.4s ease 0.1s;
-}
-
-.chat-a.visible { max-height: 200px; opacity: 1; }
-
-.chat-bubble-a {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--line);
-  border-radius: 3px 14px 14px 14px;
-  padding: 0.7rem 1rem;
-  max-width: 82%;
-}
-
-.chat-bubble-a p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.chat-typing {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-.chat-typing.visible { max-height: 60px; opacity: 1; }
-
-.typing-dots {
-  display: flex;
-  gap: 4px;
-  padding: 0.7rem 0.9rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--line);
-  border-radius: 3px 14px 14px 14px;
+  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  transition: color 0.3s ease;
 }
 
-.typing-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: 0.4;
-  animation: typingBounce 1.2s ease-in-out infinite;
+.faq-question:hover { color: var(--gold); }
+.faq-item.open .faq-question { color: var(--gold); }
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 16px; height: 16px;
+  position: relative;
 }
 
-.typing-dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  transition: transform 0.3s ease;
+}
 
-@keyframes typingBounce {
-  0%, 100% { opacity: 0.3; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-3px); }
+.faq-icon::before { width: 100%; height: 1px; top: 50%; left: 0; }
+.faq-icon::after  { width: 1px; height: 100%; left: 50%; top: 0; }
+
+.faq-item.open .faq-icon::after { transform: scaleY(0); }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 200px;
+  padding-bottom: 1.4rem;
+}
+
+.faq-answer p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 58ch;
 }
 
 /* ===== CTA FINAL ===== */
@@ -1084,27 +1025,27 @@ footer {
   <div class="container">
     <div class="reveal"><div class="eyebrow">Dúvidas frequentes</div>
     <h2>Tire suas dúvidas<br><span class="gold">agora.</span></h2></div>
-    <div class="chat-wrapper" id="chatWrapper">
-      <div class="chat-hint">Toque em uma pergunta para ver a resposta</div>
-      <div class="chat-q visible" data-index="0"><div class="chat-bubble-q" onclick="chatAnswer(0)"><p>Quanto tempo leva para o site ficar pronto?</p></div></div>
-      <div class="chat-typing" id="typing-0"><div class="chat-avatar">R</div><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
-      <div class="chat-a" id="answer-0"><div class="chat-avatar">R</div><div class="chat-bubble-a"><p>O prazo é combinado no início e cumprido — geralmente poucos dias úteis após o envio do conteúdo.</p></div></div>
-
-      <div class="chat-q" data-index="1"><div class="chat-bubble-q" onclick="chatAnswer(1)"><p>Preciso contratar hospedagem separadamente?</p></div></div>
-      <div class="chat-typing" id="typing-1"><div class="chat-avatar">R</div><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
-      <div class="chat-a" id="answer-1"><div class="chat-avatar">R</div><div class="chat-bubble-a"><p>Não. Orientamos todo o processo de domínio e hospedagem — você não precisa entender de tecnologia.</p></div></div>
-
-      <div class="chat-q" data-index="2"><div class="chat-bubble-q" onclick="chatAnswer(2)"><p>Posso atualizar o conteúdo depois?</p></div></div>
-      <div class="chat-typing" id="typing-2"><div class="chat-avatar">R</div><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
-      <div class="chat-a" id="answer-2"><div class="chat-avatar">R</div><div class="chat-bubble-a"><p>Sim. Após a entrega você recebe orientações simples para atualizações ou pode contar com suporte para alterações maiores.</p></div></div>
-
-      <div class="chat-q" data-index="3"><div class="chat-bubble-q" onclick="chatAnswer(3)"><p>O site funciona bem no celular?</p></div></div>
-      <div class="chat-typing" id="typing-3"><div class="chat-avatar">R</div><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
-      <div class="chat-a" id="answer-3"><div class="chat-avatar">R</div><div class="chat-bubble-a"><p>Sim, todos os projetos são totalmente responsivos — experiência otimizada em qualquer tamanho de tela.</p></div></div>
-
-      <div class="chat-q" data-index="4"><div class="chat-bubble-q" onclick="chatAnswer(4)"><p>O valor de R.000 inclui tudo?</p></div></div>
-      <div class="chat-typing" id="typing-4"><div class="chat-avatar">R</div><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>
-      <div class="chat-a" id="answer-4"><div class="chat-avatar">R</div><div class="chat-bubble-a"><p>Sim. Design, desenvolvimento, WhatsApp integrado e publicação. Preço fechado, sem surpresas.</p></div></div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">Quanto tempo leva para o site ficar pronto?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>O prazo é combinado no início e cumprido sem surpresas — geralmente poucos dias úteis após o envio do conteúdo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Preciso contratar hospedagem separadamente?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>Não. Orientamos todo o processo de domínio e hospedagem — você não precisa entender de tecnologia.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Posso atualizar o conteúdo depois?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>Sim. Após a entrega você recebe orientações simples para atualizações ou pode contar com suporte para alterações maiores.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">O site funciona bem no celular?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>Sim, todos os projetos são totalmente responsivos — experiência otimizada em qualquer tamanho de tela.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">O valor de R$1.000 inclui tudo?<span class="faq-icon"></span></button>
+        <div class="faq-answer"><p>Sim. Design, desenvolvimento, WhatsApp integrado e publicação. Preço fechado, sem surpresas.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1204,24 +1145,14 @@ footer {
 
   setStep(0);
 
-  // FAQ Chat
-  const answered = new Set();
-
-  function chatAnswer(idx) {
-    if (answered.has(idx)) return;
-    answered.add(idx);
-    const bubble = document.querySelector('.chat-q[data-index="' + idx + '"] .chat-bubble-q');
-    const typing = document.getElementById('typing-' + idx);
-    const answer = document.getElementById('answer-' + idx);
-    const nextQ = document.querySelector('.chat-q[data-index="' + (idx + 1) + '"]');
-    if (bubble) bubble.classList.add('answered');
-    if (typing) typing.classList.add('visible');
-    setTimeout(() => {
-      if (typing) typing.classList.remove('visible');
-      if (answer) answer.classList.add('visible');
-      setTimeout(() => { if (nextQ) nextQ.classList.add('visible'); }, 400);
-    }, 1200);
-  }
+  // FAQ Accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
 </script>
 </body>
 </html>
