@@ -336,8 +336,12 @@ h2 .gold { color: var(--gold); }
   gap: 1.5rem;
 }
 
-@media (max-width: 640px) {
-  .portfolio-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 560px) {
+  .portfolio-grid { grid-template-columns: 1fr !important; }
 }
 
 .portfolio-card {
@@ -1020,7 +1024,7 @@ footer {
   <div class="container">
     <div class="reveal"><div class="eyebrow">Projetos entregues</div>
     <h2>Resultados de quem<br><span class="gold">já confiou na Raséc.</span></h2></div>
-    <div class="portfolio-grid reveal">
+    <div class="portfolio-grid reveal" style="grid-template-columns: repeat(3, 1fr);">
       <div class="portfolio-card" onclick="openModal('https://primeredesbq.com/', 'Prime Redes de Proteção')">
         <div class="portfolio-img" style="background: linear-gradient(160deg, #0a1520 0%, #0d1f0a 100%);">
           <div class="portfolio-img-overlay">
@@ -1043,6 +1047,18 @@ footer {
           <div class="portfolio-nicho">Saúde · Barbacena</div>
           <div class="portfolio-title">Dra. Sâmara Loschi</div>
           <div class="portfolio-desc">Site médico com especialidades, avaliações de pacientes e agendamento via WhatsApp.</div>
+        </div>
+      </div>
+      <div class="portfolio-card" onclick="openModal('https://arasecmidia.lovable.app/', 'Raséc Mídias')">
+        <div class="portfolio-img" style="background: linear-gradient(160deg, #0d0f1a 0%, #1a140a 100%);">
+          <div class="portfolio-img-overlay">
+            <div class="portfolio-play">VER<br>SITE</div>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-nicho">Agência · Nossa própria presença</div>
+          <div class="portfolio-title">Raséc Mídias</div>
+          <div class="portfolio-desc">O site que você está vendo agora. Construímos o nosso próprio — e fazemos o mesmo para você.</div>
         </div>
       </div>
     </div>
