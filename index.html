@@ -48,15 +48,19 @@
   }
 
   @media (max-width: 600px) {
-    .hero-inner { gap: 2.8rem; }
+    .hero-inner { gap: 0; }
   }
 
   /* Logo */
   .hero-logo {
     width: clamp(260px, 78vw, 420px);
     height: auto;
-    margin-bottom: 0.6rem;
     opacity: 0.95;
+    margin-bottom: 2.4rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero-logo { margin-bottom: 3rem; }
   }
 
   /* Eyebrow */
@@ -71,6 +75,11 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
+    margin-bottom: 1.8rem;
+  }
+
+  @media (max-width: 600px) {
+    .eyebrow { margin-bottom: 2.2rem; }
   }
 
   .eyebrow::before,
@@ -92,6 +101,7 @@
     letter-spacing: -0.01em;
     text-transform: uppercase;
     color: #F5F2E9;
+    margin-bottom: 0.6rem;
   }
 
   h1 .gold { color: #C9A84C; }
@@ -101,6 +111,7 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
+    margin-bottom: 0.6rem;
   }
 
   .divider-line {
