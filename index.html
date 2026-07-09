@@ -3,1904 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raséc Mídias — Sites profissionais em Barbacena</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Hero Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0d0f1a;
-    --black-soft: #11141f;
-    --gold: #C9A84C;
-    --gold-bright: #E8C97A;
-    --gold-dim: #8a7438;
-    --off-white: #F5F2E9;
-    --line: rgba(201,168,76,0.16);
-  }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
+  html, body { height: 100%; }
 
   body {
-    background-color: var(--black);
-    background-image:
-      linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-    color: var(--off-white);
+    background: #0d0f1a;
+    color: #F5F2E9;
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-    position: relative;
   }
 
-  /* ===== Typography ===== */
-  h1, h2, h3, .display {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    line-height: 1.1;
-  }
-
-  .accent-italic {
-    font-family: 'Space Grotesk', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: var(--gold);
-  }
-
-  .eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    opacity: 0.85;
-  }
-
-  /* ===== Layout helpers ===== */
-  section {
-    position: relative;
-    z-index: 2;
-    padding: 5rem 6vw;
-  }
-
-  @media (max-width: 768px) {
-    section { padding: 3.5rem 6vw; }
-  }
-
-  /* ===== Sistema de fundos conectados ===== */
-
-  /* Hero — navy base com radial gold embaixo */
-  .hero {
-    background-color: #0d0f1a;
-  }
-
-  /* Problema — navy mais escuro, corte diagonal topo direita */
-  .section-problem {
-    background-color: #090b14;
-    background-image:
-      radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.04) 0%, transparent 60%);
-    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 100%);
-    margin-top: -2rem;
-    padding-top: 6rem;
-  }
-
-  /* Benefícios — navy médio com grid de pontos, corte inverso */
-  .section-benefits {
-    background-color: #0f1122;
-    background-image:
-      radial-gradient(rgba(201,168,76,0.07) 1px, transparent 1px);
-    background-size: 28px 28px;
-    clip-path: polygon(0 3%, 100% 0, 100% 100%, 0 97%);
-    margin-top: -2rem;
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-
-  /* Portfólio — quase preto, corte diagonal simples */
-  .section-portfolio {
-    background-color: #070810;
-    background-image:
-      linear-gradient(135deg, rgba(201,168,76,0.03) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
-    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 100%);
-    margin-top: -2rem;
-    padding-top: 6rem;
-  }
-
-  /* Process — diagonal dupla, linhas diagonais */
-  .section-diagonal {
-    background-color: #0c0e1c;
-    background-image:
-      repeating-linear-gradient(
-        -45deg,
-        transparent,
-        transparent 28px,
-        rgba(201,168,76,0.035) 28px,
-        rgba(201,168,76,0.035) 29px
-      );
-    clip-path: polygon(0 3%, 100% 0, 100% 97%, 0 100%);
-    margin-top: -2rem;
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-
-  /* FAQ — navy com gradiente lateral */
-  .section-faq {
-    background-color: #0b0d1a;
-    background-image:
-      linear-gradient(90deg, rgba(201,168,76,0.05) 0%, transparent 40%);
-    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 100%);
-    margin-top: -2rem;
-    padding-top: 6rem;
-  }
-
-  .section-alt { background: var(--black-soft); }
-
-  .container { max-width: 1200px; margin: 0 auto; }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
-  }
-
-  /* ===== Navbar ===== */
+  /* Navbar */
   .navbar {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 50;
+    padding: 1.2rem 6vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 6vw;
-    background: rgba(5,5,5,0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
+    background: rgba(13,15,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
   }
 
-  .navbar .logo {
+  .logo {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 800;
-    letter-spacing: 0.15em;
-    font-size: 1.1rem;
-    color: var(--off-white);
-  }
-
-  .navbar .logo span { color: var(--gold); }
-
-  .navbar nav {
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  .navbar nav a {
-    color: rgba(245,242,233,0.7);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: color 0.3s ease;
-  }
-
-  .navbar nav a:hover { color: var(--gold); }
-
-  .navbar .cta {
-    padding: 0.7rem 1.6rem;
-    font-size: 0.8rem;
-  }
-
-  /* ===== Botão CTA ===== */
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    background: var(--gold);
-    color: #0d0f1a;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.12em;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.1rem 2.2rem;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #F5F2E9;
   }
 
-  .cta::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-  }
+  .logo span { color: #C9A84C; }
 
-  .cta:hover::before { left: 100%; }
-  .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px -6px rgba(201,168,76,0.55); }
-
-  .cta-arrow { transition: transform 0.3s ease; flex-shrink: 0; }
-  .cta:hover .cta-arrow { transform: translateX(4px); }
-
-  @media (max-width: 768px) {
-    .navbar nav { display: none; }
-  }
-
-  /* ===== Hero — recriado do zero ===== */
+  /* Hero */
   .hero {
-    height: 100svh;
-    min-height: 560px;
-    max-height: 900px;
+    height: 100dvh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-    background-color: #0d0f1a;
+    align-items: center;
+    text-align: center;
     padding: 0 6vw;
+    position: relative;
   }
 
-  .hero::after {
+  /* Glow sutil no centro */
+  .hero::before {
     content: '';
     position: absolute;
-    bottom: -5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 40%;
-    background: radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%);
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
 
-  .hero .container {
+  .hero-inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    gap: 0;
-  }
-
-  /* Marquee — faixa fina */
-  .hero-marquee-wrap {
-    width: 100vw;
-    margin-left: calc(-6vw);
-    overflow: hidden;
-    position: relative;
-    padding: 0.6rem 0;
-    border-top: 1px solid rgba(201,168,76,0.1);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-    margin-bottom: 1.6rem;
-  }
-
-  .hero-marquee-wrap::before,
-  .hero-marquee-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 80px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .hero-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #0d0f1a, transparent); }
-  .hero-marquee-wrap::after  { right: 0; background: linear-gradient(270deg, #0d0f1a, transparent); }
-
-  .hero-marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marqueeScroll 24s linear infinite;
-  }
-
-  @keyframes marqueeScroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .marquee-item {
-    display: flex;
-    align-items: center;
     gap: 1.2rem;
-    padding: 0 1.2rem;
-    white-space: nowrap;
-    flex-shrink: 0;
+    max-width: 600px;
   }
 
-  .marquee-word {
+  /* Eyebrow */
+  .eyebrow {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.65rem;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: rgba(201,168,76,0.2);
+    color: #C9A84C;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 
-  .marquee-word.highlight { color: rgba(201,168,76,0.5); }
-
-  .marquee-sep {
-    width: 3px; height: 3px;
-    border-radius: 50%;
-    background: rgba(201,168,76,0.25);
-    flex-shrink: 0;
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #C9A84C;
+    opacity: 0.5;
   }
 
   /* Headline */
-  .hero h1 {
+  h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.45rem, 5.5vw, 3.8rem);
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.12;
-    text-align: center;
-    color: var(--off-white);
-    max-width: 16ch;
-    margin: 0 auto 0.9rem;
-  }
-
-  /* Sub */
-  .hero .subhead {
-    font-size: clamp(0.85rem, 1.3vw, 0.98rem);
-    font-weight: 300;
-    color: rgba(245,242,233,0.5);
-    line-height: 1.7;
-    text-align: center;
-    max-width: 38ch;
-    margin: 0 auto;
-    font-family: 'Inter', sans-serif;
-  }
-
-  @media (max-width: 480px) {
-    .hero { padding: 0 5vw; max-height: none; }
-    .hero h1 { font-size: clamp(1.4rem, 6.5vw, 2.2rem); max-width: 100%; }
-    .hero-marquee-wrap { margin-bottom: 1.2rem; }
-  }
-
-  /* ===== Problem — Lista editorial ===== */
-  .problem-list {
-    margin-top: 2.5rem;
-    position: relative;
-  }
-
-  .problem-row {
-    display: grid;
-    grid-template-columns: 5.5rem 1fr;
-    gap: 0 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.08);
-    position: relative;
-    align-items: start;
-    opacity: 0;
-    transform: translateX(-16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .problem-row.row-visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .problem-row:nth-child(1) { transition-delay: 0.1s; }
-  .problem-row:nth-child(2) { transition-delay: 0.25s; }
-  .problem-row:nth-child(3) { transition-delay: 0.4s; }
-  .problem-row:nth-child(4) { transition-delay: 0.55s; }
-
-  .problem-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: rgba(201,168,76,0.15);
-    line-height: 1;
-    text-align: right;
-    padding-right: 1.8rem;
-    position: relative;
-    transition: color 0.4s ease;
-    letter-spacing: -0.04em;
-  }
-
-  .problem-row:hover .problem-num { color: rgba(201,168,76,0.45); }
-
-  .problem-content { padding-top: 0.3rem; }
-
-  .problem-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--off-white);
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-  }
-
-  .problem-desc {
-    font-size: 0.95rem;
-    color: rgba(245,242,233,0.5);
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 52ch;
-  }
-
-  .problem-desc strong {
-    color: rgba(245,242,233,0.8);
-    font-weight: 500;
-  }
-
-  @media (max-width: 600px) {
-    .problem-list::before { left: 1.8rem; }
-    .problem-row { grid-template-columns: 3.5rem 1fr; gap: 0 1rem; }
-    .problem-num { font-size: 2rem; }
-  }
-
-  /* ===== Section headers ===== */
-  .section-head { margin-bottom: 2.2rem; max-width: 46ch; }
-  .section-head h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin-top: 0.8rem; }
-
-  /* ===== Benefits ===== */
-  /* ===== Benefits — cascata tipográfica ===== */
-  /* ===== Benefits — Accordion ===== */
-  /* ===== Benefits — Faixas horizontais ===== */
-  .benefits-list {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .benefit-row {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 0;
-    border-bottom: 1px solid rgba(201,168,76,0.08);
-    padding: 2rem 0;
-    align-items: center;
-    position: relative;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    overflow: hidden;
-  }
-
-  .benefit-row::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(201,168,76,0.04), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .benefit-row:hover::before { opacity: 1; }
-
-  .benefit-row.row-visible { opacity: 1; transform: translateX(0); }
-  .benefit-row:nth-child(1) { transition-delay: 0.05s; }
-  .benefit-row:nth-child(2) { transition-delay: 0.15s; }
-  .benefit-row:nth-child(3) { transition-delay: 0.25s; }
-  .benefit-row:nth-child(4) { transition-delay: 0.35s; }
-  .benefit-row:nth-child(5) { transition-delay: 0.45s; }
-  .benefit-row:nth-child(6) { transition-delay: 0.55s; }
-
-  .benefit-icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 6px;
-    background: rgba(201,168,76,0.04);
-    transition: border-color 0.4s ease, background 0.4s ease;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .benefit-row:hover .benefit-icon-wrap {
-    border-color: rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.08);
-  }
-
-  .benefit-icon-svg {
-    width: 28px; height: 28px;
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.3;
-    transition: transform 0.4s ease;
-  }
-
-  .benefit-row:hover .benefit-icon-svg { transform: scale(1.15); }
-
-  .benefit-row-content {
-    padding-left: 2rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .benefit-row-tag {
-    font-size: 0.62rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.7;
-    margin-bottom: 0.35rem;
-  }
-
-  .benefit-row-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--off-white);
-    margin-bottom: 0.4rem;
-    line-height: 1.2;
-    transition: color 0.4s ease;
-  }
-
-  .benefit-row:hover .benefit-row-title { color: var(--gold); }
-
-  .benefit-row-desc {
-    font-size: 0.92rem;
-    color: rgba(245,242,233,0.5);
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 56ch;
-  }
-
-  @media (max-width: 600px) {
-    .benefit-row { grid-template-columns: 56px 1fr; padding: 1.5rem 0; }
-    .benefit-icon-wrap { width: 48px; height: 48px; }
-    .benefit-icon-svg { width: 22px; height: 22px; }
-    .benefit-row-content { padding-left: 1rem; }
-  }
-
-  /* ===== Portfolio ===== */
-  /* ===== Portfolio — Carrossel cinematográfico ===== */
-  .carousel {
-    margin-top: 2.5rem;
-    position: relative;
-  }
-
-  .carousel-track {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/7;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 1px solid rgba(201,168,76,0.15);
-  }
-
-  @media (max-width: 600px) {
-    .carousel-track { aspect-ratio: 4/3; }
-  }
-
-  .carousel-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .carousel-slide.active { opacity: 1; }
-
-  .carousel-slide-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 8s ease;
-    transform: scale(1.04);
-  }
-
-  .carousel-slide.active .carousel-slide-bg { transform: scale(1); }
-
-  /* Gradientes únicos por slide (simulando imagens reais) */
-  .slide-bg-1 {
-    background:
-      linear-gradient(135deg, #0d1520 0%, #0a1a2e 40%, #1a0d20 100%);
-  }
-  .slide-bg-2 {
-    background:
-      linear-gradient(135deg, #0a1a0f 0%, #0d2018 40%, #0a150d 100%);
-  }
-
-  /* Grid de pontos decorativos no fundo do slide */
-  .carousel-slide-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(rgba(201,168,76,0.12) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  /* Overlay gold no rodapé */
-  .carousel-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(13,15,26,0.92) 0%, rgba(13,15,26,0.3) 50%, transparent 100%);
-  }
-
-  /* Conteúdo do slide */
-  .carousel-content {
-    position: relative;
-    z-index: 2;
-    padding: 2.5rem;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  @media (max-width: 600px) {
-    .carousel-content { padding: 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
-  }
-
-  .carousel-info {}
-
-  .carousel-nicho {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
-  }
-
-  .carousel-slide.active .carousel-nicho { opacity: 1; transform: translateY(0); }
-
-  .carousel-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--off-white);
+    font-size: clamp(2rem, 7vw, 3.8rem);
     line-height: 1.1;
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.5s ease 0.35s, transform 0.5s ease 0.35s;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #F5F2E9;
   }
 
-  .carousel-slide.active .carousel-title { opacity: 1; transform: translateY(0); }
+  h1 .gold { color: #C9A84C; }
 
-  .carousel-desc {
-    font-size: 0.85rem;
-    color: rgba(245,242,233,0.55);
-    margin-top: 0.4rem;
+  /* Subhead */
+  .subhead {
     font-family: 'Inter', sans-serif;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
-  }
-
-  .carousel-slide.active .carousel-desc { opacity: 1; transform: translateY(0); }
-
-  /* Controles */
-  .carousel-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-  }
-
-  .carousel-btn {
-    width: 44px; height: 44px;
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 50%;
-    background: rgba(13,15,26,0.7);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: border-color 0.3s ease, background 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .carousel-btn:hover {
-    border-color: var(--gold);
-    background: rgba(201,168,76,0.1);
-  }
-
-  .carousel-btn svg {
-    width: 16px; height: 16px;
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.5;
-  }
-
-  /* Dots / progresso */
-  .carousel-dots {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1.2rem;
-    justify-content: center;
-  }
-
-  .carousel-dot {
-    height: 2px;
-    border-radius: 2px;
-    background: rgba(201,168,76,0.2);
-    cursor: pointer;
-    transition: background 0.3s ease, width 0.4s ease;
-    width: 24px;
-  }
-
-  .carousel-dot.active {
-    background: var(--gold);
-    width: 48px;
-  }
-
-  /* Número do slide */
-  .carousel-counter {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.7rem;
-    color: rgba(245,242,233,0.35);
-    letter-spacing: 0.15em;
-    margin-top: 1rem;
-    text-align: right;
-  }
-
-  /* ===== Process — Passo a passo interativo ===== */
-  .steps-wrapper {
-    margin-top: 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  @media (max-width: 800px) {
-    .steps-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  /* Lista de passos (esquerda) */
-  .steps-list { display: flex; flex-direction: column; gap: 0; }
-
-  .step-item {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.2rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    position: relative;
-    border: 1px solid transparent;
-  }
-
-  .step-item:hover { background: rgba(201,168,76,0.04); }
-
-  .step-item.active {
-    background: rgba(201,168,76,0.06);
-    border-color: rgba(201,168,76,0.2);
-  }
-
-  .step-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: rgba(201,168,76,0.3);
-    width: 2.2rem;
-    flex-shrink: 0;
-    transition: color 0.3s ease;
-  }
-
-  .step-item.active .step-num { color: var(--gold); }
-
-  .step-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: rgba(245,242,233,0.45);
-    transition: color 0.3s ease;
-    line-height: 1.2;
-  }
-
-  .step-item.active .step-label,
-  .step-item:hover .step-label { color: var(--off-white); }
-
-  /* Indicador de progresso lateral */
-  .step-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 10%; bottom: 10%;
-    width: 2px;
-    background: var(--gold);
-    border-radius: 2px;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-  }
-
-  .step-item.active::before { transform: scaleY(1); }
-
-  /* Painel de detalhe (direita) */
-  .steps-panel {
-    position: relative;
-    min-height: 260px;
-  }
-
-  .step-detail {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateX(16px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    pointer-events: none;
-  }
-
-  .step-detail.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-    position: relative;
-  }
-
-  .step-detail-num {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 5rem;
-    font-weight: 700;
-    color: rgba(201,168,76,0.07);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    margin-bottom: -1rem;
-  }
-
-  .step-detail-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--off-white);
-    margin-bottom: 1rem;
-    line-height: 1.15;
-  }
-
-  .step-detail-title span { color: var(--gold); }
-
-  .step-detail-desc {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    font-weight: 300;
     color: rgba(245,242,233,0.55);
     line-height: 1.75;
-    font-weight: 300;
-    max-width: 44ch;
-    margin-bottom: 1.5rem;
+    max-width: 36ch;
   }
 
-  .step-detail-tag {
-    display: inline-flex;
+  /* Divisor */
+  .divider {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.68rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(201,168,76,0.25);
-    padding: 0.35rem 0.8rem;
-    border-radius: 2px;
+    gap: 0.8rem;
   }
 
-  .step-detail-tag::before {
-    content: '';
-    width: 6px; height: 6px;
+  .divider-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.3);
+  }
+
+  .divider-dot {
+    width: 4px; height: 4px;
     border-radius: 50%;
-    background: var(--gold);
-    animation: tagPulse 2s ease-in-out infinite;
+    background: #C9A84C;
+    opacity: 0.5;
   }
 
-  @keyframes tagPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
-  }
-
-  /* Barra de progresso automático */
-  .step-progress {
-    height: 2px;
-    background: rgba(201,168,76,0.1);
-    border-radius: 2px;
-    margin-top: 2rem;
-    overflow: hidden;
-  }
-
-  .step-progress-bar {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 2px;
-    width: 0%;
-    transition: width linear;
-  }
-
-  /* ===== FAQ — Chat simulado ===== */
-  .chat-wrapper {
-    margin-top: 2.5rem;
-    max-width: 680px;
+  /* Scroll cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  /* Avatar Raséc */
-  .chat-avatar {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: #0d0f1a;
-    flex-shrink: 0;
-    letter-spacing: 0.05em;
-  }
-
-  /* Linha de mensagem do usuário (pergunta) */
-  .chat-q {
-    display: flex;
-    justify-content: flex-end;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-
-  .chat-q.visible { opacity: 1; transform: translateY(0); }
-
-  .chat-bubble-q {
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 16px 16px 4px 16px;
-    padding: 0.8rem 1.1rem;
-    max-width: 72%;
-    cursor: pointer;
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-
-  .chat-bubble-q:hover {
-    background: rgba(201,168,76,0.16);
-    border-color: rgba(201,168,76,0.4);
-  }
-
-  .chat-bubble-q.answered {
-    background: rgba(201,168,76,0.06);
-    border-color: rgba(201,168,76,0.15);
-  }
-
-  .chat-bubble-q p {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--off-white);
-    line-height: 1.4;
-  }
-
-  /* Linha de resposta (Raséc) */
-  .chat-a {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.7rem;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease 0.1s;
-  }
-
-  .chat-a.visible {
-    max-height: 200px;
-    opacity: 1;
-  }
-
-  .chat-bubble-a {
-    background: rgba(17,20,31,0.9);
-    border: 1px solid rgba(201,168,76,0.1);
-    border-radius: 4px 16px 16px 16px;
-    padding: 0.8rem 1.1rem;
-    max-width: 80%;
-  }
-
-  .chat-bubble-a p {
-    font-size: 0.88rem;
-    color: rgba(245,242,233,0.7);
-    line-height: 1.65;
-    font-weight: 300;
-    font-family: 'Inter', sans-serif;
-  }
-
-  /* Indicador "digitando..." */
-  .chat-typing {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.7rem;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-  }
-
-  .chat-typing.visible { max-height: 60px; opacity: 1; }
-
-  .typing-dots {
-    display: flex;
-    gap: 4px;
-    padding: 0.8rem 1rem;
-    background: rgba(17,20,31,0.9);
-    border: 1px solid rgba(201,168,76,0.1);
-    border-radius: 4px 16px 16px 16px;
     align-items: center;
-  }
-
-  .typing-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.4;
-    animation: typingBounce 1.2s ease-in-out infinite;
-  }
-
-  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes typingBounce {
-    0%, 100% { opacity: 0.3; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(-4px); }
-  }
-
-  /* Hint de clique */
-  .chat-hint {
-    font-size: 0.72rem;
-    color: rgba(245,242,233,0.3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    gap: 0.4rem;
     font-family: 'Space Grotesk', sans-serif;
-    margin-bottom: 0.5rem;
-    text-align: right;
-  }
-
-  /* ===== Final CTA ===== */
-  /* ===== Final CTA — Glitch dourado ===== */
-  .final-cta {
-    text-align: center;
-    padding: 3.5rem 6vw;
-    position: relative;
-    overflow: hidden;
-    background-color: #07080f;
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(201,168,76,0.015) 2px,
-        rgba(201,168,76,0.015) 3px
-      );
-  }
-
-  /* Halo radial de fundo */
-  .final-cta::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 300px;
-    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .final-cta > * { position: relative; z-index: 1; }
-
-  /* Glitch no h2 */
-  .glitch-wrap {
-    position: relative;
-    display: inline-block;
-    margin: 0 auto 1rem;
-  }
-
-  .glitch-text {
-    font-size: clamp(2rem, 6vw, 4rem);
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-    color: var(--off-white);
-    position: relative;
-    animation: glitchMain 6s infinite;
+    color: rgba(245,242,233,0.25);
   }
 
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    overflow: hidden;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
+  .scroll-cue-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(180deg, rgba(201,168,76,0.5), transparent);
+    animation: scrollDown 1.8s ease-in-out infinite;
   }
 
-  .glitch-text::before {
-    color: var(--gold);
-    animation: glitchTop 6s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    left: -2px;
+  @keyframes scrollDown {
+    0%, 100% { transform: scaleY(1); opacity: 0.5; }
+    50% { transform: scaleY(1.3); opacity: 1; }
   }
 
-  .glitch-text::after {
-    color: rgba(201,168,76,0.5);
-    animation: glitchBottom 6s infinite;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    left: 2px;
-  }
-
-  @keyframes glitchMain {
-    0%, 90%, 100% { transform: translate(0); }
-    91% { transform: translate(-1px, 1px); }
-    92% { transform: translate(1px, -1px); }
-    93% { transform: translate(0); }
-    94% { transform: translate(2px, 0); }
-    95% { transform: translate(0); }
-  }
-
-  @keyframes glitchTop {
-    0%, 90%, 100% { transform: translate(0); opacity: 0; }
-    91% { transform: translate(-3px, 0); opacity: 0.8; }
-    92% { transform: translate(3px, 0); opacity: 0.6; }
-    93% { transform: translate(0); opacity: 0; }
-    94% { transform: translate(-2px, 0); opacity: 0.5; }
-    95% { transform: translate(0); opacity: 0; }
-  }
-
-  @keyframes glitchBottom {
-    0%, 90%, 100% { transform: translate(0); opacity: 0; }
-    91% { transform: translate(3px, 0); opacity: 0.7; }
-    92% { transform: translate(-3px, 0); opacity: 0.5; }
-    93% { transform: translate(0); opacity: 0; }
-    94% { transform: translate(2px, 0); opacity: 0.4; }
-    95% { transform: translate(0); opacity: 0; }
-  }
-
-  .final-cta .subhead {
-    color: rgba(245,242,233,0.55);
-    font-size: 1rem;
-    max-width: 40ch;
-    margin: 0 auto 2.5rem;
-    line-height: 1.7;
-  }
-
-  /* Botão com halo pulsando */
-  .final-cta .cta {
-    font-size: 1rem;
-    padding: 1.3rem 3rem;
-    position: relative;
-  }
-
-  .final-cta .cta::after {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border-radius: 4px;
-    border: 1px solid rgba(201,168,76,0.3);
-    animation: haloPulse 2.5s ease-in-out infinite;
-  }
-
-  @keyframes haloPulse {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0; transform: scale(1.06); }
-  }
-
-  /* Linha decorativa acima */
-  .cta-separator {
+  /* Próxima seção (pra mostrar que continua) */
+  .next {
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .cta-separator-line {
-    height: 1px;
-    width: 60px;
-    background: linear-gradient(90deg, transparent, var(--gold));
-  }
-
-  .cta-separator-line:last-child {
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-
-  .cta-separator-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: haloPulse 2s ease-in-out infinite;
-  }
-
-  /* ===== Footer ===== */
-  footer {
-    padding: 1rem 6vw;
-    border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: rgba(245,242,233,0.4);
-    letter-spacing: 0.05em;
-    position: relative;
-    z-index: 2;
-  }
-
-  @media (max-width: 600px) {
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-  }
-
-  footer .logo {
+    background: #090b14;
+    color: rgba(245,242,233,0.3);
     font-family: 'Space Grotesk', sans-serif;
-    color: var(--gold);
+    font-size: 0.8rem;
     letter-spacing: 0.2em;
-    font-weight: 600;
-  }
-
-  /* ===== Reveal on scroll ===== */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
+    text-transform: uppercase;
   }
 </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
 <header class="navbar">
-  <div class="logo">RASÉC <span>MÍDIAS</span></div>
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#portfolio">Projetos</a>
-    <a href="#contato">Contato</a>
-  </nav>
+  <div class="logo">Raséc <span>Mídias</span></div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="inicio">
-  <div class="container">
-    <div class="hero-marquee-wrap">
-      <div class="hero-marquee-track">
-        <div class="marquee-item">
-          <span class="marquee-word highlight">Credibilidade</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Profissionalismo</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Presença Digital</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Resultados Reais</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Barbacena, MG</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Sites Profissionais</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Mais Clientes</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Identidade Visual</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">WhatsApp Integrado</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Mobile First</span><span class="marquee-sep"></span>
-        </div>
-        <div class="marquee-item">
-          <span class="marquee-word highlight">Credibilidade</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Profissionalismo</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Presença Digital</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Resultados Reais</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Barbacena, MG</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Sites Profissionais</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Mais Clientes</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Identidade Visual</span><span class="marquee-sep"></span>
-          <span class="marquee-word highlight">WhatsApp Integrado</span><span class="marquee-sep"></span>
-          <span class="marquee-word">Mobile First</span><span class="marquee-sep"></span>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Barbacena, MG</div>
+    <h1>Sem um site,<br>você <span class="gold">não existe</span><br>pra quem importa.</h1>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
     </div>
-    <h1>SEU NEGÓCIO MERECE UM SITE QUE <span class="accent-italic">TRANSMITE CONFIANÇA</span> E GERA OPORTUNIDADES.</h1>
-    <p class="subhead">Criamos sites profissionais para empresas de Barbacena que querem atrair mais clientes — com prazo definido e sem complicação.</p>
+    <p class="subhead">Enquanto você não tem um site, alguém está te substituindo. A gente resolve isso de forma rápida e profissional.</p>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-cue-line"></div>
+    role
   </div>
 </section>
 
-
-
-
-
-<!-- ===== PROBLEM ===== -->
-<section class="section-problem">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">O cenário hoje</div>
-      <h2>Sem um site, <span class="accent-italic">você perde antes mesmo de competir.</span></h2>
-    </div>
-    <div class="problem-list reveal">
-      <div class="problem-row">
-        <div class="problem-num">01</div>
-        <div class="problem-content">
-          <div class="problem-title">Invisível no Google</div>
-          <div class="problem-desc">Quem pesquisa sua área na cidade <strong>não te encontra</strong> e vai direto pro concorrente que aparece.</div>
-        </div>
-      </div>
-      <div class="problem-row">
-        <div class="problem-num">02</div>
-        <div class="problem-content">
-          <div class="problem-title">Sem informação, sem venda</div>
-          <div class="problem-desc">Clientes querem saber horários, serviços e preços. Se <strong>não encontram, desistem</strong> na hora.</div>
-        </div>
-      </div>
-      <div class="problem-row">
-        <div class="problem-num">03</div>
-        <div class="problem-content">
-          <div class="problem-title">Imagem que afasta</div>
-          <div class="problem-desc">Um site antigo ou inexistente passa mensagem errada. <strong>A concorrência parece mais profissional</strong> só por ter um site melhor.</div>
-        </div>
-      </div>
-      <div class="problem-row">
-        <div class="problem-num">04</div>
-        <div class="problem-content">
-          <div class="problem-title">Refém do algoritmo</div>
-          <div class="problem-desc">Depender só do Instagram é arriscado. <strong>Quando o alcance cai, suas vendas caem junto.</strong></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== BENEFITS ===== -->
-<section class="section-benefits">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">O que você ganha</div>
-      <h2>Com um site profissional, <span class="accent-italic">tudo muda.</span></h2>
-    </div>
-    <div class="benefits-list">
-
-      <div class="benefit-row">
-        <div class="benefit-icon-wrap">
-          <svg class="benefit-icon-svg" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="benefit-row-content">
-          <div class="benefit-row-tag">Essencial</div>
-          <div class="benefit-row-title">Credibilidade imediata</div>
-          <div class="benefit-row-desc">Uma presença online bem cuidada muda a percepção do seu negócio instantaneamente. Quem visita antes de comprar já chega com mais confiança.</div>
-        </div>
-      </div>
-
-      <div class="benefit-row">
-        <div class="benefit-icon-wrap">
-          <svg class="benefit-icon-svg" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/></svg>
-        </div>
-        <div class="benefit-row-content">
-          <div class="benefit-row-tag">80% das buscas</div>
-          <div class="benefit-row-title">Adaptado para celular</div>
-          <div class="benefit-row-desc">Mais de 80% das pesquisas locais acontecem pelo celular. Seu site funciona perfeitamente em qualquer tela, sem nada cortado ou lento.</div>
-        </div>
-      </div>
-
-      <div class="benefit-row">
-        <div class="benefit-icon-wrap">
-          <svg class="benefit-icon-svg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="benefit-row-content">
-          <div class="benefit-row-tag">1 clique</div>
-          <div class="benefit-row-title">Integração com WhatsApp</div>
-          <div class="benefit-row-desc">Botão fixo em todas as páginas. O visitante clica e abre a conversa direto com você — menos fricção, mais lead.</div>
-        </div>
-      </div>
-
-      <div class="benefit-row">
-        <div class="benefit-icon-wrap">
-          <svg class="benefit-icon-svg" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="benefit-row-content">
-          <div class="benefit-row-tag">Performance</div>
-          <div class="benefit-row-title">Carregamento rápido</div>
-          <div class="benefit-row-desc">Sites lentos perdem visitantes em segundos. Entregamos sites otimizados que carregam rápido e melhoram seu posicionamento no Google.</div>
-        </div>
-      </div>
-
-      <div class="benefit-row">
-        <div class="benefit-icon-wrap">
-          <svg class="benefit-icon-svg" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="benefit-row-content">
-          <div class="benefit-row-tag">Design único</div>
-          <div class="benefit-row-title">Identidade da sua marca</div>
-          <div class="benefit-row-desc">Nada de template genérico. Cores, tipografia e linguagem visual alinhados com o que sua empresa representa.</div>
-        </div>
-      </div>
-
-      <div class="benefit-row">
-        <div class="benefit-icon-wrap">
-          <svg class="benefit-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>
-        </div>
-        <div class="benefit-row-content">
-          <div class="benefit-row-tag">Sem enrolação</div>
-          <div class="benefit-row-title">Entrega em poucos dias</div>
-          <div class="benefit-row-desc">Do briefing ao site no ar em prazo definido e cumprido. Você envia o conteúdo, a gente entrega.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== PORTFOLIO ===== -->
-<section class="section-portfolio" id="portfolio">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Projetos entregues</div>
-      <h2>Resultados de quem <span class="accent-italic">já confiou na Raséc.</span></h2>
-    </div>
-    <div class="carousel">
-      <div class="carousel-track">
-
-        <!-- Slide 1 -->
-        <div class="carousel-slide active">
-          <div class="carousel-slide-bg slide-bg-1"></div>
-          <div class="carousel-overlay"></div>
-          <div class="carousel-content">
-            <div class="carousel-info">
-              <div class="carousel-nicho">Fotografia</div>
-              <div class="carousel-title">Site Institucional + Captação de Leads</div>
-              <div class="carousel-desc">Site completo com galeria, formulário de orçamento e botão WhatsApp.</div>
-            </div>
-            <div class="carousel-controls">
-              <button class="carousel-btn" id="prevBtn" aria-label="Anterior">
-                <svg viewBox="0 0 16 16"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="carousel-btn" id="nextBtn" aria-label="Próximo">
-                <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-slide">
-          <div class="carousel-slide-bg slide-bg-2"></div>
-          <div class="carousel-overlay"></div>
-          <div class="carousel-content">
-            <div class="carousel-info">
-              <div class="carousel-nicho">Saúde</div>
-              <div class="carousel-title">Presença Profissional + Google Meu Negócio</div>
-              <div class="carousel-desc">Site médico com agendamento via WhatsApp e otimização local.</div>
-            </div>
-            <div class="carousel-controls">
-              <button class="carousel-btn" onclick="prevSlide()" aria-label="Anterior">
-                <svg viewBox="0 0 16 16"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="carousel-btn" onclick="nextSlide()" aria-label="Próximo">
-                <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Dots -->
-      <div class="carousel-dots">
-        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-        <div class="carousel-dot" onclick="goToSlide(1)"></div>
-      </div>
-      <div class="carousel-counter" id="carouselCounter">01 / 02</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PROCESS ===== -->
-<section class="section-diagonal">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Como funciona</div>
-      <h2>Do briefing ao <span class="accent-italic">site no ar.</span></h2>
-    </div>
-    <div class="steps-wrapper">
-
-      <!-- Lista de passos -->
-      <div class="steps-list">
-        <div class="step-item active" onclick="setStep(0)">
-          <span class="step-num">01</span>
-          <span class="step-label">Entendimento do negócio</span>
-        </div>
-        <div class="step-item" onclick="setStep(1)">
-          <span class="step-num">02</span>
-          <span class="step-label">Criação do layout</span>
-        </div>
-        <div class="step-item" onclick="setStep(2)">
-          <span class="step-num">03</span>
-          <span class="step-label">Desenvolvimento</span>
-        </div>
-        <div class="step-item" onclick="setStep(3)">
-          <span class="step-num">04</span>
-          <span class="step-label">Publicação e entrega</span>
-        </div>
-        <div class="step-progress">
-          <div class="step-progress-bar" id="stepProgressBar"></div>
-        </div>
-      </div>
-
-      <!-- Painel de detalhe -->
-      <div class="steps-panel">
-
-        <div class="step-detail active">
-          <div class="step-detail-num">01</div>
-          <div class="step-detail-title">Entendimento <span>do negócio</span></div>
-          <div class="step-detail-desc">Conversamos sobre sua empresa, seu público e o que o site precisa comunicar. Nada é criado no escuro — partimos da sua realidade.</div>
-          <div class="step-detail-tag">Reunião inicial</div>
-        </div>
-
-        <div class="step-detail">
-          <div class="step-detail-num">02</div>
-          <div class="step-detail-title">Criação do <span>layout</span></div>
-          <div class="step-detail-desc">Desenvolvemos a identidade visual alinhada à sua marca. Cores, tipografia e estrutura pensados para causar a impressão certa no seu cliente.</div>
-          <div class="step-detail-tag">Design personalizado</div>
-        </div>
-
-        <div class="step-detail">
-          <div class="step-detail-num">03</div>
-          <div class="step-detail-title">Desenvolvimento <span>completo</span></div>
-          <div class="step-detail-desc">Construção do site com WhatsApp integrado, otimização para celular, carregamento rápido e tudo pronto para funcionar.</div>
-          <div class="step-detail-tag">Pronto para rodar</div>
-        </div>
-
-        <div class="step-detail">
-          <div class="step-detail-num">04</div>
-          <div class="step-detail-title">Publicação <span>e entrega</span></div>
-          <div class="step-detail-desc">Site no ar, testado em todos os dispositivos e pronto para receber seus primeiros visitantes. Prazo cumprido, sem surpresas.</div>
-          <div class="step-detail-tag">Site no ar</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="section-faq" id="faq">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Perguntas frequentes</div>
-      <h2>Tire suas <span class="accent-italic">dúvidas agora.</span></h2>
-    </div>
-    <div class="chat-wrapper" id="chatWrapper">
-
-      <div class="chat-hint">Toque em uma pergunta para ver a resposta</div>
-
-      <div class="chat-q visible" data-index="0">
-        <div class="chat-bubble-q" onclick="chatAnswer(0)">
-          <p>Quanto tempo leva para o site ficar pronto?</p>
-        </div>
-      </div>
-      <div class="chat-typing" id="typing-0">
-        <div class="chat-avatar">R</div>
-        <div class="typing-dots">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </div>
-      <div class="chat-a" id="answer-0">
-        <div class="chat-avatar">R</div>
-        <div class="chat-bubble-a"><p>O prazo é combinado no início e cumprido sem surpresas — geralmente poucos dias úteis após o envio do conteúdo.</p></div>
-      </div>
-
-      <div class="chat-q" data-index="1">
-        <div class="chat-bubble-q" onclick="chatAnswer(1)">
-          <p>Preciso contratar hospedagem separadamente?</p>
-        </div>
-      </div>
-      <div class="chat-typing" id="typing-1">
-        <div class="chat-avatar">R</div>
-        <div class="typing-dots">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </div>
-      <div class="chat-a" id="answer-1">
-        <div class="chat-avatar">R</div>
-        <div class="chat-bubble-a"><p>Não. Orientamos todo o processo de domínio e hospedagem — você não precisa entender de tecnologia.</p></div>
-      </div>
-
-      <div class="chat-q" data-index="2">
-        <div class="chat-bubble-q" onclick="chatAnswer(2)">
-          <p>Posso atualizar o conteúdo depois?</p>
-        </div>
-      </div>
-      <div class="chat-typing" id="typing-2">
-        <div class="chat-avatar">R</div>
-        <div class="typing-dots">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </div>
-      <div class="chat-a" id="answer-2">
-        <div class="chat-avatar">R</div>
-        <div class="chat-bubble-a"><p>Sim. Após a entrega você recebe orientações simples para atualizações, ou pode contar com suporte para alterações maiores.</p></div>
-      </div>
-
-      <div class="chat-q" data-index="3">
-        <div class="chat-bubble-q" onclick="chatAnswer(3)">
-          <p>O site funciona bem no celular?</p>
-        </div>
-      </div>
-      <div class="chat-typing" id="typing-3">
-        <div class="chat-avatar">R</div>
-        <div class="typing-dots">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </div>
-      <div class="chat-a" id="answer-3">
-        <div class="chat-avatar">R</div>
-        <div class="chat-bubble-a"><p>Sim, todos os projetos são totalmente responsivos — experiência otimizada em qualquer tamanho de tela.</p></div>
-      </div>
-
-      <div class="chat-q" data-index="4">
-        <div class="chat-bubble-q" onclick="chatAnswer(4)">
-          <p>O valor de R$1.000 inclui tudo?</p>
-        </div>
-      </div>
-      <div class="chat-typing" id="typing-4">
-        <div class="chat-avatar">R</div>
-        <div class="typing-dots">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      </div>
-      <div class="chat-a" id="answer-4">
-        <div class="chat-avatar">R</div>
-        <div class="chat-bubble-a"><p>Sim. Design, desenvolvimento, WhatsApp integrado e publicação. Preço fechado, sem cobranças escondidas.</p></div>
-      </div>
-
-      <div class="chat-hint" style="display:none;"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FINAL CTA ===== -->
-<section class="final-cta" id="contato">
-  <div class="eyebrow" style="justify-content:center; display:flex; margin-bottom:1.5rem;">Vagas limitadas para este mês</div>
-
-  <div class="glitch-wrap">
-    <div class="glitch-text" data-text="SEU SITE COMEÇA AQUI.">SEU SITE COMEÇA AQUI.</div>
-  </div>
-
-  <p class="subhead">Fale agora com a Raséc Mídias. Site profissional, prazo definido e sem complicação.</p>
-
-  <div class="cta-separator">
-    <div class="cta-separator-line"></div>
-    <div class="cta-separator-dot"></div>
-    <div class="cta-separator-line"></div>
-  </div>
-
-  <a href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1!%20Vi%20o%20an%C3%BAncio%20e%20quero%20saber%20mais%20sobre%20o%20site%20por%20R%241.000" class="cta">
-    Falar no WhatsApp agora
-    <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 8H15M15 8L9 2M15 8L9 14" stroke="currentColor" stroke-width="1.5"/>
-    </svg>
-  </a>
-</section>
-
-<footer>
-  <div class="logo">Raséc Mídias</div>
-  <div>Barbacena, MG</div>
-</footer>
-
-<script>
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  reveals.forEach(el => observer.observe(el));
-
-  // FAQ — Chat simulado
-  const answered = new Set();
-
-  function chatAnswer(idx) {
-    if (answered.has(idx)) return;
-    answered.add(idx);
-
-    const bubble = document.querySelector(`.chat-q[data-index="${idx}"] .chat-bubble-q`);
-    const typing = document.getElementById(`typing-${idx}`);
-    const answer = document.getElementById(`answer-${idx}`);
-    const nextQ = document.querySelector(`.chat-q[data-index="${idx + 1}"]`);
-
-    if (bubble) bubble.classList.add('answered');
-
-    // Mostra digitando
-    if (typing) typing.classList.add('visible');
-
-    setTimeout(() => {
-      if (typing) typing.classList.remove('visible');
-      if (answer) answer.classList.add('visible');
-
-      // Revela próxima pergunta
-      setTimeout(() => {
-        if (nextQ) nextQ.classList.add('visible');
-      }, 400);
-    }, 1200);
-  }
-
-  // FAQ accordion (removido — substituído por chat)
-
-  // Counter animation
-  function animateCounter(el, target, duration = 1800) {
-    const suffix = el.textContent.includes('%') ? '%' : '';
-    let start = null;
-    function step(ts) {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.floor(eased * target) + suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.dataset.target);
-        animateCounter(el, target);
-        counterObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  // Steps interativo
-  const stepItems = document.querySelectorAll('.step-item');
-  const stepDetails = document.querySelectorAll('.step-detail');
-  const progressBar = document.getElementById('stepProgressBar');
-  let currentStep = 0;
-  let stepTimer = null;
-  const STEP_DURATION = 4000;
-
-  function setStep(n) {
-    stepItems[currentStep].classList.remove('active');
-    stepDetails[currentStep].classList.remove('active');
-    currentStep = n % stepItems.length;
-    stepItems[currentStep].classList.add('active');
-    stepDetails[currentStep].classList.add('active');
-    // Reset progress bar
-    if (progressBar) {
-      progressBar.style.transition = 'none';
-      progressBar.style.width = '0%';
-      requestAnimationFrame(() => {
-        progressBar.style.transition = `width ${STEP_DURATION}ms linear`;
-        progressBar.style.width = '100%';
-      });
-    }
-    clearInterval(stepTimer);
-    stepTimer = setInterval(() => setStep(currentStep + 1), STEP_DURATION);
-  }
-
-  setStep(0);
-
-  // Carousel
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dots = document.querySelectorAll('.carousel-dot');
-  const counter = document.getElementById('carouselCounter');
-
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-    if (counter) counter.textContent = String(currentSlide + 1).padStart(2,'0') + ' / ' + String(slides.length).padStart(2,'0');
-  }
-
-  function nextSlide() { goToSlide(currentSlide + 1); }
-  function prevSlide() { goToSlide(currentSlide - 1); }
-
-  document.getElementById('prevBtn')?.addEventListener('click', prevSlide);
-  document.getElementById('nextBtn')?.addEventListener('click', nextSlide);
-
-  // Auto-avanço a cada 5s
-  setInterval(nextSlide, 5000);
-
-  // Cascade cards reveal
-  const cascadeGrid = document.querySelector('.cascade-grid');
-  if (cascadeGrid) {
-    const cObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.cascade-card').forEach(c => c.classList.add('card-visible'));
-          cObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    cObserver.observe(cascadeGrid);
-  }
-
-  // Map pins — aparecem em sequência
-  const pins = document.querySelectorAll('.map-pin');
-  pins.forEach((pin, i) => {
-    setTimeout(() => {
-      pin.classList.add('visible');
-      // Mostra tooltip brevemente
-      setTimeout(() => pin.classList.add('show-label'), 200);
-      setTimeout(() => pin.classList.remove('show-label'), 2000);
-    }, i * 300);
-  });
-
-  // Pin "você" — tooltip permanente
-  const youPin = document.querySelector('.map-pin-you');
-  if (youPin) {
-    setTimeout(() => {
-      youPin.classList.add('show-label');
-    }, pins.length * 300 + 400);
-  }
-
-  // Benefits rows reveal
-  const benefitsList = document.querySelector('.benefits-list');
-  if (benefitsList) {
-    const bObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.benefit-row').forEach(row => row.classList.add('row-visible'));
-          bObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    bObserver.observe(benefitsList);
-  }
-  const problemList = document.querySelector('.problem-list');
-  if (problemList) {
-    const lineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('line-visible');
-          entry.target.querySelectorAll('.problem-row').forEach(row => {
-            row.classList.add('row-visible');
-          });
-          lineObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    lineObserver.observe(problemList);
-  }
-</script>
+<div class="next">Próxima seção</div>
 
 </body>
 </html>
