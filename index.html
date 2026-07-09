@@ -329,144 +329,94 @@ h2 .gold { color: var(--gold); }
   line-height: 1.65;
 }
 
-/* ===== PORTFÓLIO ===== */
-.carousel { position: relative; }
+/* ===== PORTFÓLIO — Cards verticais ===== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
 
-.carousel-track {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/7;
-  overflow: hidden;
-  border-radius: 4px;
+@media (max-width: 640px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
+
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-@media (max-width: 600px) { .carousel-track { aspect-ratio: 4/3; } }
-
-.carousel-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  display: flex;
-  align-items: flex-end;
+.portfolio-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-4px);
 }
 
-.carousel-slide.active { opacity: 1; }
-
-.carousel-slide-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 8s ease;
-  transform: scale(1.04);
-}
-
-.carousel-slide.active .carousel-slide-bg { transform: scale(1); }
-
-.slide-bg-1 { background: linear-gradient(135deg, #0d1520 0%, #0a1a2e 40%, #1a0d20 100%); }
-.slide-bg-2 { background: linear-gradient(135deg, #0a1a0f 0%, #0d2018 40%, #0a150d 100%); }
-
-.slide-bg-1::after,
-.slide-bg-2::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(201,168,76,0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-.carousel-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(9,11,19,0.9) 0%, transparent 60%);
-}
-
-.carousel-content {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
+/* Área da imagem — proporção de screenshot mobile (9:16 aprox) */
+.portfolio-img {
   width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
+  aspect-ratio: 9/16;
+  background: #090b13;
+  background-size: cover;
+  background-position: top center;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 600px) { .carousel-content { padding: 1.2rem; flex-direction: column; align-items: flex-start; gap: 1rem; } }
+/* Placeholder enquanto não tem imagem */
+.portfolio-img::before {
+  content: 'PRINT DO SITE';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(201,168,76,0.2);
+  background-image: radial-gradient(rgba(201,168,76,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
 
-.carousel-nicho {
-  font-size: 0.6rem;
-  letter-spacing: 0.28em;
+.portfolio-img.has-image::before { display: none; }
+
+.portfolio-info {
+  padding: 1.2rem;
+  border-top: 1px solid var(--line);
+  background: var(--navy2);
+}
+
+.portfolio-nicho {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--gold);
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
-  margin-bottom: 0.3rem;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+  margin-bottom: 0.35rem;
+  opacity: 0.8;
 }
 
-.carousel-slide.active .carousel-nicho { opacity: 1; transform: translateY(0); }
-
-.carousel-title {
+.portfolio-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: var(--white);
-  line-height: 1.1;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease 0.35s, transform 0.5s ease 0.35s;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
 }
 
-.carousel-slide.active .carousel-title { opacity: 1; transform: translateY(0); }
-
-.carousel-desc {
-  font-size: 0.82rem;
+.portfolio-desc {
+  font-size: 0.8rem;
   color: var(--muted);
-  margin-top: 0.35rem;
-  opacity: 0;
-  transition: opacity 0.5s ease 0.5s;
+  line-height: 1.6;
 }
-
-.carousel-slide.active .carousel-desc { opacity: 1; }
-
-.carousel-controls { display: flex; gap: 0.6rem; flex-shrink: 0; }
-
-.carousel-btn {
-  width: 40px; height: 40px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: rgba(9,11,19,0.7);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-.carousel-btn:hover { border-color: var(--gold); }
-.carousel-btn svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-
-.carousel-dots {
-  display: flex;
-  gap: 0.4rem;
-  margin-top: 1rem;
-}
-
-.carousel-dot {
-  height: 2px;
-  border-radius: 2px;
-  background: var(--line);
-  cursor: pointer;
-  transition: background 0.3s ease, width 0.4s ease;
-  width: 20px;
-}
-
-.carousel-dot.active { background: var(--gold); width: 40px; }
 
 /* ===== PROCESSO ===== */
 .steps-wrapper {
@@ -936,42 +886,22 @@ footer {
   <div class="container">
     <div class="reveal"><div class="eyebrow">Projetos entregues</div>
     <h2>Resultados de quem<br><span class="gold">já confiou na Raséc.</span></h2></div>
-    <div class="carousel">
-      <div class="carousel-track">
-        <div class="carousel-slide active">
-          <div class="carousel-slide-bg slide-bg-1"></div>
-          <div class="carousel-overlay"></div>
-          <div class="carousel-content">
-            <div>
-              <div class="carousel-nicho">Fotografia</div>
-              <div class="carousel-title">Site Institucional + Captação de Leads</div>
-              <div class="carousel-desc">Galeria, formulário de orçamento e botão WhatsApp.</div>
-            </div>
-            <div class="carousel-controls">
-              <button class="carousel-btn" id="prevBtn"><svg viewBox="0 0 16 16"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="carousel-btn" id="nextBtn"><svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <div class="carousel-slide-bg slide-bg-2"></div>
-          <div class="carousel-overlay"></div>
-          <div class="carousel-content">
-            <div>
-              <div class="carousel-nicho">Saúde</div>
-              <div class="carousel-title">Presença Profissional + Google Meu Negócio</div>
-              <div class="carousel-desc">Site médico com agendamento via WhatsApp e SEO local.</div>
-            </div>
-            <div class="carousel-controls">
-              <button class="carousel-btn" onclick="prevSlide()"><svg viewBox="0 0 16 16"><path d="M10 4L6 8l4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="carousel-btn" onclick="nextSlide()"><svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-          </div>
+    <div class="portfolio-grid reveal">
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background-image: url('SEU-PRINT-1.jpg');"></div>
+        <div class="portfolio-info">
+          <div class="portfolio-nicho">Fotografia</div>
+          <div class="portfolio-title">Site Institucional</div>
+          <div class="portfolio-desc">Galeria, formulário de orçamento e botão WhatsApp.</div>
         </div>
       </div>
-      <div class="carousel-dots">
-        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
-        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+      <div class="portfolio-card">
+        <div class="portfolio-img" style="background-image: url('SEU-PRINT-2.jpg');"></div>
+        <div class="portfolio-info">
+          <div class="portfolio-nicho">Saúde</div>
+          <div class="portfolio-title">Presença Profissional</div>
+          <div class="portfolio-desc">Site médico com agendamento via WhatsApp e SEO local.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1097,25 +1027,7 @@ footer {
     bObs.observe(benefitsList);
   }
 
-  // Carousel
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dots = document.querySelectorAll('.carousel-dot');
 
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
-
-  function nextSlide() { goToSlide(currentSlide + 1); }
-  function prevSlide() { goToSlide(currentSlide - 1); }
-
-  document.getElementById('prevBtn')?.addEventListener('click', prevSlide);
-  document.getElementById('nextBtn')?.addEventListener('click', nextSlide);
-  setInterval(nextSlide, 5000);
 
   // Steps
   const stepItems = document.querySelectorAll('.step-item');
