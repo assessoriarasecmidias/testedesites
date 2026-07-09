@@ -234,102 +234,72 @@
     .navbar nav { display: none; }
   }
 
-  /* ===== Hero ===== */
+  /* ===== Hero — recriado do zero ===== */
   .hero {
-    min-height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    max-height: 900px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding-top: 3.5rem;
-    padding-bottom: 2rem;
+    justify-content: center;
     position: relative;
     overflow: hidden;
-    gap: 0;
+    background-color: #0d0f1a;
+    padding: 0 6vw;
   }
 
-  .hero::before {
+  .hero::after {
     content: '';
     position: absolute;
-    bottom: -20%;
+    bottom: -5%;
     left: 50%;
     transform: translateX(-50%);
-    width: 140%;
-    height: 70%;
-    background: radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, rgba(201,168,76,0.03) 40%, transparent 70%);
+    width: 70%;
+    height: 40%;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%);
     pointer-events: none;
-    z-index: 0;
   }
-
-  .hero > * { position: relative; z-index: 1; }
 
   .hero .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
+    gap: 0;
   }
 
-  .hero h1 {
-    font-size: clamp(1.25rem, 5.8vw, 3rem);
-    max-width: 22ch;
-    margin: 0 auto;
-    text-align: center;
-    line-height: 1.12;
-  }
-
-  .hero .subhead {
-    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
-    font-weight: 300;
-    max-width: 44ch;
-    color: rgba(245,242,233,0.6);
-    margin: 0 auto;
-    line-height: 1.7;
-    text-align: center;
-  }
-
-  /* ===== Hero Marquee ===== */
+  /* Marquee — faixa fina */
   .hero-marquee-wrap {
     width: 100vw;
     margin-left: calc(-6vw);
     overflow: hidden;
     position: relative;
-    padding: 1.2rem 0;
+    padding: 0.6rem 0;
     border-top: 1px solid rgba(201,168,76,0.1);
     border-bottom: 1px solid rgba(201,168,76,0.1);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.6rem;
   }
 
-  /* Fade nas bordas */
   .hero-marquee-wrap::before,
   .hero-marquee-wrap::after {
     content: '';
     position: absolute;
     top: 0; bottom: 0;
-    width: 120px;
+    width: 80px;
     z-index: 2;
     pointer-events: none;
   }
 
-  .hero-marquee-wrap::before {
-    left: 0;
-    background: linear-gradient(90deg, #0d0f1a, transparent);
-  }
-
-  .hero-marquee-wrap::after {
-    right: 0;
-    background: linear-gradient(270deg, #0d0f1a, transparent);
-  }
+  .hero-marquee-wrap::before { left: 0; background: linear-gradient(90deg, #0d0f1a, transparent); }
+  .hero-marquee-wrap::after  { right: 0; background: linear-gradient(270deg, #0d0f1a, transparent); }
 
   .hero-marquee-track {
     display: flex;
     width: max-content;
-    animation: marqueeScroll 22s linear infinite;
+    animation: marqueeScroll 24s linear infinite;
   }
-
-  .hero-marquee-track:hover { animation-play-state: paused; }
 
   @keyframes marqueeScroll {
     0%   { transform: translateX(0); }
@@ -339,31 +309,60 @@
   .marquee-item {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    padding: 0 2rem;
+    gap: 1.2rem;
+    padding: 0 1.2rem;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   .marquee-word {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.22em;
-    color: rgba(201,168,76,0.18);
-    transition: color 0.3s ease;
+    color: rgba(201,168,76,0.2);
   }
 
-  .marquee-word.highlight {
-    color: rgba(201,168,76,0.55);
-  }
+  .marquee-word.highlight { color: rgba(201,168,76,0.5); }
 
   .marquee-sep {
-    width: 4px; height: 4px;
+    width: 3px; height: 3px;
     border-radius: 50%;
-    background: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.25);
     flex-shrink: 0;
+  }
+
+  /* Headline */
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.45rem, 5.5vw, 3.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.12;
+    text-align: center;
+    color: var(--off-white);
+    max-width: 16ch;
+    margin: 0 auto 0.9rem;
+  }
+
+  /* Sub */
+  .hero .subhead {
+    font-size: clamp(0.85rem, 1.3vw, 0.98rem);
+    font-weight: 300;
+    color: rgba(245,242,233,0.5);
+    line-height: 1.7;
+    text-align: center;
+    max-width: 38ch;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 0 5vw; max-height: none; }
+    .hero h1 { font-size: clamp(1.4rem, 6.5vw, 2.2rem); max-width: 100%; }
+    .hero-marquee-wrap { margin-bottom: 1.2rem; }
   }
 
   /* ===== Problem — Lista editorial ===== */
@@ -1296,65 +1295,36 @@
 <!-- ===== HERO ===== -->
 <section class="hero" id="inicio">
   <div class="container">
-
-    <!-- Marquee -->
     <div class="hero-marquee-wrap">
       <div class="hero-marquee-track">
-        <!-- Set 1 -->
         <div class="marquee-item">
-          <span class="marquee-word highlight">Credibilidade</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Profissionalismo</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Presença Digital</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Resultados Reais</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Barbacena, MG</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Sites Profissionais</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Mais Clientes</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Identidade Visual</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">WhatsApp Integrado</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Mobile First</span>
-          <span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Credibilidade</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Profissionalismo</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Presença Digital</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Resultados Reais</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Barbacena, MG</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Sites Profissionais</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Mais Clientes</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Identidade Visual</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">WhatsApp Integrado</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Mobile First</span><span class="marquee-sep"></span>
         </div>
-        <!-- Set 2 (duplicado para loop infinito) -->
         <div class="marquee-item">
-          <span class="marquee-word highlight">Credibilidade</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Profissionalismo</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Presença Digital</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Resultados Reais</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Barbacena, MG</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Sites Profissionais</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">Mais Clientes</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Identidade Visual</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word highlight">WhatsApp Integrado</span>
-          <span class="marquee-sep"></span>
-          <span class="marquee-word">Mobile First</span>
-          <span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Credibilidade</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Profissionalismo</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Presença Digital</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Resultados Reais</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Barbacena, MG</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Sites Profissionais</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">Mais Clientes</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Identidade Visual</span><span class="marquee-sep"></span>
+          <span class="marquee-word highlight">WhatsApp Integrado</span><span class="marquee-sep"></span>
+          <span class="marquee-word">Mobile First</span><span class="marquee-sep"></span>
         </div>
       </div>
     </div>
-
-    <!-- Headline e sub -->
     <h1>SEU NEGÓCIO MERECE UM SITE QUE <span class="accent-italic">TRANSMITE CONFIANÇA</span> E GERA OPORTUNIDADES.</h1>
-    <p class="subhead">
-      Criamos sites profissionais, rápidos e modernos para empresas de Barbacena que querem atrair mais clientes — sem complicação e com prazo definido.
-    </p>
-
+    <p class="subhead">Criamos sites profissionais para empresas de Barbacena que querem atrair mais clientes — com prazo definido e sem complicação.</p>
   </div>
 </section>
 
