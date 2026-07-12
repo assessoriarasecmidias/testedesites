@@ -218,7 +218,7 @@
     flex-shrink:0;
   }
 
-  /* CONSULTORIO */
+  /* CONSULTORIO (placeholder) */
   #consultorio{
     background:var(--navy);
     color:var(--cream);
@@ -226,6 +226,36 @@
 
   #consultorio .section-head h2{color:var(--cream);}
   #consultorio .eyebrow{color:var(--gold-light);}
+
+  .placeholder-box{
+    max-width:640px;
+    height:420px;
+    margin:0 auto;
+    border:1px dashed rgba(242,237,230,0.35);
+    background:rgba(242,237,230,0.04);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .placeholder-box span{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:rgba(242,237,230,0.45);
+    letter-spacing:0.02em;
+  }
+
+  /* TRABALHOS REALIZADOS */
+  #trabalhos{
+    background:var(--navy);
+    color:var(--cream);
+    border-top:1px solid rgba(242,237,230,0.08);
+  }
+
+  #trabalhos .section-head h2{color:var(--cream);}
+  #trabalhos .eyebrow{color:var(--gold-light);}
 
   .galeria{
     display:grid;
@@ -245,6 +275,10 @@
   .galeria img:hover{
     filter:grayscale(0%);
     transform:scale(1.02);
+  }
+
+  @media (max-width:600px){
+    .placeholder-box{height:280px;}
   }
 
   /* DEPOIMENTOS */
@@ -493,6 +527,18 @@
     <div class="section-head">
       <span class="eyebrow">Nosso espaço</span>
       <h2>Consultório</h2>
+    </div>
+    <div class="placeholder-box">
+      <span>Imagem do consultório aqui</span>
+    </div>
+  </div>
+</section>
+
+<section id="trabalhos">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Resultados</span>
+      <h2>Trabalhos Realizados</h2>
     </div>
     <div class="galeria">
       <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/dra.annaliasiqueira_provassocial01.jpg" alt="Trabalho realizado pela Dra. Annália Siqueira">
