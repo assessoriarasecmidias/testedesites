@@ -329,11 +329,6 @@
             transform: translateY(-4px);
         }
 
-        .service-emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
         .service h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
@@ -343,14 +338,8 @@
         .service p {
             font-size: 0.95rem;
             color: #777;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0;
             line-height: 1.7;
-        }
-
-        .service-price {
-            font-weight: 700;
-            color: #c9a84c;
-            font-size: 1.1rem;
         }
 
         /* ABOUT */
@@ -621,6 +610,13 @@
             font-weight: 300;
         }
 
+        .testimonials-disclaimer {
+            font-size: 0.85rem;
+            color: #999;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -859,12 +855,11 @@
     <section class="hero">
         <div class="hero-left">
             <div class="hero-kicker">Fotografia de Vida</div>
-            <h1>Eternize seus <strong>momentos únicos</strong> com profissionalismo</h1>
+            <h1>Eternize Seus Momentos Únicos Com Profissionalismo</h1>
             <p class="hero-subtitle">Especialista em gestação, parto e primeiros momentos. Memórias que você vai guardar para a vida toda.</p>
             
             <div class="cta-group">
-                <a href="https://wa.me/5555989921351?text=Oi%2C%20Su.%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary" target="_blank">Agendar Sessão</a>
-                <a href="#sobre" class="btn btn-secondary">Conheça Meu Trabalho</a>
+                <a href="https://wa.me/55989921351?text=Oi%2C%20Su.%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary" target="_blank">Agendar Sessão</a>
             </div>
 
             <div class="hero-trust">
@@ -890,7 +885,7 @@
 
     <!-- PROBLEMA -->
     <section class="problem">
-        <h2>O dilema das futuras <strong>mães</strong></h2>
+        <h2>O Dilema das Futuras Mães</h2>
         <p class="problem-text">Você quer registrar os momentos mais importantes da sua vida, mas não encontra quem capte a emoção e a beleza desses instantes únicos com a qualidade que você merece.</p>
         
         <div class="pain-points">
@@ -911,7 +906,7 @@
 
     <!-- SOLUÇÃO -->
     <section class="solution">
-        <h2>A solução: <strong>fotografia que honra seus momentos</strong></h2>
+        <h2>A Solução: Fotografia Que Honra Seus Momentos</h2>
         <p class="solution-subtitle">Aqui está como eu trabalho</p>
         
         <div class="solution-grid">
@@ -942,24 +937,18 @@
         
         <div class="services-grid">
             <div class="service">
-                <div class="service-emoji">🤰</div>
                 <h3>Gestação</h3>
                 <p>Celebre essa fase única. Sessão em estúdio com looks profissionais, iluminação artística e styling completo. Suas fotos direto do coração.</p>
-                <div class="service-price">A partir de R$ 800</div>
             </div>
 
             <div class="service">
-                <div class="service-emoji">👶</div>
                 <h3>Newborn</h3>
                 <p>Bebê de 0 a 30 dias em ambiente controlado. Segurança, conforto e imagens que parecem saídas de um sonho. Acessórios e styling inclusos.</p>
-                <div class="service-price">A partir de R$ 1.200</div>
             </div>
 
             <div class="service">
-                <div class="service-emoji">💝</div>
                 <h3>Parto</h3>
                 <p>O serviço mais exclusivo. Estou presente no seu parto para capturar o primeiro instante de encontro entre você e seu bebê.</p>
-                <div class="service-price">Sob consulta</div>
             </div>
         </div>
     </section>
@@ -967,13 +956,12 @@
     <!-- PORTFÓLIO INTERATIVO -->
     <section class="portfolio">
         <div class="portfolio-header">
-            <h2>Meu trabalho <strong>fala por si</strong></h2>
+            <h2>Meu Trabalho Fala Por Si</h2>
             <p class="portfolio-subtitle">Clique nas categorias para explorar</p>
         </div>
 
         <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="all">Tudo</button>
-            <button class="filter-btn" data-filter="gestacao">Gestação</button>
+            <button class="filter-btn active" data-filter="gestacao">Gestação</button>
             <button class="filter-btn" data-filter="parto">Parto</button>
             <button class="filter-btn" data-filter="newborn">Newborn</button>
             <button class="filter-btn" data-filter="aniversario">Aniversário</button>
@@ -981,7 +969,7 @@
         </div>
 
         <div class="portfolio-grid">
-            <!-- ITEM 1: GRANDE (gestacao) -->
+            <!-- GESTAÇÃO (4 items) -->
             <div class="portfolio-item portfolio-item-large" data-category="gestacao">
                 <div class="portfolio-image">
                     <!-- IMAGEM GESTAÇÃO 1 -->
@@ -991,48 +979,7 @@
                 </div>
             </div>
 
-            <!-- ITEM 2: PEQUENO (newborn) -->
-            <div class="portfolio-item" data-category="newborn">
-                <div class="portfolio-image">
-                    <!-- IMAGEM NEWBORN 1 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Newborn</div>
-                </div>
-            </div>
-
-            <!-- ITEM 3: PEQUENO (parto) -->
-            <div class="portfolio-item" data-category="parto">
-                <div class="portfolio-image">
-                    <!-- IMAGEM PARTO 1 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Parto</div>
-                </div>
-            </div>
-
-            <!-- ITEM 4: PEQUENO (aniversario) -->
-            <div class="portfolio-item" data-category="aniversario">
-                <div class="portfolio-image">
-                    <!-- IMAGEM ANIVERSÁRIO 1 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Aniversário</div>
-                </div>
-            </div>
-
-            <!-- ITEM 5: PEQUENO (familia) -->
-            <div class="portfolio-item" data-category="familia">
-                <div class="portfolio-image">
-                    <!-- IMAGEM FAMÍLIA 1 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Família</div>
-                </div>
-            </div>
-
-            <!-- ITEM 6: GRANDE (gestacao) -->
-            <div class="portfolio-item portfolio-item-large" data-category="gestacao">
+            <div class="portfolio-item" data-category="gestacao">
                 <div class="portfolio-image">
                     <!-- IMAGEM GESTAÇÃO 2 -->
                 </div>
@@ -1041,47 +988,6 @@
                 </div>
             </div>
 
-            <!-- ITEM 7: GRANDE (newborn) -->
-            <div class="portfolio-item portfolio-item-large" data-category="newborn">
-                <div class="portfolio-image">
-                    <!-- IMAGEM NEWBORN 2 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Newborn</div>
-                </div>
-            </div>
-
-            <!-- ITEM 8: PEQUENO (parto) -->
-            <div class="portfolio-item" data-category="parto">
-                <div class="portfolio-image">
-                    <!-- IMAGEM PARTO 2 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Parto</div>
-                </div>
-            </div>
-
-            <!-- ITEM 9: PEQUENO (aniversario) -->
-            <div class="portfolio-item" data-category="aniversario">
-                <div class="portfolio-image">
-                    <!-- IMAGEM ANIVERSÁRIO 2 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Aniversário</div>
-                </div>
-            </div>
-
-            <!-- ITEM 10: PEQUENO (familia) -->
-            <div class="portfolio-item" data-category="familia">
-                <div class="portfolio-image">
-                    <!-- IMAGEM FAMÍLIA 2 -->
-                </div>
-                <div class="portfolio-overlay">
-                    <div class="portfolio-tag">Família</div>
-                </div>
-            </div>
-
-            <!-- ITEM 11: PEQUENO (gestacao) -->
             <div class="portfolio-item" data-category="gestacao">
                 <div class="portfolio-image">
                     <!-- IMAGEM GESTAÇÃO 3 -->
@@ -1091,13 +997,160 @@
                 </div>
             </div>
 
-            <!-- ITEM 12: GRANDE (parto) -->
+            <div class="portfolio-item" data-category="gestacao">
+                <div class="portfolio-image">
+                    <!-- IMAGEM GESTAÇÃO 4 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Gestação</div>
+                </div>
+            </div>
+
+            <!-- PARTO (4 items) -->
             <div class="portfolio-item portfolio-item-large" data-category="parto">
+                <div class="portfolio-image">
+                    <!-- IMAGEM PARTO 1 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Parto</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="parto">
+                <div class="portfolio-image">
+                    <!-- IMAGEM PARTO 2 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Parto</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="parto">
                 <div class="portfolio-image">
                     <!-- IMAGEM PARTO 3 -->
                 </div>
                 <div class="portfolio-overlay">
                     <div class="portfolio-tag">Parto</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="parto">
+                <div class="portfolio-image">
+                    <!-- IMAGEM PARTO 4 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Parto</div>
+                </div>
+            </div>
+
+            <!-- NEWBORN (4 items) -->
+            <div class="portfolio-item portfolio-item-large" data-category="newborn">
+                <div class="portfolio-image">
+                    <!-- IMAGEM NEWBORN 1 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Newborn</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="newborn">
+                <div class="portfolio-image">
+                    <!-- IMAGEM NEWBORN 2 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Newborn</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="newborn">
+                <div class="portfolio-image">
+                    <!-- IMAGEM NEWBORN 3 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Newborn</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="newborn">
+                <div class="portfolio-image">
+                    <!-- IMAGEM NEWBORN 4 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Newborn</div>
+                </div>
+            </div>
+
+            <!-- ANIVERSÁRIO (4 items) -->
+            <div class="portfolio-item portfolio-item-large" data-category="aniversario">
+                <div class="portfolio-image">
+                    <!-- IMAGEM ANIVERSÁRIO 1 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Aniversário</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="aniversario">
+                <div class="portfolio-image">
+                    <!-- IMAGEM ANIVERSÁRIO 2 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Aniversário</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="aniversario">
+                <div class="portfolio-image">
+                    <!-- IMAGEM ANIVERSÁRIO 3 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Aniversário</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="aniversario">
+                <div class="portfolio-image">
+                    <!-- IMAGEM ANIVERSÁRIO 4 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Aniversário</div>
+                </div>
+            </div>
+
+            <!-- FAMÍLIA (4 items) -->
+            <div class="portfolio-item portfolio-item-large" data-category="familia">
+                <div class="portfolio-image">
+                    <!-- IMAGEM FAMÍLIA 1 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Família</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="familia">
+                <div class="portfolio-image">
+                    <!-- IMAGEM FAMÍLIA 2 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Família</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="familia">
+                <div class="portfolio-image">
+                    <!-- IMAGEM FAMÍLIA 3 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Família</div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="familia">
+                <div class="portfolio-image">
+                    <!-- IMAGEM FAMÍLIA 4 -->
+                </div>
+                <div class="portfolio-overlay">
+                    <div class="portfolio-tag">Família</div>
                 </div>
             </div>
         </div>
@@ -1123,10 +1176,6 @@
                     <div class="stat-number">500+</div>
                     <div class="stat-label">Sessões realizadas</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">18k</div>
-                    <div class="stat-label">Pessoas que confiam</div>
-                </div>
             </div>
         </div>
     </section>
@@ -1134,7 +1183,8 @@
     <!-- DEPOIMENTOS -->
     <section class="testimonials">
         <div class="testimonials-header">
-            <h2>O que dizem sobre meu trabalho</h2>
+            <h2>O Que as Clientes Dizem</h2>
+            <p class="testimonials-disclaimer">*Os depoimentos abaixo são simulados e servem apenas para demonstração da landing page.</p>
         </div>
         
         <div class="testimonials-grid">
@@ -1165,7 +1215,7 @@
     <section class="cta-final">
         <h2>Pronto para eternizar seus momentos?</h2>
         <p>Vamos conversar sobre como posso capturar a emoção e a beleza da sua história.</p>
-        <a href="https://wa.me/5555989921351?text=Oi%2C%20Su.%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary" target="_blank">Enviar Mensagem no WhatsApp</a>
+        <a href="https://wa.me/55989921351?text=Oi%2C%20Su.%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary" target="_blank">Agendar Sessão</a>
     </section>
 
     <!-- FOOTER -->
@@ -1202,7 +1252,7 @@
                 portfolioItems.forEach(item => {
                     const category = item.getAttribute('data-category');
                     
-                    if (filter === 'all' || category === filter) {
+                    if (category === filter) {
                         item.style.display = 'block';
                         setTimeout(() => {
                             item.style.opacity = '1';
@@ -1217,10 +1267,15 @@
             });
         });
 
-        // Iniciar com opacidade
+        // Iniciar mostrando apenas gestação
         portfolioItems.forEach(item => {
             item.style.transition = 'opacity 0.3s ease-out';
-            item.style.opacity = '1';
+            if (item.getAttribute('data-category') !== 'gestacao') {
+                item.style.display = 'none';
+                item.style.opacity = '0';
+            } else {
+                item.style.opacity = '1';
+            }
         });
     </script>
 </body>
