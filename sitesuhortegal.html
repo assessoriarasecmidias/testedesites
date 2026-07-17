@@ -113,7 +113,8 @@
         .hero-right img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background: linear-gradient(135deg, #e8d5c4 0%, #d4a5a5 100%);
         }
 
         .hero-subtitle {
@@ -434,7 +435,7 @@
         .portfolio-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -587,15 +588,6 @@
         .testimonial:hover {
             transform: translateY(-6px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-
-        .testimonial-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 1.5rem;
-            display: block;
         }
 
         .stars {
@@ -763,10 +755,6 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-            }
-
-            .testimonial-image {
-                height: 180px;
             }
 
             .portfolio-grid {
@@ -1045,14 +1033,11 @@
                 <div class="portfolio-item" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
                 <div class="portfolio-item" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
                 <div class="portfolio-item" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
-                <div class="portfolio-item portfolio-item-large" data-category="newborn"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
-                <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
-                <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
-                <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
+                <div class="portfolio-item portfolio-item-large" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
+                <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
+                <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
+                <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
                 <div class="portfolio-item portfolio-item-large" data-category="aniversario"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
-                <div class="portfolio-item" data-category="aniversario"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
-                <div class="portfolio-item" data-category="aniversario"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
-                <div class="portfolio-item" data-category="aniversario"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
                 <div class="portfolio-item portfolio-item-large" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
                 <div class="portfolio-item" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
                 <div class="portfolio-item" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
@@ -1097,7 +1082,6 @@
 
             <div class="testimonials-grid">
                 <div class="testimonial">
-                    <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn" class="testimonial-image">
                     <div class="stars">★ ★ ★ ★ ★</div>
                     <p class="testimonial-text">"Su capturou o momento mais importante da minha vida com tanta sensibilidade. As fotos do parto do meu filho são um tesouro que vou guardar para sempre."</p>
                     <div class="testimonial-author">Mariana Silva</div>
@@ -1105,7 +1089,6 @@
                 </div>
 
                 <div class="testimonial">
-                    <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn" class="testimonial-image">
                     <div class="stars">★ ★ ★ ★ ★</div>
                     <p class="testimonial-text">"O ensaio gestacional foi uma celebração. Su não é só fotógrafa, é uma pessoa que entende o peso e a beleza de ser mãe."</p>
                     <div class="testimonial-author">Amanda Costa</div>
@@ -1113,7 +1096,6 @@
                 </div>
 
                 <div class="testimonial">
-                    <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn" class="testimonial-image">
                     <div class="stars">★ ★ ★ ★ ★</div>
                     <p class="testimonial-text">"As fotos newborn da minha filha são perfeitas. Qualidade profissional, luz linda, ambiente seguro. Recomendo demais!"</p>
                     <div class="testimonial-author">Juliana Mendes</div>
