@@ -96,7 +96,7 @@
 
         .hero-right {
             height: 100vh;
-            background: #ffffff;
+            background: linear-gradient(135deg, #e8d5c4 0%, #d4a5a5 100%);
             animation: slideInRight 0.8s ease-out;
         }
 
@@ -113,7 +113,7 @@
         .hero-right img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         .hero-subtitle {
@@ -412,7 +412,7 @@
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
-            background: #ffffff;
+            background: linear-gradient(135deg, #e8d5c4 0%, #d4a5a5 100%);
         }
 
         .portfolio-item-large {
@@ -423,7 +423,7 @@
         .portfolio-image {
             width: 100%;
             height: 100%;
-            background: #ffffff;
+            background: linear-gradient(135deg, #e8d5c4 0%, #d4a5a5 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -434,7 +434,7 @@
         .portfolio-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -494,7 +494,7 @@
             border-radius: 8px;
             overflow: hidden;
             aspect-ratio: 1;
-            background: #ffffff;
+            background: linear-gradient(135deg, #e8d5c4 0%, #d4a5a5 100%);
         }
 
         .about-image img {
@@ -587,6 +587,15 @@
         .testimonial:hover {
             transform: translateY(-6px);
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .stars {
@@ -748,16 +757,6 @@
                 font-size: 1.1rem;
             }
 
-            .hero-right {
-                height: 350px;
-            }
-
-            .hero-right img {
-                object-fit: contain;
-                width: 100%;
-                height: 100%;
-            }
-
             .pain-points,
             .solution-grid,
             .services-grid,
@@ -766,15 +765,14 @@
                 gap: 2rem;
             }
 
+            .testimonial-image {
+                height: 180px;
+            }
+
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: 180px;
                 gap: 1.2rem;
-            }
-
-            .portfolio-image img {
-                object-fit: contain;
-                background: #ffffff;
             }
 
             .about {
@@ -883,21 +881,6 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
                 grid-auto-rows: 250px;
-            }
-
-            .portfolio-image img {
-                object-fit: contain;
-                background: #ffffff;
-            }
-
-            .hero-right {
-                height: 300px;
-            }
-
-            .hero-right img {
-                object-fit: contain;
-                width: 100%;
-                height: 100%;
             }
 
             .btn {
@@ -1054,23 +1037,26 @@
             </div>
 
             <div class="portfolio-grid">
-                <div class="portfolio-item portfolio-item-large" data-category="gestacao"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
-                <div class="portfolio-item" data-category="gestacao"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
-                <div class="portfolio-item" data-category="gestacao"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
-                <div class="portfolio-item" data-category="gestacao"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
-                <div class="portfolio-item portfolio-item-large" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
-                <div class="portfolio-item" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
-                <div class="portfolio-item" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
-                <div class="portfolio-item" data-category="parto"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
+                <div class="portfolio-item portfolio-item-large" data-category="gestacao"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
+                <div class="portfolio-item" data-category="gestacao"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
+                <div class="portfolio-item" data-category="gestacao"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
+                <div class="portfolio-item" data-category="gestacao"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Gestação</div></div></div>
+                <div class="portfolio-item portfolio-item-large" data-category="parto"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
+                <div class="portfolio-item" data-category="parto"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
+                <div class="portfolio-item" data-category="parto"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
+                <div class="portfolio-item" data-category="parto"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Parto</div></div></div>
                 <div class="portfolio-item portfolio-item-large" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
                 <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
                 <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
                 <div class="portfolio-item" data-category="newborn"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Newborn</div></div></div>
-                <div class="portfolio-item portfolio-item-large" data-category="aniversario"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
-                <div class="portfolio-item portfolio-item-large" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
-                <div class="portfolio-item" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
-                <div class="portfolio-item" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
-                <div class="portfolio-item" data-category="familia"><div class="portfolio-image"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
+                <div class="portfolio-item portfolio-item-large" data-category="aniversario"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
+                <div class="portfolio-item" data-category="aniversario"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
+                <div class="portfolio-item" data-category="aniversario"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
+                <div class="portfolio-item" data-category="aniversario"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Aniversário</div></div></div>
+                <div class="portfolio-item portfolio-item-large" data-category="familia"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
+                <div class="portfolio-item" data-category="familia"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
+                <div class="portfolio-item" data-category="familia"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
+                <div class="portfolio-item" data-category="familia"><div class="portfolio-image"><img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn"></div><div class="portfolio-overlay"><div class="portfolio-tag">Família</div></div></div>
             </div>
         </div>
     </section>
@@ -1111,6 +1097,7 @@
 
             <div class="testimonials-grid">
                 <div class="testimonial">
+                    <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn" class="testimonial-image">
                     <div class="stars">★ ★ ★ ★ ★</div>
                     <p class="testimonial-text">"Su capturou o momento mais importante da minha vida com tanta sensibilidade. As fotos do parto do meu filho são um tesouro que vou guardar para sempre."</p>
                     <div class="testimonial-author">Mariana Silva</div>
@@ -1118,6 +1105,7 @@
                 </div>
 
                 <div class="testimonial">
+                    <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn" class="testimonial-image">
                     <div class="stars">★ ★ ★ ★ ★</div>
                     <p class="testimonial-text">"O ensaio gestacional foi uma celebração. Su não é só fotógrafa, é uma pessoa que entende o peso e a beleza de ser mãe."</p>
                     <div class="testimonial-author">Amanda Costa</div>
@@ -1125,6 +1113,7 @@
                 </div>
 
                 <div class="testimonial">
+                    <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/suhortegalfotografia-newborn.jpg" alt="Newborn" class="testimonial-image">
                     <div class="stars">★ ★ ★ ★ ★</div>
                     <p class="testimonial-text">"As fotos newborn da minha filha são perfeitas. Qualidade profissional, luz linda, ambiente seguro. Recomendo demais!"</p>
                     <div class="testimonial-author">Juliana Mendes</div>
