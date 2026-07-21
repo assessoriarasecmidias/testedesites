@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MG Telas - Redes de Proteção com Segurança Garantida | 5 Anos de Experiência</title>
-    <meta name="description" content="Redes de proteção para sua família com 5 anos de experiência. 500+ clientes satisfeitos. Garantia de 5 anos. Solicite seu orçamento agora!">
+    <title>MG Telas de Proteção | Redes de Proteção com Qualidade Garantida</title>
+    <meta name="description" content="Redes de proteção, telas mosquiteiras e telas esportivas. Proteção para sua família com qualidade garantida. Solicite seu orçamento!">
     <style>
         * {
             margin: 0;
@@ -12,31 +12,37 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            overflow-x: hidden;
+            background: #fff;
         }
 
-        /* Header e Navegação */
+        /* ========== HEADER ========== */
         header {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1.5rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .logo span {
@@ -46,169 +52,267 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         nav a {
-            color: #fff;
+            color: #444;
             text-decoration: none;
             font-size: 0.95rem;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
             color: #e74c3c;
         }
 
-        .whatsapp-header {
+        .cta-whatsapp {
             background: #25d366;
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
         }
 
-        .whatsapp-header:hover {
+        .cta-whatsapp:hover {
             background: #1da855;
         }
 
-        /* Hero Section */
+        /* ========== HERO ========== */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23333" width="1200" height="600"/><g fill="%23444"><rect x="50" y="50" width="200" height="150"/><rect x="300" y="80" width="200" height="180"/><rect x="600" y="40" width="200" height="200"/><rect x="900" y="100" width="200" height="160"/></g></svg>');
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="mesh" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="120" y2="0" stroke="%23333" stroke-width="2" opacity="0.3"/><line x1="0" y1="0" x2="0" y2="120" stroke="%23333" stroke-width="2" opacity="0.3"/><circle cx="60" cy="60" r="3" fill="%23666"/></pattern></defs><rect width="1200" height="800" fill="%232c3e50"/><rect width="1200" height="800" fill="url(%23mesh)"/></svg>');
             background-size: cover;
             background-position: center;
-            padding: 10rem 2rem 6rem;
-            margin-top: 60px;
-            text-align: center;
-            color: white;
+            background-attachment: fixed;
+            margin-top: 90px;
+            padding: 4rem 3rem;
             min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="2" opacity="0.5"/><path d="M30,50 Q50,30 70,50" stroke="white" stroke-width="2" fill="none" opacity="0.4"/></svg>';
+            opacity: 0.1;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.2rem;
             font-weight: 700;
+            margin-bottom: 0.5rem;
             line-height: 1.2;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero .highlight {
-            color: #e74c3c;
+        .hero h1 .highlight {
+            color: #ffc107;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
             line-height: 1.8;
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(231, 76, 60, 0.2);
-            border: 2px solid #e74c3c;
-            color: #fff;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .cta-buttons {
+        .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2rem;
         }
 
         .btn {
             padding: 1rem 2.5rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            white-space: nowrap;
         }
 
         .btn-primary {
-            background: #e74c3c;
-            color: white;
+            background: #ffc107;
+            color: #1a1a1a;
         }
 
         .btn-primary:hover {
-            background: #c0392b;
+            background: #ffb300;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
         }
 
         .btn-secondary {
-            background: white;
-            color: #333;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         .btn-secondary:hover {
-            background: #f5f5f5;
-            transform: translateY(-2px);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
+            background: white;
             color: #e74c3c;
-            margin-bottom: 0.5rem;
         }
 
-        .stat-item p {
+        /* ========== HERO BENEFITS ========== */
+        .hero-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
             font-size: 0.95rem;
-            opacity: 0.9;
         }
 
-        /* Serviços */
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .benefit-icon {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        /* ========== SERVICES ========== */
         .services {
-            padding: 4rem 2rem;
-            background: #f9f9f9;
+            padding: 5rem 3rem;
+            background: #f8f9fa;
         }
 
-        .section-title {
+        .section-header {
             text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
         }
 
-        .section-subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 3rem;
+        .section-header h2 .highlight {
+            color: #e74c3c;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
         .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            counter-increment: service-counter;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: counter(service-counter, decimal-leading-zero);
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: #f0f0f0;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            counter-reset: service-counter;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-card a:hover {
+            color: #c0392b;
+        }
+
+        /* ========== PORTFOLIO ========== */
+        .portfolio {
+            padding: 5rem 3rem;
+            background: white;
+        }
+
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
@@ -216,82 +320,43 @@
             margin: 0 auto;
         }
 
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            background: #f0f0f0;
+            aspect-ratio: 1;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+
+        .portfolio-item svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-item h4 {
+            padding: 1rem;
+            background: #f8f9fa;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.15);
-        }
-
-        .service-card h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-card p {
-            color: #7f8c8d;
-            margin-bottom: 1.5rem;
             font-size: 0.95rem;
+            color: #444;
         }
 
-        .service-card a {
-            color: #e74c3c;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .service-card a:hover {
-            color: #c0392b;
-        }
-
-        /* Diferenciais */
-        .differentials {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .differentials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .diff-item {
-            text-align: center;
-        }
-
-        .diff-item h4 {
-            color: #e74c3c;
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            margin-top: 1rem;
-        }
-
-        .diff-item p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        /* Testimonials */
+        /* ========== TESTIMONIALS ========== */
         .testimonials {
-            padding: 4rem 2rem;
-            background: #f9f9f9;
+            padding: 5rem 3rem;
+            background: #f8f9fa;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -300,84 +365,172 @@
         .testimonial {
             background: white;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #e74c3c;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
         .testimonial-text {
             color: #555;
-            margin-bottom: 1rem;
             font-size: 0.95rem;
             line-height: 1.8;
+            margin-bottom: 1rem;
+            font-style: italic;
         }
 
         .testimonial-author {
-            font-weight: bold;
-            color: #2c3e50;
+            font-weight: 600;
+            color: #1a1a1a;
             font-size: 0.9rem;
         }
 
-        .stars {
-            color: #f39c12;
+        /* ========== DIFFERENTIALS ========== */
+        .differentials {
+            padding: 5rem 3rem;
+            background: white;
+        }
+
+        .differentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .differential-item {
+            text-align: center;
+            counter-increment: diff-counter;
+        }
+
+        .differentials-grid {
+            counter-reset: diff-counter;
+        }
+
+        .differential-item::before {
+            content: counter(diff-counter, decimal-leading-zero);
+            display: block;
+            font-size: 2rem;
+            color: #e74c3c;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            font-size: 0.9rem;
         }
 
-        /* CTA Final */
+        .differential-item h3 {
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .differential-item p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ========== STATS ========== */
+        .stats {
+            padding: 3rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ========== CTA FINAL ========== */
         .cta-final {
+            padding: 4rem 3rem;
             background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
             color: white;
-            padding: 3rem 2rem;
             text-align: center;
         }
 
         .cta-final h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-final h2 .highlight {
+            color: #ffc107;
         }
 
         .cta-final p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Footer */
+        /* ========== FOOTER ========== */
         footer {
-            background: #2c3e50;
-            color: white;
+            background: #1a1a1a;
+            color: #999;
             text-align: center;
             padding: 2rem;
             font-size: 0.9rem;
         }
 
-        /* Responsive */
+        footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             header {
-                flex-direction: column;
-                gap: 1rem;
+                padding: 1rem 1.5rem;
             }
 
             nav ul {
-                flex-direction: column;
-                gap: 1rem;
+                display: none;
             }
 
             .hero {
-                padding: 8rem 1rem 4rem;
-                margin-top: 120px;
+                margin-top: 70px;
+                padding: 2rem 1.5rem;
+                min-height: 400px;
             }
 
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
 
-            .cta-buttons {
+            .hero-buttons {
                 flex-direction: column;
             }
 
@@ -385,21 +538,27 @@
                 width: 100%;
             }
 
-            .section-title {
+            .section-header h2 {
                 font-size: 1.8rem;
             }
 
-            nav {
-                order: 3;
-                width: 100%;
+            .services-grid,
+            .portfolio-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-benefits {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
 
-        /* Animações */
-        @keyframes fadeIn {
+        /* ========== ANIMATIONS ========== */
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -407,188 +566,274 @@
             }
         }
 
-        .service-card, .testimonial, .diff-item {
-            animation: fadeIn 0.6s ease-out forwards;
+        .service-card,
+        .testimonial,
+        .portfolio-item {
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
         }
 
         .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.2s; }
-        .service-card:nth-child(3) { animation-delay: 0.3s; }
-        .service-card:nth-child(4) { animation-delay: 0.4s; }
-        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(2) { animation-delay: 0.15s; }
+        .service-card:nth-child(3) { animation-delay: 0.2s; }
+        .service-card:nth-child(4) { animation-delay: 0.25s; }
+        .service-card:nth-child(5) { animation-delay: 0.3s; }
+        .service-card:nth-child(6) { animation-delay: 0.35s; }
+        .service-card:nth-child(7) { animation-delay: 0.4s; }
+        .service-card:nth-child(8) { animation-delay: 0.45s; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
         <a href="#" class="logo">MG <span>Telas</span></a>
         <nav>
             <ul>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#differentials">Por que nós</a></li>
-                <li><a href="#testimonials">Depoimentos</a></li>
-                <li><a href="https://api.whatsapp.com/send?phone=5534996484036" class="whatsapp-header">📞 Orçamento</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#portfolio">Trabalhos</a></li>
+                <li><a href="#depoimentos">Avaliações</a></li>
+                <li><a href="#diferenciais">Sobre</a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Vim pelo site e quero solicitar um orçamento." class="cta-whatsapp">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="badge">✓ Garantia de 5 Anos</div>
-        <h1>Proteção para sua <span class="highlight">família</span> é com segurança</h1>
-        <p>Redes de proteção instaladas em mais de 500 casas. Confiança comprovada com 5 anos de experiência no mercado.</p>
-        <div class="cta-buttons">
-            <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Gostaria de um orçamento para minha proteção." class="btn btn-primary">🎯 QUERO MEU ORÇAMENTO</a>
-            <a href="#services" class="btn btn-secondary">Conhecer Serviços</a>
+        <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="95" fill="none" stroke="white" stroke-width="3" opacity="0.3"/>
+            <g transform="translate(50, 50) scale(1)">
+                <!-- Grid pattern (rede) -->
+                <g stroke="white" stroke-width="2" opacity="0.8">
+                    <line x1="0" y1="0" x2="100" y2="0"/>
+                    <line x1="0" y1="20" x2="100" y2="20"/>
+                    <line x1="0" y1="40" x2="100" y2="40"/>
+                    <line x1="0" y1="60" x2="100" y2="60"/>
+                    <line x1="0" y1="80" x2="100" y2="80"/>
+                    <line x1="0" y1="100" x2="100" y2="100"/>
+                    <line x1="0" y1="0" x2="0" y2="100"/>
+                    <line x1="20" y1="0" x2="20" y2="100"/>
+                    <line x1="40" y1="0" x2="40" y2="100"/>
+                    <line x1="60" y1="0" x2="60" y2="100"/>
+                    <line x1="80" y1="0" x2="80" y2="100"/>
+                    <line x1="100" y1="0" x2="100" y2="100"/>
+                </g>
+                <!-- Corner circles -->
+                <circle cx="0" cy="0" r="4" fill="#ffc107" opacity="0.8"/>
+                <circle cx="100" cy="0" r="4" fill="#ffc107" opacity="0.8"/>
+                <circle cx="0" cy="100" r="4" fill="#ffc107" opacity="0.8"/>
+                <circle cx="100" cy="100" r="4" fill="#ffc107" opacity="0.8"/>
+            </g>
+        </svg>
+
+        <h1>Proteja sua <span class="highlight">família</span>,<br>crianças e pets</h1>
+        <p>Telas mosquiteiras, redes de proteção e telas esportivas instaladas com qualidade e agilidade em sua região.</p>
+
+        <div class="hero-buttons">
+            <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Vim pelo site e quero solicitar um orçamento." class="btn btn-primary">Solicitar Orçamento</a>
+            <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
+        </div>
+
+        <div class="hero-benefits">
+            <div class="benefit"><span class="benefit-icon">✓</span> Garantia no serviço</div>
+            <div class="benefit"><span class="benefit-icon">✓</span> Instalação rápida</div>
+            <div class="benefit"><span class="benefit-icon">✓</span> Material de qualidade</div>
+            <div class="benefit"><span class="benefit-icon">✓</span> Parcele no cartão</div>
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stat-item">
-            <h3>5+</h3>
-            <p>Anos no Mercado</p>
+    <!-- SERVICES -->
+    <section id="servicos" class="services">
+        <div class="section-header">
+            <h2>De residência a espaços esportivos,<br>proteção com <span class="highlight">acabamento impecável</span></h2>
+            <p>Instalação feita por profissionais treinados, com material de alta durabilidade em cada detalhe.</p>
         </div>
-        <div class="stat-item">
-            <h3>500+</h3>
-            <p>Clientes Satisfeitos</p>
-        </div>
-        <div class="stat-item">
-            <h3>20K+</h3>
-            <p>Redes Instaladas</p>
-        </div>
-        <div class="stat-item">
-            <h3>470K+</h3>
-            <p>M² Protegidos</p>
-        </div>
-    </section>
 
-    <!-- Serviços -->
-    <section id="services" class="services">
-        <h2 class="section-title">Nossas Soluções de Proteção</h2>
-        <p class="section-subtitle">Proteção completa para toda sua família em qualquer ambiente</p>
         <div class="services-grid">
             <div class="service-card">
-                <h3>🏠 Sacadas & Varandas</h3>
-                <p>Proteção robusta para as áreas externas da sua casa. Segurança máxima para crianças e animais de estimação.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Solicito orçamento para Sacadas/Varandas">Solicitar Orçamento →</a>
+                <h3>Rede de proteção para sacada</h3>
+                <p>Segurança para crianças e pets em varandas e sacadas, com instalação transparente e acabamento impecável.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em sacada">Solicitar orçamento →</a>
             </div>
+
             <div class="service-card">
-                <h3>🪟 Janelas & Basculantes</h3>
-                <p>Redes de alta resistência em polietileno. Materiais testados e aprovados pelo INMETRO.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Solicito orçamento para Janelas/Basculantes">Solicitar Orçamento →</a>
+                <h3>Rede de proteção para janela</h3>
+                <p>Mais segurança em todos os cômodos sem abrir mão da luminosidade e ventilação natural.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em janela">Solicitar orçamento →</a>
             </div>
+
             <div class="service-card">
-                <h3>🏊 Piscinas</h3>
-                <p>Suporta até 500kg/m² na vertical. Proteção contra afogamentos e acidentes aquáticos.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Solicito orçamento para Piscinas">Solicitar Orçamento →</a>
+                <h3>Rede de proteção para varanda</h3>
+                <p>Cobertura total da varanda com rede resistente, discreta e instalada com perfeição no acabamento.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em varanda">Solicitar orçamento →</a>
             </div>
+
             <div class="service-card">
-                <h3>⬆️ Escadas & Mezaninos</h3>
-                <p>Segurança para os pequenos. Prevenção de quedas em ambientes internos.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Solicito orçamento para Escadas/Mezaninos">Solicitar Orçamento →</a>
+                <h3>Rede de proteção para piscina</h3>
+                <p>Material resistente à umidade e ao sol, ideal para proteger crianças e pets ao redor da piscina.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em piscina">Solicitar orçamento →</a>
             </div>
+
             <div class="service-card">
-                <h3>🔧 Manutenção & Revisão</h3>
-                <p>Serviço especializado para garantir o bom funcionamento contínuo das suas redes.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Solicito serviço de manutenção">Solicitar Orçamento →</a>
+                <h3>Tela mosquiteira</h3>
+                <p>Vários modelos para janelas, portas e ambientes diversos. Período forte: setembro a março.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para tela mosquiteira">Solicitar orçamento →</a>
             </div>
+
+            <div class="service-card">
+                <h3>Tela esportiva / quadra</h3>
+                <p>Alta resistência para quadras, campos e espaços esportivos. Atendemos escolas e condomínios.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para tela esportiva">Solicitar orçamento →</a>
+            </div>
+
+            <div class="service-card">
+                <h3>Proteção contra pombos</h3>
+                <p>Tela especial que impede a entrada e permanência de pombos em sacadas e beirais.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para proteção contra pombos">Solicitar orçamento →</a>
+            </div>
+
+            <div class="service-card">
+                <h3>Proteção para escadas</h3>
+                <p>Rede lateral para escadas, prevenindo acidentes com crianças e pets nos vãos.</p>
+                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para proteção em escadas">Solicitar orçamento →</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Vim pelo site e quero solicitar um orçamento." class="btn btn-primary">Falar com especialista no WhatsApp</a>
         </div>
     </section>
 
-    <!-- Diferenciais -->
-    <section id="differentials" class="differentials">
-        <h2 class="section-title">Por que Escolher a MG Telas</h2>
-        <p class="section-subtitle">Qualidade e excelência em cada detalhe</p>
-        <div class="differentials-grid">
-            <div class="diff-item">
-                <h4>👥 Atendimento Premium</h4>
-                <p>Equipe dedicada pronta para atender suas necessidades com profissionalismo e transparência.</p>
-            </div>
-            <div class="diff-item">
-                <h4>⭐ Especialistas</h4>
-                <p>Profissionais treinados com pontualidade, honestidade e comprometimento total.</p>
-            </div>
-            <div class="diff-item">
-                <h4>🎨 Personalização</h4>
-                <p>Disponível em cores: preto, palha e areia. Adaptamos a seu gosto e ambiente.</p>
-            </div>
-            <div class="diff-item">
-                <h4>✅ Qualidade Garantida</h4>
-                <p>Materiais de primeira linha aprovados pelo INMETRO. Durabilidade comprovada.</p>
-            </div>
-            <div class="diff-item">
-                <h4>📋 Normas ABNT</h4>
-                <p>Seguimos rigorosamente a NBR 14718. Segurança em primeiro lugar, sempre.</p>
-            </div>
-            <div class="diff-item">
-                <h4>🛡️ Garantia 5 Anos</h4>
-                <p>Confiança total na qualidade do nosso trabalho. Proteção estendida para sua família.</p>
-            </div>
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="portfolio">
+        <div class="section-header">
+            <h2>Trabalhos realizados</h2>
+            <p>Cada instalação entregue com capricho e atenção ao detalhe, do orçamento até o acabamento final.</p>
         </div>
-    </section>
 
-    <!-- Depoimentos -->
-    <section id="testimonials" class="testimonials">
-        <h2 class="section-title">O que Nossos Clientes Dizem</h2>
-        <p class="section-subtitle">Mais de 6 mil clientes satisfeitos com nossa qualidade</p>
-        <div class="testimonials-grid">
-            <div class="testimonial">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Não pense duas vezes em colocar a rede de proteção. Tenho dois gatinhos e durmo muito mais tranquilo com a MG Telas protegendo minha sacada."</p>
-                <p class="testimonial-author">- Beatriz Alves</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#e8f4f8"/>
+                    <rect x="30" y="30" width="240" height="240" fill="#d0e8f2" stroke="#999" stroke-width="2"/>
+                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
+                        <line x1="40" y1="40" x2="260" y2="40"/>
+                        <line x1="40" y1="70" x2="260" y2="70"/>
+                        <line x1="40" y1="100" x2="260" y2="100"/>
+                        <line x1="40" y1="130" x2="260" y2="130"/>
+                        <line x1="40" y1="160" x2="260" y2="160"/>
+                        <line x1="40" y1="190" x2="260" y2="190"/>
+                        <line x1="40" y1="220" x2="260" y2="220"/>
+                        <line x1="40" y1="250" x2="260" y2="250"/>
+                        <line x1="40" y1="40" x2="40" y2="260"/>
+                        <line x1="70" y1="40" x2="70" y2="260"/>
+                        <line x1="100" y1="40" x2="100" y2="260"/>
+                        <line x1="130" y1="40" x2="130" y2="260"/>
+                        <line x1="160" y1="40" x2="160" y2="260"/>
+                        <line x1="190" y1="40" x2="190" y2="260"/>
+                        <line x1="220" y1="40" x2="220" y2="260"/>
+                        <line x1="250" y1="40" x2="250" y2="260"/>
+                    </g>
+                    <text x="150" y="150" font-size="20" fill="#999" text-anchor="middle" dy=".3em">Rede de proteção<tspan x="150" dy="25">– sacadas</tspan></text>
+                </svg>
             </div>
-            <div class="testimonial">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"A MG Telas resolveu todos os meus problemas! Segurança é fundamental para minha família. Recomendo muito, equipe de primeira qualidade!"</p>
-                <p class="testimonial-author">- Gustavo Martins</p>
+
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#f0f8e8"/>
+                    <rect x="60" y="40" width="180" height="220" fill="#dff5cc" stroke="#999" stroke-width="2"/>
+                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
+                        <line x1="70" y1="50" x2="230" y2="50"/>
+                        <line x1="70" y1="85" x2="230" y2="85"/>
+                        <line x1="70" y1="120" x2="230" y2="120"/>
+                        <line x1="70" y1="155" x2="230" y2="155"/>
+                        <line x1="70" y1="190" x2="230" y2="190"/>
+                        <line x1="70" y1="225" x2="230" y2="225"/>
+                        <line x1="70" y1="50" x2="70" y2="245"/>
+                        <line x1="110" y1="50" x2="110" y2="245"/>
+                        <line x1="150" y1="50" x2="150" y2="245"/>
+                        <line x1="190" y1="50" x2="190" y2="245"/>
+                        <line x1="230" y1="50" x2="230" y2="245"/>
+                    </g>
+                    <text x="150" y="150" font-size="20" fill="#999" text-anchor="middle" dy=".3em">Rede de proteção<tspan x="150" dy="25">– janelas</tspan></text>
+                </svg>
             </div>
-            <div class="testimonial">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Se você quer mais liberdade para seu animalzinho e tranquilidade para você, a rede de proteção é a solução. Muito satisfeita com o resultado!"</p>
-                <p class="testimonial-author">- Ana Maria Nascimento</p>
+
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#f8e8f0"/>
+                    <circle cx="150" cy="150" r="100" fill="#f5d0e8" stroke="#999" stroke-width="2"/>
+                    <g stroke="#999" stroke-width="1.5" opacity="0.5">
+                        <circle cx="150" cy="150" r="40"/>
+                        <circle cx="150" cy="150" r="70"/>
+                        <line x1="50" y1="150" x2="250" y2="150"/>
+                        <line x1="150" y1="50" x2="150" y2="250"/>
+                    </g>
+                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Proteção para<tspan x="150" dy="25">pets</tspan></text>
+                </svg>
             </div>
-            <div class="testimonial">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Contratei a MG Telas para meu gatil. O atendimento foi impecável, profissionalismo de ponta. Voltaria a contratar com certeza!"</p>
-                <p class="testimonial-author">- Ana Silveira</p>
+
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#f8f0e8"/>
+                    <polygon points="150,40 260,100 260,240 40,240 40,100" fill="#f5e8d0" stroke="#999" stroke-width="2"/>
+                    <g stroke="#666" stroke-width="1" opacity="0.4">
+                        <line x1="50" y1="110" x2="250" y2="110"/>
+                        <line x1="50" y1="150" x2="250" y2="150"/>
+                        <line x1="50" y1="190" x2="250" y2="190"/>
+                        <line x1="100" y1="110" x2="100" y2="235"/>
+                        <line x1="150" y1="110" x2="150" y2="235"/>
+                        <line x1="200" y1="110" x2="200" y2="235"/>
+                    </g>
+                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Rede de proteção<tspan x="150" dy="25">– varandas</tspan></text>
+                </svg>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Final -->
-    <section class="cta-final">
-        <h2>Não Deixe Para Depois!</h2>
-        <p>Sua família merece proteção. Solicite seu orçamento agora mesmo e ganhe consultoria gratuita.</p>
-        <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Gostaria de solicitar um orçamento para proteção com a MG Telas." class="btn btn-secondary">💬 Falar no WhatsApp</a>
-    </section>
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#e8f0f8"/>
+                    <rect x="70" y="50" width="160" height="200" fill="#d0e5f2" stroke="#999" stroke-width="2"/>
+                    <rect x="80" y="60" width="140" height="180" fill="none" stroke="#999" stroke-width="1" opacity="0.5"/>
+                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
+                        <line x1="80" y1="80" x2="220" y2="80"/>
+                        <line x1="80" y1="120" x2="220" y2="120"/>
+                        <line x1="80" y1="160" x2="220" y2="160"/>
+                        <line x1="80" y1="200" x2="220" y2="200"/>
+                        <line x1="80" y1="60" x2="80" y2="230"/>
+                        <line x1="140" y1="60" x2="140" y2="230"/>
+                        <line x1="220" y1="60" x2="220" y2="230"/>
+                    </g>
+                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Tela mosquiteira<tspan x="150" dy="25">– janelas</tspan></text>
+                </svg>
+            </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 MG Telas de Proteção. Todos os direitos reservados. | Qualidade e Segurança em Primeiro Lugar</p>
-    </footer>
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#f0e8f8"/>
+                    <rect x="40" y="80" width="220" height="140" fill="#e8d0f5" stroke="#999" stroke-width="2"/>
+                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
+                        <line x1="50" y1="90" x2="250" y2="90"/>
+                        <line x1="50" y1="130" x2="250" y2="130"/>
+                        <line x1="50" y1="170" x2="250" y2="170"/>
+                        <line x1="50" y1="210" x2="250" y2="210"/>
+                        <line x1="80" y1="90" x2="80" y2="210"/>
+                        <line x1="150" y1="90" x2="150" y2="210"/>
+                        <line x1="220" y1="90" x2="220" y2="210"/>
+                    </g>
+                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Tela esportiva<tspan x="150" dy="25">– quadras</tspan></text>
+                </svg>
+            </div>
 
-    <script>
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Efeito ao scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
+            <div class="portfolio-item">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="300" fill="#e8e8f8"/>
+                    <polygon points="50,250 150,50 250,250" fill="#d0d0f5" stroke="#999" stroke-width="2"/>
+                    <g stroke="#666" stroke-width="1" opacity="0.4">
+                        <line x1="80" y1="200" x2="220" y2="200"/>
+                        <line x1="70" y1="233" x2="230" y2="233"/>
+                        <line x1="150" y1="50" x2="50" y2="250"/>
+                        <line x1="150" y1="50" x2="250" y2="250"/>
+                    </g>
+                    <text x="150" y="160" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Proteção para<tspan x="150" dy="25">escadas</tspan></text>
+                </svg>
+            </div>
