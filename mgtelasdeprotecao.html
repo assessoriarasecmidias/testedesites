@@ -3,13 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MG Telas de Proteção | Redes de Proteção com Qualidade Garantida</title>
-    <meta name="description" content="Redes de proteção, telas mosquiteiras e telas esportivas. Proteção para sua família com qualidade garantida. Solicite seu orçamento!">
+    <meta name="description" content="MG Telas: Proteção inteligente para sua família. Redes de proteção premium, instalação perfeita, garantia de 5 anos. Solicite seu orçamento hoje.">
+    <meta name="keywords" content="redes de proteção, telas mosquiteiras, proteção para crianças, proteção para pets">
+    <meta property="og:title" content="MG Telas - Proteção Premium para Sua Família">
+    <meta property="og:description" content="Redes de proteção com acabamento impecável e garantia de 5 anos. Instalação rápida em sua região.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0f172a">
+    
+    <title>MG Telas | Proteção Premium para Sua Família | Garantia 5 Anos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
+        /* ===== RESET & VARIABLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --color-dark: #0f172a;
+            --color-dark-secondary: #1e293b;
+            --color-white: #ffffff;
+            --color-gray-light: #f8fafc;
+            --color-gray-medium: #e2e8f0;
+            --color-gray-dark: #64748b;
+            --color-accent: #10b981;
+            --color-accent-hover: #059669;
+            --color-text: #1e293b;
+            --color-text-secondary: #475569;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+            
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         html {
@@ -17,88 +61,106 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            background: var(--color-white);
             line-height: 1.6;
-            color: #333;
-            background: #fff;
         }
 
-        /* ========== HEADER ========== */
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+        h4 { font-size: 1.125rem; }
+        p { font-size: 1rem; color: var(--color-text-secondary); }
+
+        /* ===== HEADER ===== */
         header {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 1.5rem 3rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--color-white);
             text-decoration: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             letter-spacing: -0.5px;
         }
 
         .logo span {
-            color: #e74c3c;
+            color: var(--color-accent);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: var(--spacing-lg);
             align-items: center;
         }
 
         nav a {
-            color: #444;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
 
         nav a:hover {
-            color: #e74c3c;
+            color: var(--color-accent);
         }
 
-        .cta-whatsapp {
-            background: #25d366;
-            color: white;
+        .btn-header {
+            background: var(--color-accent);
+            color: var(--color-white);
             padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            border-radius: var(--radius-md);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
-            transition: background 0.3s ease;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
-        .cta-whatsapp:hover {
-            background: #1da855;
+        .btn-header:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
         }
 
-        /* ========== HERO ========== */
+        /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="mesh" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="120" y2="0" stroke="%23333" stroke-width="2" opacity="0.3"/><line x1="0" y1="0" x2="0" y2="120" stroke="%23333" stroke-width="2" opacity="0.3"/><circle cx="60" cy="60" r="3" fill="%23666"/></pattern></defs><rect width="1200" height="800" fill="%232c3e50"/><rect width="1200" height="800" fill="url(%23mesh)"/></svg>');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            margin-top: 90px;
-            padding: 4rem 3rem;
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-secondary) 100%);
+            color: var(--color-white);
+            overflow: hidden;
             position: relative;
         }
 
@@ -106,456 +168,972 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="2" opacity="0.5"/><path d="M30,50 Q50,30 70,50" stroke="white" stroke-width="2" fill="none" opacity="0.4"/></svg>';
-            opacity: 0.1;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at right, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .hero-logo {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 2rem;
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
             position: relative;
             z-index: 1;
         }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-            position: relative;
-            z-index: 1;
+        .hero-text h1 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
         }
 
-        .hero h1 .highlight {
-            color: #ffc107;
+        .hero-text h1 .highlight {
+            color: var(--color-accent);
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-            line-height: 1.8;
+        .hero-subheadline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+            font-weight: 300;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: #ffc107;
-            color: #1a1a1a;
-        }
-
-        .btn-primary:hover {
-            background: #ffb300;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #e74c3c;
-        }
-
-        /* ========== HERO BENEFITS ========== */
         .hero-benefits {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-            padding: 2rem 0;
-            font-size: 0.95rem;
+            display: grid;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
         }
 
         .benefit {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--spacing-sm);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
         }
 
-        .benefit-icon {
-            color: #ffc107;
+        .benefit::before {
+            content: '✓';
+            color: var(--color-accent);
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        /* ========== SERVICES ========== */
-        .services {
-            padding: 5rem 3rem;
-            background: #f8f9fa;
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-white);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: #1a1a1a;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.3);
         }
 
-        .section-header h2 .highlight {
-            color: #e74c3c;
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
 
-        .section-header p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            counter-increment: service-counter;
+        .hero-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
             position: relative;
         }
 
-        .service-card::before {
-            content: counter(service-counter, decimal-leading-zero);
+        .hero-image::before {
+            content: '';
             position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 2.5rem;
-            color: #f0f0f0;
-            font-weight: 700;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
         }
 
-        .services-grid {
-            counter-reset: service-counter;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .service-card p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card a {
-            color: #e74c3c;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .service-card a:hover {
-            color: #c0392b;
-        }
-
-        /* ========== PORTFOLIO ========== */
-        .portfolio {
-            padding: 5rem 3rem;
-            background: white;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .portfolio-item {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            background: #f0f0f0;
-            aspect-ratio: 1;
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.03);
-        }
-
-        .portfolio-item svg {
+        .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .portfolio-item h4 {
-            padding: 1rem;
-            background: #f8f9fa;
+        .hero-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1rem;
+        }
+
+        /* ===== TRUST BAR ===== */
+        .trust-bar {
+            background: var(--color-white);
+            padding: var(--spacing-lg) var(--spacing-lg);
+            border-bottom: 1px solid var(--color-gray-medium);
+        }
+
+        .trust-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
             text-align: center;
+        }
+
+        .trust-item h4 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .trust-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            padding: var(--spacing-3xl) var(--spacing-lg);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-header h2 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== PROBLEMA ===== */
+        .problema {
+            background: var(--color-white);
+        }
+
+        .problema-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+        }
+
+        .problema-image {
+            height: 450px;
+            background: var(--color-gray-light);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .problema-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .problema-text h3 {
+            color: var(--color-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .problema-list {
+            display: grid;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .problema-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--color-gray-light);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .problema-item::before {
+            content: '⚠';
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .problema-item p {
+            margin: 0;
+        }
+
+        /* ===== SOLUÇÃO ===== */
+        .solucao {
+            background: var(--color-gray-light);
+        }
+
+        .solucao-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+        }
+
+        .solucao-text h3 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .solucao-list {
+            display: grid;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .solucao-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .solucao-item::before {
+            content: '✓';
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .solucao-item p {
+            margin: 0;
+        }
+
+        .solucao-image {
+            height: 450px;
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .solucao-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== SERVIÇOS ===== */
+        .servicos {
+            background: var(--color-white);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .servico-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-gray-medium);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .servico-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .servico-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .servico-card h4 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text);
+        }
+
+        .servico-card p {
+            flex: 1;
+            margin-bottom: var(--spacing-md);
             font-size: 0.95rem;
-            color: #444;
         }
 
-        /* ========== TESTIMONIALS ========== */
-        .testimonials {
-            padding: 5rem 3rem;
-            background: #f8f9fa;
+        .servico-card a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            width: fit-content;
         }
 
-        .testimonials-grid {
+        .servico-card a:hover {
+            gap: var(--spacing-sm);
+        }
+
+        /* ===== COMO FUNCIONA ===== */
+        .como-funciona {
+            background: var(--color-gray-light);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-3xl);
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0 auto var(--spacing-md);
+        }
+
+        .step h4 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step p {
+            font-size: 0.95rem;
+        }
+
+        /* ===== DIFERENCIAIS ===== */
+        .diferenciais {
+            background: var(--color-white);
+        }
+
+        .diferenciais-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-3xl);
         }
 
-        .testimonial {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        .diferencial {
+            padding: var(--spacing-xl);
+            background: var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-accent);
+            transition: var(--transition);
         }
 
-        .testimonial-stars {
-            color: #ffc107;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+        .diferencial:hover {
+            transform: translateX(8px);
         }
 
-        .testimonial-text {
-            color: #555;
+        .diferencial h4 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .diferencial p {
             font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            font-style: italic;
+            margin: 0;
         }
 
-        .testimonial-author {
-            font-weight: 600;
-            color: #1a1a1a;
+        /* ===== PORTFÓLIO ===== */
+        .portfolio {
+            background: var(--color-white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-3xl);
+        }
+
+        .portfolio-item {
+            background: var(--color-gray-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            height: 350px;
+            position: relative;
+            border: 1px solid var(--color-gray-medium);
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            border-color: var(--color-accent);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            color: #94a3b8;
             font-size: 0.9rem;
         }
 
-        /* ========== DIFFERENTIALS ========== */
-        .differentials {
-            padding: 5rem 3rem;
-            background: white;
+        .portfolio-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: var(--spacing-lg);
+            color: var(--color-white);
+            transform: translateY(20px);
+            transition: var(--transition);
         }
 
-        .differentials-grid {
+        .portfolio-item:hover .portfolio-info {
+            transform: translateY(0);
+        }
+
+        .portfolio-info h4 {
+            margin: 0;
+            color: var(--color-white);
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .depoimentos {
+            background: var(--color-gray-light);
+        }
+
+        .depoimentos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-3xl);
         }
 
-        .differential-item {
-            text-align: center;
-            counter-increment: diff-counter;
+        .depoimento {
+            background: var(--color-white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-medium);
+            transition: var(--transition);
         }
 
-        .differentials-grid {
-            counter-reset: diff-counter;
+        .depoimento:hover {
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-accent);
         }
 
-        .differential-item::before {
-            content: counter(diff-counter, decimal-leading-zero);
-            display: block;
-            font-size: 2rem;
-            color: #e74c3c;
+        .depoimento-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .depoimento-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--color-gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        .differential-item h3 {
-            font-size: 1.2rem;
-            color: #1a1a1a;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
+        .depoimento-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        .differential-item p {
-            color: #666;
+        .depoimento-meta h4 {
+            margin: 0 0 var(--spacing-xs);
+            font-size: 1rem;
+        }
+
+        .depoimento-city {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        .depoimento-stars {
+            color: #f59e0b;
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .depoimento-text {
             font-size: 0.95rem;
             line-height: 1.7;
+            font-style: italic;
+            color: var(--color-text-secondary);
+            margin: 0;
         }
 
-        /* ========== STATS ========== */
-        .stats {
-            padding: 3rem;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            text-align: center;
+        /* ===== ESTATÍSTICAS ===== */
+        .estatisticas {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-secondary) 100%);
+            color: var(--color-white);
         }
 
-        .stats-content {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-3xl);
         }
 
         .stat {
-            padding: 1.5rem;
+            text-align: center;
+            padding: var(--spacing-xl);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #ffc107;
-            margin-bottom: 0.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
         }
 
         .stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        /* ========== CTA FINAL ========== */
+        /* ===== ATENDIMENTO ===== */
+        .atendimento {
+            background: var(--color-white);
+        }
+
+        .atendimento-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+        }
+
+        .atendimento-text h3 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .atendimento-list {
+            display: grid;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .atendimento-item {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+        }
+
+        .atendimento-item::before {
+            content: '→';
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .atendimento-image {
+            height: 450px;
+            background: var(--color-gray-light);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .atendimento-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            background: var(--color-gray-light);
+        }
+
+        .faq-content {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: var(--spacing-3xl);
+        }
+
+        .faq-item {
+            background: var(--color-white);
+            border: 1px solid var(--color-gray-medium);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item.active {
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--color-text);
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: var(--color-gray-light);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: bold;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.show {
+            max-height: 1000px;
+        }
+
+        .faq-answer-content {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===== CTA FINAL ===== */
         .cta-final {
-            padding: 4rem 3rem;
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #059669 100%);
+            color: var(--color-white);
             text-align: center;
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-final-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-final h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .cta-final h2 .highlight {
-            color: #ffc107;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
         }
 
         .cta-final p {
             font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: var(--spacing-xl);
         }
 
-        /* ========== FOOTER ========== */
+        .btn-cta-final {
+            background: var(--color-white);
+            color: var(--color-accent);
+            padding: 1.25rem 3rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-cta-final:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
         footer {
-            background: #1a1a1a;
-            color: #999;
+            background: var(--color-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-section h4 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            font-size: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding: 2rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
         }
 
-        footer a {
-            color: #ffc107;
-            text-decoration: none;
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
             header {
-                padding: 1rem 1.5rem;
+                height: 70px;
+                padding: 0 var(--spacing-md);
             }
 
             nav ul {
-                display: none;
+                gap: var(--spacing-md);
+            }
+
+            nav a {
+                font-size: 0.85rem;
             }
 
             .hero {
                 margin-top: 70px;
-                padding: 2rem 1.5rem;
-                min-height: 400px;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding: var(--spacing-2xl) var(--spacing-md);
             }
 
-            .hero p {
-                font-size: 0.95rem;
+            .hero-image {
+                height: 400px;
+            }
+
+            .problema-content,
+            .solucao-content,
+            .atendimento-content {
+                grid-template-columns: 1fr;
+            }
+
+            .problema-image,
+            .solucao-image,
+            .atendimento-image {
+                height: 300px;
+            }
+
+            section {
+                padding: var(--spacing-2xl) var(--spacing-md);
+            }
+
+            .section-header {
+                margin-bottom: var(--spacing-2xl);
+            }
+
+            .hero-content {
+                gap: var(--spacing-2xl);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0 var(--spacing-md);
+            }
+
+            nav {
+                display: none;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+
+            .hero-content {
+                padding: var(--spacing-2xl) var(--spacing-md);
             }
 
             .hero-buttons {
                 flex-direction: column;
             }
 
-            .btn {
+            .btn-primary,
+            .btn-secondary {
                 width: 100%;
+                justify-content: center;
             }
 
-            .section-header h2 {
-                font-size: 1.8rem;
+            .trust-content {
+                gap: var(--spacing-lg);
+                grid-template-columns: 1fr 1fr;
             }
 
-            .services-grid,
+            .servicos-grid,
             .portfolio-grid,
-            .testimonials-grid {
+            .depoimentos-grid,
+            .diferenciais-grid,
+            .stats-grid,
+            .steps-grid,
+            .footer-content {
                 grid-template-columns: 1fr;
             }
 
-            .hero-benefits {
-                flex-direction: column;
-                gap: 1rem;
+            section {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .section-header {
+                margin-bottom: var(--spacing-2xl);
             }
         }
 
-        /* ========== ANIMATIONS ========== */
-        @keyframes slideUp {
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -566,274 +1144,53 @@
             }
         }
 
-        .service-card,
-        .testimonial,
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .servico-card,
+        .depoimento,
+        .step,
+        .diferencial,
         .portfolio-item {
-            animation: slideUp 0.6s ease-out forwards;
+            animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
         }
 
-        .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.15s; }
-        .service-card:nth-child(3) { animation-delay: 0.2s; }
-        .service-card:nth-child(4) { animation-delay: 0.25s; }
-        .service-card:nth-child(5) { animation-delay: 0.3s; }
-        .service-card:nth-child(6) { animation-delay: 0.35s; }
-        .service-card:nth-child(7) { animation-delay: 0.4s; }
-        .service-card:nth-child(8) { animation-delay: 0.45s; }
+        .servico-card:nth-child(1) { animation-delay: 0.1s; }
+        .servico-card:nth-child(2) { animation-delay: 0.2s; }
+        .servico-card:nth-child(3) { animation-delay: 0.3s; }
+        .servico-card:nth-child(4) { animation-delay: 0.4s; }
+        .servico-card:nth-child(5) { animation-delay: 0.5s; }
+        .servico-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .depoimento:nth-child(1) { animation-delay: 0.1s; }
+        .depoimento:nth-child(2) { animation-delay: 0.2s; }
+        .depoimento:nth-child(3) { animation-delay: 0.3s; }
+        .depoimento:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <!-- HEADER -->
     <header>
-        <a href="#" class="logo">MG <span>Telas</span></a>
-        <nav>
-            <ul>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#portfolio">Trabalhos</a></li>
-                <li><a href="#depoimentos">Avaliações</a></li>
-                <li><a href="#diferenciais">Sobre</a></li>
-                <li><a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Vim pelo site e quero solicitar um orçamento." class="cta-whatsapp">Contato</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <a href="#" class="logo">MG <span>Telas</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contato" class="btn-header">Orçamento</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
-        <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="95" fill="none" stroke="white" stroke-width="3" opacity="0.3"/>
-            <g transform="translate(50, 50) scale(1)">
-                <!-- Grid pattern (rede) -->
-                <g stroke="white" stroke-width="2" opacity="0.8">
-                    <line x1="0" y1="0" x2="100" y2="0"/>
-                    <line x1="0" y1="20" x2="100" y2="20"/>
-                    <line x1="0" y1="40" x2="100" y2="40"/>
-                    <line x1="0" y1="60" x2="100" y2="60"/>
-                    <line x1="0" y1="80" x2="100" y2="80"/>
-                    <line x1="0" y1="100" x2="100" y2="100"/>
-                    <line x1="0" y1="0" x2="0" y2="100"/>
-                    <line x1="20" y1="0" x2="20" y2="100"/>
-                    <line x1="40" y1="0" x2="40" y2="100"/>
-                    <line x1="60" y1="0" x2="60" y2="100"/>
-                    <line x1="80" y1="0" x2="80" y2="100"/>
-                    <line x1="100" y1="0" x2="100" y2="100"/>
-                </g>
-                <!-- Corner circles -->
-                <circle cx="0" cy="0" r="4" fill="#ffc107" opacity="0.8"/>
-                <circle cx="100" cy="0" r="4" fill="#ffc107" opacity="0.8"/>
-                <circle cx="0" cy="100" r="4" fill="#ffc107" opacity="0.8"/>
-                <circle cx="100" cy="100" r="4" fill="#ffc107" opacity="0.8"/>
-            </g>
-        </svg>
-
-        <h1>Proteja sua <span class="highlight">família</span>,<br>crianças e pets</h1>
-        <p>Telas mosquiteiras, redes de proteção e telas esportivas instaladas com qualidade e agilidade em sua região.</p>
-
-        <div class="hero-buttons">
-            <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Vim pelo site e quero solicitar um orçamento." class="btn btn-primary">Solicitar Orçamento</a>
-            <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
-        </div>
-
-        <div class="hero-benefits">
-            <div class="benefit"><span class="benefit-icon">✓</span> Garantia no serviço</div>
-            <div class="benefit"><span class="benefit-icon">✓</span> Instalação rápida</div>
-            <div class="benefit"><span class="benefit-icon">✓</span> Material de qualidade</div>
-            <div class="benefit"><span class="benefit-icon">✓</span> Parcele no cartão</div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="servicos" class="services">
-        <div class="section-header">
-            <h2>De residência a espaços esportivos,<br>proteção com <span class="highlight">acabamento impecável</span></h2>
-            <p>Instalação feita por profissionais treinados, com material de alta durabilidade em cada detalhe.</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Rede de proteção para sacada</h3>
-                <p>Segurança para crianças e pets em varandas e sacadas, com instalação transparente e acabamento impecável.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em sacada">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Rede de proteção para janela</h3>
-                <p>Mais segurança em todos os cômodos sem abrir mão da luminosidade e ventilação natural.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em janela">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Rede de proteção para varanda</h3>
-                <p>Cobertura total da varanda com rede resistente, discreta e instalada com perfeição no acabamento.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em varanda">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Rede de proteção para piscina</h3>
-                <p>Material resistente à umidade e ao sol, ideal para proteger crianças e pets ao redor da piscina.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para rede de proteção em piscina">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Tela mosquiteira</h3>
-                <p>Vários modelos para janelas, portas e ambientes diversos. Período forte: setembro a março.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para tela mosquiteira">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Tela esportiva / quadra</h3>
-                <p>Alta resistência para quadras, campos e espaços esportivos. Atendemos escolas e condomínios.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para tela esportiva">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Proteção contra pombos</h3>
-                <p>Tela especial que impede a entrada e permanência de pombos em sacadas e beirais.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para proteção contra pombos">Solicitar orçamento →</a>
-            </div>
-
-            <div class="service-card">
-                <h3>Proteção para escadas</h3>
-                <p>Rede lateral para escadas, prevenindo acidentes com crianças e pets nos vãos.</p>
-                <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Quero orçamento para proteção em escadas">Solicitar orçamento →</a>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://api.whatsapp.com/send?phone=5534996484036&text=Oi! Vim pelo site e quero solicitar um orçamento." class="btn btn-primary">Falar com especialista no WhatsApp</a>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="portfolio">
-        <div class="section-header">
-            <h2>Trabalhos realizados</h2>
-            <p>Cada instalação entregue com capricho e atenção ao detalhe, do orçamento até o acabamento final.</p>
-        </div>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#e8f4f8"/>
-                    <rect x="30" y="30" width="240" height="240" fill="#d0e8f2" stroke="#999" stroke-width="2"/>
-                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
-                        <line x1="40" y1="40" x2="260" y2="40"/>
-                        <line x1="40" y1="70" x2="260" y2="70"/>
-                        <line x1="40" y1="100" x2="260" y2="100"/>
-                        <line x1="40" y1="130" x2="260" y2="130"/>
-                        <line x1="40" y1="160" x2="260" y2="160"/>
-                        <line x1="40" y1="190" x2="260" y2="190"/>
-                        <line x1="40" y1="220" x2="260" y2="220"/>
-                        <line x1="40" y1="250" x2="260" y2="250"/>
-                        <line x1="40" y1="40" x2="40" y2="260"/>
-                        <line x1="70" y1="40" x2="70" y2="260"/>
-                        <line x1="100" y1="40" x2="100" y2="260"/>
-                        <line x1="130" y1="40" x2="130" y2="260"/>
-                        <line x1="160" y1="40" x2="160" y2="260"/>
-                        <line x1="190" y1="40" x2="190" y2="260"/>
-                        <line x1="220" y1="40" x2="220" y2="260"/>
-                        <line x1="250" y1="40" x2="250" y2="260"/>
-                    </g>
-                    <text x="150" y="150" font-size="20" fill="#999" text-anchor="middle" dy=".3em">Rede de proteção<tspan x="150" dy="25">– sacadas</tspan></text>
-                </svg>
-            </div>
-
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#f0f8e8"/>
-                    <rect x="60" y="40" width="180" height="220" fill="#dff5cc" stroke="#999" stroke-width="2"/>
-                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
-                        <line x1="70" y1="50" x2="230" y2="50"/>
-                        <line x1="70" y1="85" x2="230" y2="85"/>
-                        <line x1="70" y1="120" x2="230" y2="120"/>
-                        <line x1="70" y1="155" x2="230" y2="155"/>
-                        <line x1="70" y1="190" x2="230" y2="190"/>
-                        <line x1="70" y1="225" x2="230" y2="225"/>
-                        <line x1="70" y1="50" x2="70" y2="245"/>
-                        <line x1="110" y1="50" x2="110" y2="245"/>
-                        <line x1="150" y1="50" x2="150" y2="245"/>
-                        <line x1="190" y1="50" x2="190" y2="245"/>
-                        <line x1="230" y1="50" x2="230" y2="245"/>
-                    </g>
-                    <text x="150" y="150" font-size="20" fill="#999" text-anchor="middle" dy=".3em">Rede de proteção<tspan x="150" dy="25">– janelas</tspan></text>
-                </svg>
-            </div>
-
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#f8e8f0"/>
-                    <circle cx="150" cy="150" r="100" fill="#f5d0e8" stroke="#999" stroke-width="2"/>
-                    <g stroke="#999" stroke-width="1.5" opacity="0.5">
-                        <circle cx="150" cy="150" r="40"/>
-                        <circle cx="150" cy="150" r="70"/>
-                        <line x1="50" y1="150" x2="250" y2="150"/>
-                        <line x1="150" y1="50" x2="150" y2="250"/>
-                    </g>
-                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Proteção para<tspan x="150" dy="25">pets</tspan></text>
-                </svg>
-            </div>
-
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#f8f0e8"/>
-                    <polygon points="150,40 260,100 260,240 40,240 40,100" fill="#f5e8d0" stroke="#999" stroke-width="2"/>
-                    <g stroke="#666" stroke-width="1" opacity="0.4">
-                        <line x1="50" y1="110" x2="250" y2="110"/>
-                        <line x1="50" y1="150" x2="250" y2="150"/>
-                        <line x1="50" y1="190" x2="250" y2="190"/>
-                        <line x1="100" y1="110" x2="100" y2="235"/>
-                        <line x1="150" y1="110" x2="150" y2="235"/>
-                        <line x1="200" y1="110" x2="200" y2="235"/>
-                    </g>
-                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Rede de proteção<tspan x="150" dy="25">– varandas</tspan></text>
-                </svg>
-            </div>
-
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#e8f0f8"/>
-                    <rect x="70" y="50" width="160" height="200" fill="#d0e5f2" stroke="#999" stroke-width="2"/>
-                    <rect x="80" y="60" width="140" height="180" fill="none" stroke="#999" stroke-width="1" opacity="0.5"/>
-                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
-                        <line x1="80" y1="80" x2="220" y2="80"/>
-                        <line x1="80" y1="120" x2="220" y2="120"/>
-                        <line x1="80" y1="160" x2="220" y2="160"/>
-                        <line x1="80" y1="200" x2="220" y2="200"/>
-                        <line x1="80" y1="60" x2="80" y2="230"/>
-                        <line x1="140" y1="60" x2="140" y2="230"/>
-                        <line x1="220" y1="60" x2="220" y2="230"/>
-                    </g>
-                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Tela mosquiteira<tspan x="150" dy="25">– janelas</tspan></text>
-                </svg>
-            </div>
-
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#f0e8f8"/>
-                    <rect x="40" y="80" width="220" height="140" fill="#e8d0f5" stroke="#999" stroke-width="2"/>
-                    <g stroke="#666" stroke-width="1.5" opacity="0.4">
-                        <line x1="50" y1="90" x2="250" y2="90"/>
-                        <line x1="50" y1="130" x2="250" y2="130"/>
-                        <line x1="50" y1="170" x2="250" y2="170"/>
-                        <line x1="50" y1="210" x2="250" y2="210"/>
-                        <line x1="80" y1="90" x2="80" y2="210"/>
-                        <line x1="150" y1="90" x2="150" y2="210"/>
-                        <line x1="220" y1="90" x2="220" y2="210"/>
-                    </g>
-                    <text x="150" y="150" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Tela esportiva<tspan x="150" dy="25">– quadras</tspan></text>
-                </svg>
-            </div>
-
-            <div class="portfolio-item">
-                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="300" fill="#e8e8f8"/>
-                    <polygon points="50,250 150,50 250,250" fill="#d0d0f5" stroke="#999" stroke-width="2"/>
-                    <g stroke="#666" stroke-width="1" opacity="0.4">
-                        <line x1="80" y1="200" x2="220" y2="200"/>
-                        <line x1="70" y1="233" x2="230" y2="233"/>
-                        <line x1="150" y1="50" x2="50" y2="250"/>
-                        <line x1="150" y1="50" x2="250" y2="250"/>
-                    </g>
-                    <text x="150" y="160" font-size="18" fill="#999" text-anchor="middle" dy=".3em">Proteção para<tspan x="150" dy="25">escadas</tspan></text>
-                </svg>
-            </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Proteção <span class="highlight">premium</span> para sua família</h1>
+                <p class="hero-subheadline">Redes de proteção com instalação impecável, material de primeira qualidade e garant
