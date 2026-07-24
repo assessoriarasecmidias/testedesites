@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoloSound - Música Holográfica Imersiva</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ===== SEÇÃO 1: HERO com Mesh Gradient, Mouse Tracking e Floating Elements ===== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #330066 100%);
+        }
+
+        .mesh-gradient {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle at 30% 30%, rgba(200, 0, 255, 0.4), transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(0, 200, 255, 0.4), transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(255, 0, 150, 0.2), transparent 60%);
+            filter: blur(80px);
+            animation: meshShift 8s ease-in-out infinite;
+        }
+
+        @keyframes meshShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.2); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.15) rotateZ(2deg);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            animation-delay: 1s;
+            background: rgba(255, 0, 150, 0.1);
+            border-color: rgba(255, 0, 150, 0.5);
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            animation-delay: 2s;
+            background: rgba(100, 200, 255, 0.1);
+            border-color: rgba(100, 200, 255, 0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+            50% { transform: translateY(-30px) rotateZ(180deg); }
+        }
+
+        /* Mouse tracking element */
+        .tracker-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(20px);
+        }
+
+        /* ===== SEÇÃO 2: Text Reveal com Scroll Trigger ===== */
+        .section-features {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #0a0a0a, #1a0a1a);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .reveal-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            color: #ccc;
+        }
+
+        .word {
+            display: inline-block;
+            opacity: 0;
+            margin-right: 0.3em;
+        }
+
+        /* ===== SEÇÃO 3: Scroll Trigger Animations ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #1a0a1a, #0a1a1a);
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* ===== SEÇÃO 4: Image Mask Animations ===== */
+        .section-showcase {
+            padding: 100px 50px;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .showcase-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .masked-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .masked-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .showcase-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .showcase-text p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* ===== SEÇÃO 5: Hover Image Swap ===== */
+        .hover-swap-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #1a0a1a, #0a0a0a);
+        }
+
+        .swap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .swap-card {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .swap-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .swap-image:nth-child(1) {
+            background: linear-gradient(135deg, #00ffff, #0099ff);
+        }
+
+        .swap-image:nth-child(2) {
+            background: linear-gradient(135deg, #ff00ff, #ff0099);
+            opacity: 0;
+            transform: rotateY(90deg) scale(0.8);
+        }
+
+        .swap-card:hover .swap-image:nth-child(1) {
+            opacity: 0;
+            transform: rotateY(-90deg) scale(0.8);
+        }
+
+        .swap-card:hover .swap-image:nth-child(2) {
+            opacity: 1;
+            transform: rotateY(0deg) scale(1);
+        }
+
+        /* ===== SEÇÃO 6: SVG Morphing ===== */
+        .morphing-section {
+            padding: 100px 50px;
+            background: #0a1a1a;
+            text-align: center;
+        }
+
+        svg {
+            width: 300px;
+            height: 300px;
+            margin: 40px auto;
+        }
+
+        /* ===== SEÇÃO 7: Staggered Animations ===== */
+        .stagger-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #0a1a1a, #1a0a0a);
+        }
+
+        .stagger-list {
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .stagger-item {
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(0, 255, 255, 0.1);
+            border-left: 4px solid #00ffff;
+            border-radius: 5px;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        /* ===== SEÇÃO 8: Glitch Effect ===== */
+        .glitch-section {
+            padding: 100px 50px;
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .glitch-title {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+            color: #00ffff;
+        }
+
+        .glitch-title::before,
+        .glitch-title::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;;
+        }
+
+        .glitch-title::before {
+            animation: glitch-1 0.3s infinite;
+            color: #ff00ff;
+            z-index: -1;
+            text-shadow: -2px 0 #00ffff;
+        }
+
+        .glitch-title::after {
+            animation: glitch-2 0.3s infinite;
+            color: #00ff00;
+            z-index: -2;
+            text-shadow: 2px 0 #ff00ff;
+        }
+
+        @keyframes glitch-1 {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%); transform: translate(-2px, -2px); }
+            50% { clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%); transform: translate(2px, 2px); }
+            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translate(-2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0% { clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 0); transform: translate(2px, 2px); }
+            50% { clip-path: polygon(0 0, 100% 30%, 100% 70%, 0 100%); transform: translate(-2px, -2px); }
+            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translate(2px, 2px); }
+        }
+
+        /* ===== SEÇÃO 9: 3D Perspective ===== */
+        .perspective-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #1a0a0a, #0a0a1a);
+            perspective: 1200px;
+        }
+
+        .perspective-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .perspective-card:hover {
+            transform: rotateX(10deg) rotateY(-10deg) translateZ(20px);
+        }
+
+        /* ===== SEÇÃO 10: Clip-path Animation ===== */
+        .clippath-section {
+            padding: 100px 50px;
+            background: #0a0a0a;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .clippath-box {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+            position: relative;
+        }
+
+        .clippath-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+            animation: clipPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes clipPulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== SEÇÃO 11: Chromatic Aberration ===== */
+        .chromatic-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, #0a1a0a, #0a0a1a);
+            text-align: center;
+        }
+
+        .chromatic-text {
+            font-size: 3rem;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            filter: blur(0.5px);
+        }
+
+        .chromatic-text span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .chromatic-text span:nth-child(1) {
+            color: #ff0000;
+            clip-path: polygon(0 0, 33% 0, 33% 100%, 0 100%);
+            animation: chromatic-shift-r 3s ease-in-out infinite;
+        }
+
+        .chromatic-text span:nth-child(2) {
+            color: #00ff00;
+            clip-path: polygon(33% 0, 66% 0, 66% 100%, 33% 100%);
+        }
+
+        .chromatic-text span:nth-child(3) {
+            color: #0000ff;
+            clip-path: polygon(66% 0, 100% 0, 100% 100%, 66% 100%);
+            animation: chromatic-shift-b 3s ease-in-out infinite;
+        }
+
+        @keyframes chromatic-shift-r {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-3px); }
+        }
+
+        @keyframes chromatic-shift-b {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(3px); }
+        }
+
+        /* ===== SEÇÃO 12: Particle Effects ===== */
+        .particle-section {
+            padding: 100px 50px;
+            background: #0a0a0a;
+            position: relative;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00ffff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particle-float 6s ease-in-out infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* ===== SEÇÃO 13: Footer / CTA ===== */
+        .footer-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #000, #1a0033);
+            text-align: center;
+            position: relative;
+        }
+
+        .footer-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .swap-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .showcase-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SEÇÃO 1: HERO com Mesh Gradient, Mouse Tracking e Floating Elements -->
+    <section class="hero">
+        <div class="mesh-gradient"></div>
+        <div class="tracker-element" id="trackerElement"></div>
+        
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">HoloSound</h1>
+            <p class="hero-subtitle">Música em dimensão holográfica</p>
+            <button class="cta-button">Experimentar Agora</button>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: Text Reveal com Scroll Trigger -->
+    <section class="section-features">
+        <h2 class="section-title">A revolução do som</h2>
+        <p class="reveal-text">
+            Imagine ouvir música não apenas pelos ouvidos, mas sentindo cada nota flutuando ao seu redor em três dimensões. 
+            Nosso sistema holográfico cria visualizações que dançam com o ritmo, transformando salas inteiras em palcos imersivos. 
+            Cada frequência ganha forma, cada batida ganha vida.
+        </p>
+    </section>
+
+    <!-- SEÇÃO 3: Scroll Trigger Animations com Feature Cards -->
+    <section class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎵</div>
+            <h3 class="feature-title">Som 3D Imersivo</h3>
+            <p class="feature-desc">Áudio espacial que envolve você completamente</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌈</div>
+            <h3 class="feature-title">Visualizações Dinâmicas</h3>
+            <p class="feature-desc">Cores e formas que reagem em tempo real</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3 class="feature-title">Tecnologia AI</h3>
+            <p class="feature-desc">Inteligência artificial que aprende seu gosto</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎪</div>
+            <h3 class="feature-title">Experiências Personalizadas</h3>
+            <p class="feature-desc">Cada sessão é única e pensada para você</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3 class="feature-title">Performance Extrema</h3>
+            <p class="feature-desc">Sem lag, sem travamento, puro fluxo</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔮</div>
+            <h3 class="feature-title">Compatibilidade Universal</h3>
+            <p class="feature-desc">Funciona em qualquer dispositivo moderno</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: Image Mask Animations -->
+    <section class="section-showcase">
+        <div class="showcase-container">
+            <div class="masked-image"></div>
+            <div class="showcase-text">
+                <h3>Visuals que Transformam</h3>
+                <p>Cada nota musical ganha uma representação visual única. O sistema analisa frequência, amplitude e timbre para criar hologramas que dançam de verdade.</p>
+                <p>Não é apenas uma visualização bonita. É a música tornando-se visível.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: Hover Image Swap -->
+    <section class="hover-swap-section">
+        <h2 class="section-title">Explore os Modos</h2>
+        <div class="swap-grid">
+            <div class="swap-card">
+                <div class="swap-image">Normal</div>
+                <div class="swap-image">Party 🎉</div>
+            </div>
+            <div class="swap-card">
+                <div class="swap-image">Chill</div>
+                <div class="swap-image">Focus 🎧</div>
+            </div>
+            <div class="swap-card">
+                <div class="swap-image">Studio</div>
+                <div class="swap-image">Pro 🎚️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: SVG Morphing -->
+    <section class="morphing-section">
+        <h2 class="section-title">Transformação Fluida</h2>
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <circle id="morphing-shape" cx="100" cy="100" r="70" fill="url(#grad1)"/>
+        </svg>
+        <p>As formas evoluem conforme a música muda</p>
+    </section>
+
+    <!-- SEÇÃO 7: Staggered Animations -->
+    <section class="stagger-section">
+        <h2 class="section-title">Por que escolher HoloSound?</h2>
+        <ul class="stagger-list">
+            <li class="stagger-item">✨ Primeira tecnologia de holografia sonora em escala consumer</li>
+            <li class="stagger-item">🎯 Compatível com 50+ plataformas de streaming</li>
+            <li class="stagger-item">🔒 Seus dados nunca são compartilhados</li>
+            <li class="stagger-item">💰 Plano gratuito com 30h/mês de imersão</li>
+            <li class="stagger-item">🌍 Comunidade de 2M+ usuários ativos</li>
+        </ul>
+    </section>
+
+    <!-- SEÇÃO 8: Glitch Effect -->
+    <section class="glitch-section">
+        <h2 class="section-title" data-text="ERROR IN THE MATRIX...">Futurista demais</h2>
+        <h3 class="glitch-title" data-text="HOLOSOUND">HOLOSOUND</h3>
+    </section>
+
+    <!-- SEÇÃO 9: 3D Perspective -->
+    <section class="perspective-section">
+        <h2 class="section-title">Interatividade 3D</h2>
+        <div class="perspective-card">
+            <h3>Toque esta caixa</h3>
+            <p>Você consegue sentir a tridimensionalidade? Mude a profundidade com seu mouse. Esse é o futuro da interação web.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: Clip-path Animation -->
+    <section class="clippath-section">
+        <div class="clippath-box"></div>
+        <div>
+            <h3>Animações Geométricas</h3>
+            <p>As formas se cortam, revelam e transformam. Clip-path é uma ferramenta poderosa para criar efeitos que parecem impossíveis.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 11: Chromatic Aberration -->
+    <section class="chromatic-section">
+        <h2 class="section-title">Efeito Cyberpunk</h2>
+        <div class="chromatic-text">
+            <span>HoloSound</span>
+            <span>HoloSound</span>
+            <span>HoloSound</span>
+        </div>
+        <p style="margin-top: 40px; color: #aaa;">Aquele efeito de desalinhamento RGB que parece um erro intencional</p>
+    </section>
+
+    <!-- SEÇÃO 12: Particle Effects -->
+    <section class="particle-section">
+        <h2 class="section-title">Efeito de Partículas</h2>
+        <p style="margin-bottom: 40px; color: #aaa;">Veja as partículas flutuarem (elas são geradas dinamicamente)</p>
+    </section>
+
+    <!-- SEÇÃO 13: Footer / Final CTA -->
+    <section class="footer-section">
+        <h2 class="footer-title">Pronto para o futuro?</h2>
+        <p style="margin-bottom: 30px; color: #aaa; font-size: 1.1rem;">Junte-se a milhões de pessoas transformando a forma como ouvem música</p>
+        <button class="cta-button">Baixar HoloSound Agora</button>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ===== Mouse Tracking =====
+        const trackerElement = document.getElementById('trackerElement');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(trackerElement, {
+                x: e.clientX - 50,
+                y: e.clientY - 50,
+                duration: 0.2,
+                ease: 'power2.out'
+            });
+        });
+
+        // ===== Text Reveal Animation =====
+        const revealText = document.querySelector('.reveal-text');
+        const words = revealText.textContent.split(' ');
+        revealText.innerHTML = '';
+        
+        words.forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'word';
+            span.textContent = word;
+            revealText.appendChild(span);
+        });
+
+        gsap.to('.word', {
+            scrollTrigger: {
+                trigger: '.section-features',
+                start: 'top center',
+                end: 'bottom center',
+                scrub: 0.5
+            },
+            opacity: 1,
+            stagger: 0.05,
+            duration: 0.5
+        });
+
+        // ===== Feature Cards Scroll Animation =====
+        gsap.to('.feature-card', {
+            scrollTrigger: {
+                trigger: '.features-grid',
+                start: 'top center',
+                end: 'bottom center',
+                scrub: 1
+            },
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.8
+        });
+
+        // ===== Staggered List Items =====
+        gsap.to('.stagger-item', {
+            scrollTrigger: {
+                trigger: '.stagger-section',
+                start: 'top center',
+            },
+            opacity: 1,
+            x: 0,
+            stagger: 0.15,
+            duration: 0.6
+        });
+
+        // ===== SVG Morphing Animation =====
+        const morphingShape = document.getElementById('morphing-shape');
+        gsap.to(morphingShape, {
+            attr: { r: 50 },
+            duration: 2,
+            yoyo: true,
+            repeat: -1,
+            ease: 'sine.inOut'
+        });
+
+        // ===== Generate Particles =====
+        const particleSection = document.querySelector('.particle-section');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = particleSection.offsetHeight + 'px';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            particle.style.background = ['#00ffff', '#ff00ff', '#00ff00'][Math.floor(Math.random() * 3)];
+            particleSection.appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 8000);
+        }
+
+        setInterval(createParticle, 300);
+
+        // ===== Button Interactions =====
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                gsap.to(this, {
+                    scale: 0.95,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: 'power2.inOut'
+                });
+            });
+        });
+
+        // ===== Scroll spy for more interactivity =====
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    section.style.opacity = '1';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
