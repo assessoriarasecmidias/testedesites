@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Depth of Field Blur - Melina</title>
+    <title>ImageFX - 15 Efeitos com Imagem</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -24,320 +24,809 @@
             overflow-x: hidden;
         }
 
-        /* ===== SEÇÃO 1: Depth of Field com Parallax ===== */
-        .section-dof {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dof-background {
+        .section-label {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0a0a0a, #1a0033);
-            z-index: 1;
-        }
-
-        .dof-image-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-
-        .dof-image-blurred {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(12px);
-            opacity: 0.7;
-            transform: scale(1.1);
-            will-change: transform, filter;
-        }
-
-        .dof-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 100, 200, 0.3));
-            z-index: 3;
-        }
-
-        .dof-content {
-            position: relative;
-            z-index: 10;
-            max-width: 600px;
-            padding: 40px;
-            text-align: center;
-            animation: content-fade-in 1.2s ease-out;
-        }
-
-        @keyframes content-fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dof-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: #00ffcc;
-            text-shadow: 0 0 30px rgba(0, 255, 200, 0.6);
-            line-height: 1.2;
-        }
-
-        .dof-subtitle {
-            font-size: 1.3rem;
-            color: #aaa;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .dof-button {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #00ffcc, #00ff88);
-            color: #000;
-            border: none;
+            top: 30px;
+            left: 30px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            padding: 8px 16px;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            box-shadow: 0 10px 40px rgba(0, 255, 200, 0.4);
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            z-index: 100;
         }
 
-        .dof-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(0, 255, 200, 0.6);
-        }
-
-        .dof-button:active {
-            transform: translateY(-1px);
-        }
-
-        /* ===== SEÇÃO 2: Comparativo DoF ===== */
-        .section-comparison {
+        /* ===== SEÇÃO 1: Image Reveal com Animação ===== */
+        .section-1 {
             height: 100vh;
-            background: linear-gradient(135deg, #0a0a0a, #1a0a1a);
+            background: linear-gradient(135deg, #0a0a0a, #1a0033);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             padding: 40px 20px;
-            flex-direction: column;
-            gap: 40px;
         }
 
-        .comparison-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .comparison-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        .comparison-item {
+        .image-reveal {
             position: relative;
             width: 100%;
-            height: 400px;
+            max-width: 400px;
+            height: 500px;
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid rgba(0, 255, 200, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.4);
         }
 
-        .comparison-item img {
+        .image-reveal img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .comparison-item.blur img {
-            filter: blur(10px);
-        }
-
-        .comparison-item.sharp img {
-            filter: blur(0px);
-        }
-
-        .comparison-label {
+        .reveal-overlay {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            backdrop-filter: blur(10px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), transparent);
+            animation: reveal-slide 1.5s ease-out forwards;
             z-index: 10;
         }
 
-        /* ===== SEÇÃO 3: Interactive DoF Slider ===== */
-        .section-slider {
+        @keyframes reveal-slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ===== SEÇÃO 2: Image Distortion on Scroll ===== */
+        .section-2 {
+            height: 200vh;
+            background: linear-gradient(135deg, #1a0033, #003366);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .distortion-container {
+            position: sticky;
+            top: 50vh;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.4);
+        }
+
+        .distortion-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: skewY(0deg);
+            will-change: filter;
+        }
+
+        /* ===== SEÇÃO 3: Image Zoom on Hover ===== */
+        .section-3 {
+            height: 100vh;
+            background: linear-gradient(135deg, #003366, #1a0066);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .zoom-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 150, 0.4);
+            cursor: pointer;
+        }
+
+        .zoom-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .zoom-container:hover .zoom-image {
+            transform: scale(1.15);
+        }
+
+        /* ===== SEÇÃO 4: Image Tilt 3D ===== */
+        .section-4 {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0066, #0a1a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+            perspective: 1200px;
+        }
+
+        .tilt-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            transform-style: preserve-3d;
+            cursor: grab;
+        }
+
+        .tilt-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            will-change: transform;
+        }
+
+        /* ===== SEÇÃO 5: Image Glitch Effect ===== */
+        .section-5 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a2e, #1a0a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .glitch-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+        }
+
+        .glitch-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .glitch-image.glitched {
+            animation: glitch-effect 0.4s infinite;
+        }
+
+        @keyframes glitch-effect {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 35%, 0 100%);
+                transform: translate(-2px, -2px);
+            }
+            50% {
+                clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%);
+                transform: translate(2px, 2px);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                transform: translate(-2px, -2px);
+            }
+        }
+
+        /* ===== SEÇÃO 6: Image Polaroid Flip ===== */
+        .section-6 {
             height: 100vh;
             background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             padding: 40px 20px;
-            flex-direction: column;
-            gap: 30px;
+            perspective: 1200px;
         }
 
-        .slider-title {
-            font-size: 2rem;
-            font-weight: bold;
+        .polaroid-container {
+            position: relative;
+            width: 320px;
+            background: #fff;
+            padding: 15px;
+            padding-bottom: 80px;
+            border-radius: 5px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .polaroid-container:hover {
+            transform: rotateY(180deg);
+        }
+
+        .polaroid-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .polaroid-text {
+            margin-top: 15px;
+            color: #000;
+            font-size: 1rem;
             text-align: center;
+            font-family: 'Marker Felt', cursive;
         }
 
-        .slider-container {
+        .polaroid-back {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 500px;
-            position: relative;
+            height: 100%;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
         }
 
-        .slider-image-container {
+        /* ===== SEÇÃO 7: Image Masking com Formas ===== */
+        .section-7 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a1a, #1a0a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            width: 100%;
-            height: 350px;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 255, 200, 0.4);
+            padding: 40px 20px;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
-        .slider-image {
+        .mask-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .mask-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .slider-blur-text {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #00ffcc;
-            backdrop-filter: blur(10px);
-            z-index: 10;
+        .mask-circle {
+            clip-path: circle(50%);
         }
 
-        .slider-control {
-            margin-top: 30px;
+        .mask-circle:hover {
+            animation: mask-pulse 0.6s ease-out;
+        }
+
+        @keyframes mask-pulse {
+            0% { clip-path: circle(50%); }
+            50% { clip-path: circle(60%); }
+            100% { clip-path: circle(50%); }
+        }
+
+        .mask-polygon {
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+
+        .mask-polygon:hover {
+            animation: mask-spin 0.6s ease-out;
+        }
+
+        @keyframes mask-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(5deg) scale(1.05); }
+        }
+
+        .mask-diamond {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .mask-diamond:hover {
+            animation: mask-diamond-pulse 0.6s ease-out;
+        }
+
+        @keyframes mask-diamond-pulse {
+            0%, 100% { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+            50% { clip-path: polygon(50% 10%, 90% 50%, 50% 90%, 10% 50%); }
+        }
+
+        /* ===== SEÇÃO 8: Image Gradient Overlay Animated ===== */
+        .section-8 {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a0a, #0a1a1a);
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .blur-slider {
-            width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: rgba(0, 255, 200, 0.2);
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-
-        .blur-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00ffcc, #00ff88);
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
-        }
-
-        .blur-slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00ffcc, #00ff88);
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
-        }
-
-        .slider-label {
-            text-align: center;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        /* ===== SEÇÃO 4: Scroll Reveal DoF ===== */
-        .section-scroll-reveal {
-            height: 200vh;
-            background: linear-gradient(135deg, #0a1a1a, #1a0a0a);
+            align-items: center;
+            justify-content: center;
             position: relative;
+            padding: 40px 20px;
+        }
+
+        .gradient-overlay-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.4);
+        }
+
+        .gradient-overlay-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 0, 150, 0.5), rgba(0, 255, 200, 0.5));
+            background-size: 200% 200%;
+            animation: gradient-move 4s ease infinite;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+
+        @keyframes gradient-move {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ===== SEÇÃO 9: Image Parallax Layers ===== */
+        .section-9 {
+            height: 300vh;
+            background: linear-gradient(135deg, #0a1a0a, #1a0a0a);
+            position: relative;
+        }
+
+        .parallax-layers-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 40px 20px;
         }
 
-        .scroll-reveal-container {
-            position: sticky;
-            top: 50vh;
-            width: 100%;
-            max-width: 600px;
+        .parallax-layer {
+            position: absolute;
+            width: 300px;
             height: 400px;
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid rgba(0, 255, 200, 0.3);
         }
 
-        .scroll-reveal-image {
+        .parallax-layer img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(20px);
         }
 
-        .scroll-reveal-content {
+        .parallax-layer:nth-child(1) {
+            left: 5%;
+            top: 10%;
+            opacity: 0.7;
+        }
+
+        .parallax-layer:nth-child(2) {
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            opacity: 1;
+        }
+
+        .parallax-layer:nth-child(3) {
+            right: 5%;
+            top: 10%;
+            opacity: 0.7;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 5;
+            height: 300vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        /* ===== SEÇÃO 10: Before/After Slider ===== */
+        .section-10 {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 150, 0.4);
+        }
+
+        .before-after-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .before-after-after {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .before-after-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: rgba(0, 255, 150, 0.8);
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+
+        .before-after-slider::before {
+            content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            z-index: 10;
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(0, 255, 200, 0.4);
-            max-width: 400px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 150, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .scroll-reveal-content h3 {
-            margin-bottom: 15px;
+        /* ===== SEÇÃO 11: Image Lightbox Modal ===== */
+        .section-11 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a1a, #1a0a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .lightbox-trigger {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-trigger:hover {
+            transform: scale(1.05);
+            border-color: rgba(0, 255, 200, 0.8);
+        }
+
+        .lightbox-trigger img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: modal-fade 0.3s ease;
+        }
+
+        @keyframes modal-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-modal.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 15px;
+            overflow: hidden;
+            animation: modal-scale 0.3s ease;
+        }
+
+        @keyframes modal-scale {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ===== SEÇÃO 12: Image Carousel 3D ===== */
+        .section-12 {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+            perspective: 1200px;
+        }
+
+        .carousel-3d-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            transform-style: preserve-3d;
+        }
+
+        .carousel-3d-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            opacity: 0;
+            transform: rotateY(0deg) translateZ(0px);
+            transition: all 0.8s ease;
+        }
+
+        .carousel-3d-item.active {
+            opacity: 1;
+            transform: rotateY(0deg) translateZ(100px);
+            z-index: 10;
+        }
+
+        .carousel-3d-item.prev {
+            opacity: 0.5;
+            transform: rotateY(60deg) translateZ(-50px);
+        }
+
+        .carousel-3d-item.next {
+            opacity: 0.5;
+            transform: rotateY(-60deg) translateZ(-50px);
+        }
+
+        .carousel-3d-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-3d-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 200, 0.3);
+            border: 2px solid rgba(0, 255, 200, 0.6);
             color: #00ffcc;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-3d-button:hover {
+            background: rgba(0, 255, 200, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-3d-button.prev {
+            left: -70px;
+        }
+
+        .carousel-3d-button.next {
+            right: -70px;
+        }
+
+        /* ===== SEÇÃO 13: Image Border Animation ===== */
+        .section-13 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a1a, #1a0a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .border-animation-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+        }
+
+        .border-animation-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid;
+            border-image: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff) 1;
+            border-radius: 15px;
+            animation: border-spin 3s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes border-spin {
+            0% { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.6)); }
+            100% { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6)); }
+        }
+
+        .border-animation-image {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .border-animation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== SEÇÃO 14: Image Float/Levitate ===== */
+        .section-14 {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a0a, #0a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .float-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 150, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 255, 150, 0.2);
+            animation: float-levitate 4s ease-in-out infinite;
+        }
+
+        @keyframes float-levitate {
+            0%, 100% {
+                transform: translateY(0px);
+                box-shadow: 0 20px 60px rgba(0, 255, 150, 0.2);
+            }
+            50% {
+                transform: translateY(-20px);
+                box-shadow: 0 40px 80px rgba(0, 255, 150, 0.4);
+            }
+        }
+
+        .float-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== SEÇÃO 15: Image Aspect Ratio Animation ===== */
+        .section-15 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a0a, #1a0a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        .aspect-ratio-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.4);
+            animation: aspect-ratio-change 4s ease-in-out infinite;
+        }
+
+        @keyframes aspect-ratio-change {
+            0%, 100% {
+                aspect-ratio: 4/5;
+                width: 100%;
+                max-width: 400px;
+            }
+            50% {
+                aspect-ratio: 1/1;
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+
+        .aspect-ratio-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* ===== FOOTER ===== */
@@ -352,13 +841,7 @@
             margin-bottom: 15px;
         }
 
-        .footer-subtitle {
-            color: #aaa;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .footer-button {
+        .cta-button {
             padding: 15px 40px;
             background: linear-gradient(45deg, #00ffff, #ff00ff);
             color: #000;
@@ -367,153 +850,341 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 1rem;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
             transition: all 0.3s ease;
         }
 
-        .footer-button:hover {
+        .cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
         }
 
         @media (max-width: 768px) {
-            .dof-title {
-                font-size: 2.5rem;
-            }
-
-            .dof-subtitle {
-                font-size: 1rem;
-            }
-
-            .comparison-container {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-item {
-                height: 300px;
-            }
+            .section-label { font-size: 0.65rem; }
+            .carousel-3d-button { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- SEÇÃO 1: Depth of Field Hero -->
-    <section class="section-dof">
-        <div class="dof-background"></div>
-        <div class="dof-image-container">
-            <img class="dof-image-blurred" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
-        </div>
-        <div class="dof-overlay"></div>
-        <div class="dof-content">
-            <h1 class="dof-title">Dra. Melina Luna</h1>
-            <p class="dof-subtitle">
-                Odontologia de Excelência<br>
-                Cuidando do seu Sorriso com Profissionalismo
-            </p>
-            <button class="dof-button">Agende sua Consulta</button>
+    <!-- SEÇÃO 1: Image Reveal -->
+    <section class="section-1">
+        <div class="section-label">1. Image Reveal</div>
+        <div class="image-reveal">
+            <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            <div class="reveal-overlay"></div>
         </div>
     </section>
 
-    <!-- SEÇÃO 2: Comparativo DoF -->
-    <section class="section-comparison">
-        <h2 class="comparison-title">Entenda o Efeito Depth of Field</h2>
-        <div class="comparison-container">
-            <div class="comparison-item blur">
-                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina Blur">
-                <div class="comparison-label">Com Blur (Desfocado)</div>
+    <!-- SEÇÃO 2: Image Distortion on Scroll -->
+    <section class="section-2">
+        <div class="section-label">2. Image Distortion</div>
+        <div class="distortion-container">
+            <img class="distortion-image" id="distortionImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: Image Zoom on Hover -->
+    <section class="section-3">
+        <div class="section-label">3. Image Zoom</div>
+        <div class="zoom-container">
+            <img class="zoom-image" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: Image Tilt 3D -->
+    <section class="section-4">
+        <div class="section-label">4. Image Tilt 3D</div>
+        <div class="tilt-container" id="tiltContainer">
+            <img class="tilt-image" id="tiltImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: Image Glitch -->
+    <section class="section-5">
+        <div class="section-label">5. Image Glitch</div>
+        <div class="glitch-container">
+            <img class="glitch-image" id="glitchImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: Image Polaroid Flip -->
+    <section class="section-6">
+        <div class="section-label">6. Polaroid Flip</div>
+        <div class="polaroid-container">
+            <img class="polaroid-image" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            <div class="polaroid-text">Dra. Melina Luna</div>
+            <div class="polaroid-back">Clique para virar</div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: Image Masking -->
+    <section class="section-7">
+        <div class="section-label">7. Image Masking</div>
+        <div class="mask-container">
+            <img class="mask-image mask-circle" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+        <div class="mask-container">
+            <img class="mask-image mask-polygon" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+        <div class="mask-container">
+            <img class="mask-image mask-diamond" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: Image Gradient Overlay -->
+    <section class="section-8">
+        <div class="section-label">8. Gradient Overlay</div>
+        <div class="gradient-overlay-container">
+            <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            <div class="gradient-overlay"></div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: Image Parallax Layers -->
+    <section class="section-9">
+        <div class="section-label">9. Parallax Layers</div>
+        <div class="parallax-layers-container" id="parallaxContainer">
+            <div class="parallax-layer">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
             </div>
-            <div class="comparison-item sharp">
-                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina Sharp">
-                <div class="comparison-label">Sem Blur (Nítido)</div>
+            <div class="parallax-layer">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            </div>
+            <div class="parallax-layer">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            </div>
+        </div>
+        <div class="parallax-content">
+            <div>Parallax com múltiplas camadas</div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: Before/After Slider -->
+    <section class="section-10">
+        <div class="section-label">10. Before/After</div>
+        <div class="before-after-container" id="beforeAfterContainer">
+            <img class="before-after-img" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina Before">
+            <div class="before-after-after" id="beforeAfterAfter">
+                <img class="before-after-img" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina After">
+            </div>
+            <div class="before-after-slider" id="beforeAfterSlider"></div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 11: Lightbox -->
+    <section class="section-11">
+        <div class="section-label">11. Lightbox Modal</div>
+        <div class="lightbox-trigger" id="lightboxTrigger">
+            <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </section>
+
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">✕</button>
+            <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+    </div>
+
+    <!-- SEÇÃO 12: Carousel 3D -->
+    <section class="section-12">
+        <div class="section-label">12. Carousel 3D</div>
+        <button class="carousel-3d-button prev" id="carouselPrev">❮</button>
+        <div class="carousel-3d-container" id="carousel3D">
+            <div class="carousel-3d-item active">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            </div>
+            <div class="carousel-3d-item">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            </div>
+            <div class="carousel-3d-item">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            </div>
+        </div>
+        <button class="carousel-3d-button next" id="carouselNext">❯</button>
+    </section>
+
+    <!-- SEÇÃO 13: Border Animation -->
+    <section class="section-13">
+        <div class="section-label">13. Border Animation</div>
+        <div class="border-animation-container">
+            <div class="border-animation-frame"></div>
+            <div class="border-animation-image">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO 3: Interactive Slider -->
-    <section class="section-slider">
-        <h2 class="slider-title">Ajuste o Blur em Tempo Real</h2>
-        <div class="slider-container">
-            <div class="slider-image-container">
-                <img class="slider-image" id="sliderImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
-                <div class="slider-blur-text" id="blurValue">Blur: 0px</div>
-            </div>
-            <div class="slider-control">
-                <input type="range" class="blur-slider" id="blurSlider" min="0" max="25" value="0">
-                <div class="slider-label">Deslize para aumentar ou diminuir o desfoque</div>
-            </div>
+    <!-- SEÇÃO 14: Float/Levitate -->
+    <section class="section-14">
+        <div class="section-label">14. Float Levitate</div>
+        <div class="float-container">
+            <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
         </div>
     </section>
 
-    <!-- SEÇÃO 4: Scroll Reveal -->
-    <section class="section-scroll-reveal">
-        <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
-            <h2 style="font-size: 2rem; text-align: center; max-width: 400px;">
-                Conforme você scrolleia, o fundo desblurra e revela o conteúdo
-            </h2>
-        </div>
-        <div class="scroll-reveal-container">
-            <img class="scroll-reveal-image" id="scrollImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
-            <div class="scroll-reveal-content">
-                <h3>Transformação Visual</h3>
-                <p>Veja como o blur diminui conforme você scrolleia. Efeito cinematográfico!</p>
-            </div>
-        </div>
-        <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
-            <h2 style="font-size: 2rem; text-align: center; max-width: 400px;">
-                Continue scrolleando para completar o efeito
-            </h2>
+    <!-- SEÇÃO 15: Aspect Ratio Animation -->
+    <section class="section-15">
+        <div class="section-label">15. Aspect Ratio</div>
+        <div class="aspect-ratio-container">
+            <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
         </div>
     </section>
 
     <!-- FOOTER -->
     <section class="footer-section">
-        <h2 class="footer-title">Depth of Field Blur</h2>
-        <p class="footer-subtitle">Um efeito poderoso para destacar conteúdo importante</p>
-        <button class="footer-button">Explorar Mais Efeitos</button>
+        <h2 class="footer-title">15 Efeitos com Imagem</h2>
+        <p style="color: #aaa; margin-bottom: 30px; font-size: 1.1rem;">Reveal, Distortion, Zoom, Tilt, Glitch, Polaroid, Masking, Gradient, Parallax, Before/After, Lightbox, 3D, Border, Float, AspectRatio</p>
+        <button class="cta-button">Ver Todos os 76+ Efeitos</button>
     </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // ===== SEÇÃO 3: Interactive Blur Slider =====
-        const blurSlider = document.getElementById('blurSlider');
-        const sliderImage = document.getElementById('sliderImage');
-        const blurValue = document.getElementById('blurValue');
-
-        blurSlider.addEventListener('input', (e) => {
-            const blurAmount = e.target.value;
-            sliderImage.style.filter = `blur(${blurAmount}px)`;
-            blurValue.textContent = `Blur: ${blurAmount}px`;
-        });
-
-        // ===== SEÇÃO 4: Scroll Reveal Blur =====
-        const scrollImage = document.getElementById('scrollImage');
+        // ===== SEÇÃO 2: Image Distortion on Scroll =====
+        const distortionImage = document.getElementById('distortionImage');
 
         ScrollTrigger.create({
-            trigger: '.section-scroll-reveal',
+            trigger: '.section-2',
             start: 'top center',
             end: 'bottom center',
             onUpdate: (self) => {
-                const blurAmount = 20 * (1 - self.progress);
-                scrollImage.style.filter = `blur(${Math.max(blurAmount, 0)}px)`;
+                const skew = self.getVelocity() / 300;
+                gsap.to(distortionImage, {
+                    skewY: gsap.utils.clamp(-10, 10, skew),
+                    duration: 0.8,
+                    ease: 'power3'
+                });
             }
         });
 
-        // ===== PARALLAX DoF Hero =====
-        gsap.to('.dof-image-blurred', {
-            scrollTrigger: {
-                trigger: '.section-dof',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 0.5
-            },
-            y: -100,
-            scale: 1.15,
-            filter: 'blur(15px)',
-            duration: 1
+        // ===== SEÇÃO 4: Image Tilt 3D =====
+        const tiltContainer = document.getElementById('tiltContainer');
+        const tiltImage = document.getElementById('tiltImage');
+
+        tiltContainer.addEventListener('mousemove', (e) => {
+            const rect = tiltContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const rotateX = (y / rect.height - 0.5) * 20;
+            const rotateY = (x / rect.width - 0.5) * 20;
+
+            gsap.to(tiltImage, {
+                rotationX: rotateX,
+                rotationY: rotateY,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
         });
 
-        console.log('Depth of Field Blur: Carregado com sucesso!');
+        tiltContainer.addEventListener('mouseleave', () => {
+            gsap.to(tiltImage, {
+                rotationX: 0,
+                rotationY: 0,
+                duration: 0.4,
+                ease: 'power2.out'
+            });
+        });
+
+        // ===== SEÇÃO 5: Image Glitch Toggle =====
+        const glitchImage = document.getElementById('glitchImage');
+        glitchImage.addEventListener('click', () => {
+            glitchImage.classList.toggle('glitched');
+        });
+
+        // ===== SEÇÃO 9: Parallax Layers =====
+        const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+        ScrollTrigger.create({
+            trigger: '.section-9',
+            start: 'top top',
+            end: 'bottom bottom',
+            onUpdate: (self) => {
+                parallaxLayers.forEach((layer, index) => {
+                    const depth = (index - 1) * 50;
+                    gsap.to(layer, {
+                        y: self.progress * depth * 2,
+                        duration: 0.3,
+                        ease: 'none'
+                    });
+                });
+            }
+        });
+
+        // ===== SEÇÃO 10: Before/After Slider =====
+        const beforeAfterContainer = document.getElementById('beforeAfterContainer');
+        const beforeAfterSlider = document.getElementById('beforeAfterSlider');
+        const beforeAfterAfter = document.getElementById('beforeAfterAfter');
+        let isDragging = false;
+
+        const updateSlider = (e) => {
+            if (!isDragging) return;
+            const rect = beforeAfterContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percentage = (x / rect.width) * 100;
+
+            beforeAfterSlider.style.left = percentage + '%';
+            beforeAfterAfter.style.width = percentage + '%';
+        };
+
+        beforeAfterSlider.addEventListener('mousedown', () => {
+            isDragging = true;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        document.addEventListener('mousemove', updateSlider);
+
+        // ===== SEÇÃO 11: Lightbox =====
+        const lightboxTrigger = document.getElementById('lightboxTrigger');
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        lightboxTrigger.addEventListener('click', () => {
+            lightboxModal.classList.add('open');
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightboxModal.classList.remove('open');
+        });
+
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                lightboxModal.classList.remove('open');
+            }
+        });
+
+        // ===== SEÇÃO 12: Carousel 3D =====
+        let carousel3dIndex = 0;
+        const carousel3dItems = document.querySelectorAll('.carousel-3d-item');
+
+        const updateCarousel3D = () => {
+            carousel3dItems.forEach((item, index) => {
+                item.classList.remove('active', 'prev', 'next');
+
+                if (index === carousel3dIndex) {
+                    item.classList.add('active');
+                } else if (index === (carousel3dIndex - 1 + carousel3dItems.length) % carousel3dItems.length) {
+                    item.classList.add('prev');
+                } else if (index === (carousel3dIndex + 1) % carousel3dItems.length) {
+                    item.classList.add('next');
+                }
+            });
+        };
+
+        document.getElementById('carouselNext').addEventListener('click', () => {
+            carousel3dIndex = (carousel3dIndex + 1) % carousel3dItems.length;
+            updateCarousel3D();
+        });
+
+        document.getElementById('carouselPrev').addEventListener('click', () => {
+            carousel3dIndex = (carousel3dIndex - 1 + carousel3dItems.length) % carousel3dItems.length;
+            updateCarousel3D();
+        });
+
+        console.log('ImageFX: 15 Efeitos com Imagem Carregados!');
     </script>
 
 </body>
