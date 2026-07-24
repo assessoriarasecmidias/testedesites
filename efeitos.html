@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ExperimentalMedia - Vídeo, Media e Efeitos Experimentais</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MobileFlow - Gestos e Interações Mobile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -11,6 +11,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
 
         html {
@@ -18,63 +20,79 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0a0a;
             color: #fff;
             overflow-x: hidden;
+            font-size: 16px;
         }
 
         .section-label {
             position: absolute;
-            top: 30px;
-            left: 30px;
+            top: 15px;
+            left: 15px;
             background: rgba(0, 255, 255, 0.2);
             border: 1px solid rgba(0, 255, 255, 0.5);
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             z-index: 100;
         }
 
-        /* ===== SEÇÃO 1: Video Parallax Zoom ===== */
+        /* ===== SEÇÃO 1: Swipe-to-Reveal ===== */
         .section-1 {
-            height: 300vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-parallax-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #ff0066, #00ffff);
-            z-index: 1;
-            transform-origin: center;
-        }
-
-        .video-parallax-content {
-            position: relative;
-            z-index: 10;
-            height: 300vh;
+            background: linear-gradient(135deg, #0a0a0a, #1a0033);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            position: relative;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px;
         }
 
-        .video-parallax-text {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            max-width: 800px;
+        .swipe-reveal-card {
+            width: 90vw;
+            max-width: 350px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: grab;
+            position: relative;
+            overflow: hidden;
+            touch-action: pan-y;
         }
 
-        /* ===== SEÇÃO 2: Video Play/Pause ao Scroll ===== */
+        .swipe-reveal-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .swipe-reveal-content.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .swipe-reveal-content.revealed {
+            opacity: 1;
+            color: #00ff88;
+        }
+
+        /* ===== SEÇÃO 2: Pull-to-Refresh ===== */
         .section-2 {
             height: 100vh;
             background: linear-gradient(135deg, #1a0033, #003366);
@@ -82,53 +100,55 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            flex-direction: column;
+            padding: 20px;
         }
 
-        .scrubable-video {
-            width: 500px;
+        .pull-refresh-container {
+            position: relative;
+            width: 90vw;
+            max-width: 350px;
             height: 300px;
-            background: linear-gradient(135deg, #00ffff, #ff00ff);
-            border-radius: 20px;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            overflow: hidden;
+            touch-action: pan-x;
+        }
+
+        .pull-refresh-icon {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scrubable-video::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 150, 0.3));
-            animation: video-scrub 0.1s linear;
-        }
-
-        @keyframes video-scrub {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .video-time {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
+            font-size: 1.5rem;
             z-index: 10;
         }
 
-        /* ===== SEÇÃO 3: Video Mask Reveal ===== */
+        .pull-refresh-icon.rotating {
+            animation: refresh-spin 1s linear infinite;
+        }
+
+        @keyframes refresh-spin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .pull-refresh-content {
+            padding: 60px 20px 20px;
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== SEÇÃO 3: Swipe Carousel ===== */
         .section-3 {
             height: 100vh;
             background: linear-gradient(135deg, #003366, #1a0066);
@@ -136,656 +156,920 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            gap: 80px;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
         }
 
-        .masked-video {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #00ffff, #ff00ff);
-            clip-path: circle(30% at 50% 50%);
-            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+        .carousel-container {
+            width: 90vw;
+            max-width: 350px;
+            height: 250px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
             position: relative;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.3s ease-out;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
-            animation: circle-pulse 2s ease-in-out infinite;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            flex-shrink: 0;
         }
 
-        @keyframes circle-pulse {
-            0%, 100% { clip-path: circle(30% at 50% 50%); }
-            50% { clip-path: circle(45% at 50% 50%); }
+        .carousel-slide:nth-child(2) {
+            background: linear-gradient(135deg, #00ff88, #ff6600);
         }
 
-        .masked-video:nth-child(2) {
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-            animation: star-pulse 2s ease-in-out infinite;
+        .carousel-slide:nth-child(3) {
+            background: linear-gradient(135deg, #ffaa00, #ff0066);
         }
 
-        @keyframes star-pulse {
-            0%, 100% { clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
-            50% { clip-path: polygon(50% 10%, 95% 30%, 85% 95%, 15% 95%, 5% 30%); }
+        .carousel-indicator {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            padding: 15px;
         }
 
-        .masked-video:nth-child(3) {
-            clip-path: polygon(0 50%, 25% 25%, 50% 0%, 75% 25%, 100% 50%, 75% 75%, 50% 100%, 25% 75%);
-            animation: diamond-pulse 2s ease-in-out infinite;
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
         }
 
-        @keyframes diamond-pulse {
-            0%, 100% { clip-path: polygon(0 50%, 25% 25%, 50% 0%, 75% 25%, 100% 50%, 75% 75%, 50% 100%, 25% 75%); }
-            50% { clip-path: polygon(10% 50%, 30% 20%, 50% 5%, 70% 20%, 90% 50%, 70% 80%, 50% 95%, 30% 80%); }
+        .carousel-dot.active {
+            background: #00ffff;
+            width: 24px;
+            border-radius: 4px;
         }
 
-        /* ===== SEÇÃO 4: Background Video com Overlay Transition ===== */
+        /* ===== SEÇÃO 4: Bounce on Edge ===== */
         .section-4 {
-            height: 300vh;
-            position: relative;
-            background: #000;
-        }
-
-        .video-overlay-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100vh;
-            z-index: 1;
-            background: linear-gradient(135deg, #1a0a1a, #0a1a1a);
-        }
-
-        .video-overlay-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, 
-                rgba(0, 255, 200, 0.3) 0%,
-                rgba(0, 0, 0, 0) 50%,
-                rgba(255, 0, 150, 0.3) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .video-overlay-content {
-            position: relative;
-            z-index: 10;
-            height: 300vh;
+            background: linear-gradient(135deg, #1a0066, #0a1a2e);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .bounce-container {
+            width: 90vw;
+            max-width: 350px;
+            height: 400px;
+            background: rgba(0, 255, 200, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 200, 0.3);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .bounce-item {
+            padding: 15px;
+            margin: 10px;
+            background: rgba(0, 255, 200, 0.1);
+            border-radius: 10px;
             text-align: center;
+            border: 1px solid rgba(0, 255, 200, 0.4);
         }
 
-        .video-overlay-text {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 0 0 30px rgba(0, 255, 200, 0.8);
-            max-width: 900px;
-            line-height: 1.3;
-        }
-
-        /* ===== SEÇÃO 5: Hologram Flicker ===== */
+        /* ===== SEÇÃO 5: Floating Action Button ===== */
         .section-5 {
             height: 100vh;
-            background: #000;
+            background: linear-gradient(135deg, #0a1a2e, #1a0a2e);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            flex-direction: column;
+            padding: 20px;
         }
 
-        .hologram {
-            font-size: 4rem;
-            font-weight: 900;
-            color: #00ffff;
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-            animation: hologram-flicker 0.15s infinite;
-            letter-spacing: 0.05em;
+        .fab-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffff, #00ff88);
+            color: #000;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        @keyframes hologram-flicker {
-            0% {
-                opacity: 1;
-                text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.4);
-            }
-            5% {
-                opacity: 0.8;
-                text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-            }
-            10% {
-                opacity: 1;
-                text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.4);
-            }
-            15% {
-                opacity: 0.9;
-            }
-            20% {
-                opacity: 1;
-                text-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.4);
-            }
-            25% {
-                opacity: 1;
-            }
+        .fab-button:active {
+            transform: scale(0.9);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.6);
         }
 
-        .hologram-lines {
+        .fab-menu {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-
-        .hologram-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 255, 255, 0.1);
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             opacity: 0;
-            animation: line-flicker 0.1s infinite;
+            pointer-events: none;
+            transition: all 0.3s ease;
         }
 
-        @keyframes line-flicker {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.3; }
+        .fab-menu.open {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        /* ===== SEÇÃO 6: Scanlines Overlay ===== */
+        .fab-menu-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff00ff, #ff6600);
+            color: #fff;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 100, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .fab-menu-item:active {
+            transform: scale(0.9);
+        }
+
+        .fab-content {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        /* ===== SEÇÃO 6: Bottom Sheet ===== */
         .section-6 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a0a, #1a0a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .bottom-sheet-trigger {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00ffcc, #00ff88);
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .bottom-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #1a0a1a, #0a0a1a);
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            max-height: 80vh;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 200;
+            border: 2px solid rgba(0, 255, 200, 0.3);
+            overflow-y: auto;
+        }
+
+        .bottom-sheet.open {
+            transform: translateY(0);
+        }
+
+        .bottom-sheet-handle {
+            width: 40px;
+            height: 4px;
+            background: rgba(0, 255, 200, 0.4);
+            border-radius: 2px;
+            margin: 0 auto 20px;
+        }
+
+        .bottom-sheet-content {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* ===== SEÇÃO 7: Sticky Header ===== */
+        .section-7 {
             height: 100vh;
             background: linear-gradient(135deg, #1a0a0a, #0a1a1a);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 20px;
         }
 
-        .scanlines-content {
-            font-size: 2.5rem;
+        .sticky-container {
+            width: 90vw;
+            max-width: 350px;
+            height: 400px;
+            background: rgba(0, 255, 150, 0.03);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 150, 0.3);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 150, 0.2), rgba(0, 255, 150, 0.1));
+            padding: 15px;
             font-weight: bold;
-            text-align: center;
-            color: #00ff88;
-            position: relative;
-            z-index: 5;
-        }
-
-        .scanlines-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 9999;
-            animation: scanlines-move 8s linear infinite;
-        }
-
-        @keyframes scanlines-move {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(10px); }
-        }
-
-        /* ===== SEÇÃO 7: Digital Rain (Matrix Style) ===== */
-        .section-7 {
-            height: 100vh;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .digital-rain-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .digital-rain-content {
-            position: relative;
+            color: #00ffaa;
+            border-bottom: 2px solid rgba(0, 255, 150, 0.3);
             z-index: 10;
-            text-align: center;
-            font-size: 2rem;
-            font-weight: bold;
         }
 
-        /* ===== SEÇÃO 8: ASCII Art Animation ===== */
+        .sticky-item {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 255, 150, 0.2);
+            color: #ccc;
+        }
+
+        /* ===== SEÇÃO 8: Skeleton Screen ===== */
         .section-8 {
-            height: 100vh;
-            background: linear-gradient(135deg, #0a0a0a, #0a1a0a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .ascii-art {
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            line-height: 1.2;
-            color: #00ff88;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
-            white-space: pre;
-            animation: ascii-flicker 0.3s infinite;
-            letter-spacing: 0.05em;
-        }
-
-        @keyframes ascii-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* ===== SEÇÃO 9: Noise/Grain Overlay Animado ===== */
-        .section-9 {
             height: 100vh;
             background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
         }
 
-        .grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .skeleton-card {
+            width: 90vw;
+            max-width: 350px;
+            padding: 15px;
+            background: rgba(0, 255, 200, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 200, 0.2);
+        }
+
+        .skeleton-line {
+            height: 12px;
+            background: rgba(0, 255, 200, 0.1);
+            border-radius: 6px;
+            margin: 10px 0;
+            animation: skeleton-shimmer 2s infinite;
+        }
+
+        @keyframes skeleton-shimmer {
+            0% {
+                background: linear-gradient(90deg, rgba(0, 255, 200, 0.1), rgba(0, 255, 200, 0.2), rgba(0, 255, 200, 0.1));
+                background-position: -1000px 0;
+            }
+            100% {
+                background: linear-gradient(90deg, rgba(0, 255, 200, 0.1), rgba(0, 255, 200, 0.2), rgba(0, 255, 200, 0.1));
+                background-position: 1000px 0;
+            }
+        }
+
+        .skeleton-line:nth-child(1) {
+            width: 60%;
+            height: 16px;
+        }
+
+        .skeleton-line:nth-child(2) {
             width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise'/%3E%3C/filter%3E%3Crect width='400' height='400' fill='%23fff' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            background-size: 400px 400px;
-            pointer-events: none;
-            z-index: 9;
-            animation: grain-shift 8s linear infinite;
         }
 
-        @keyframes grain-shift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(40px, 60px); }
+        .skeleton-line:nth-child(3) {
+            width: 100%;
         }
 
-        .grain-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
+        .skeleton-line:nth-child(4) {
+            width: 80%;
         }
 
-        /* ===== SEÇÃO 10: Isometric 3D Animation ===== */
-        .section-10 {
+        /* ===== SEÇÃO 9: Haptic Feedback Visual ===== */
+        .section-9 {
             height: 100vh;
-            background: linear-gradient(135deg, #0a1a1a, #1a0a1a);
+            background: linear-gradient(135deg, #0a1a1a, #1a0a0a);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            perspective: 1200px;
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px;
         }
 
-        .isometric-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            transform-style: preserve-3d;
+        .haptic-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ffaa00, #ff6600);
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
-        .isometric-box {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #00ffff, #00ff88);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotateX(20deg) rotateY(30deg);
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0, 255, 150, 0.4);
-            animation: isometric-rotate 6s linear infinite;
-        }
-
-        @keyframes isometric-rotate {
-            0% {
-                transform: translate(-50%, -50%) rotateX(20deg) rotateY(0deg);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotateX(20deg) rotateY(360deg);
-            }
-        }
-
-        .isometric-box:nth-child(2) {
+        .haptic-feedback {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #ff00ff, #ff6600);
-            animation: isometric-rotate-reverse 5s linear infinite;
-            animation-delay: 1s;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 170, 0, 0.3), rgba(255, 170, 0, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            opacity: 0;
         }
 
-        @keyframes isometric-rotate-reverse {
+        .haptic-feedback.pulse {
+            animation: haptic-pulse 0.6s ease-out;
+        }
+
+        @keyframes haptic-pulse {
             0% {
-                transform: translate(-50%, -50%) rotateX(30deg) rotateY(0deg) translateZ(80px);
+                opacity: 1;
+                transform: scale(0.5);
             }
             100% {
-                transform: translate(-50%, -50%) rotateX(30deg) rotateY(-360deg) translateZ(80px);
+                opacity: 0;
+                transform: scale(1.5);
             }
         }
 
-        .isometric-box:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ffaa00, #ff0066);
-            animation: isometric-rotate 4s linear infinite;
-            animation-delay: 2s;
-        }
-
-        /* ===== SEÇÃO 11: Liquid Swipe Transition ===== */
-        .section-11 {
+        /* ===== SEÇÃO 10: Swipe-to-Dismiss ===== */
+        .section-10 {
             height: 100vh;
             background: linear-gradient(135deg, #1a0a0a, #0a1a1a);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .dismissible-card {
+            width: 90vw;
+            max-width: 350px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 150, 0.1));
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 15px;
+            cursor: grab;
+            touch-action: pan-y;
+            position: relative;
             overflow: hidden;
         }
 
-        .liquid-swipe-box {
-            width: 400px;
-            height: 300px;
-            background: linear-gradient(135deg, #00ffcc, #0088ff);
-            border-radius: 20px;
+        .dismissible-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 0, 150, 0.3), transparent);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        /* ===== SEÇÃO 11: Button Press Animation ===== */
+        .section-11 {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a1a1a, #1a0a1a);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            color: rgba(0, 0, 0, 0.8);
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 255, 200, 0.3);
+            flex-direction: column;
+            gap: 30px;
+            padding: 20px;
         }
 
-        .liquid-swipe-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: liquid-swipe 2s ease-in-out infinite;
+        .press-button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00ffcc, #00ff88);
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.1s ease;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
         }
 
-        @keyframes liquid-swipe {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
+        .press-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 8px rgba(0, 255, 136, 0.4);
+        }
+
+        /* ===== SEÇÃO 12: Toast Notification ===== */
+        .section-12 {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .toast-trigger {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff00ff, #ff6600);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            max-width: 350px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-left: 4px solid #00ffcc;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: toast-slide 0.4s ease-out;
+            z-index: 1000;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes toast-slide {
+            from {
+                transform: translateY(150px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.error {
+            border-left-color: #ff6600;
+        }
+
+        .toast.success {
+            border-left-color: #00ff88;
         }
 
         /* ===== FOOTER ===== */
         .footer-section {
-            padding: 80px 50px;
+            padding: 60px 20px;
             background: linear-gradient(135deg, #000, #1a0033);
             text-align: center;
             position: relative;
-            z-index: 100;
+            z-index: 50;
         }
 
         .footer-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
         }
 
         .cta-button {
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            padding: 12px 30px;
+            font-size: 1rem;
             background: linear-gradient(45deg, #00ffff, #ff00ff);
             color: #000;
             border: none;
-            border-radius: 50px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
 
-        .cta-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
+        .cta-button:active {
+            transform: scale(0.95);
         }
 
-        @media (max-width: 768px) {
-            .hologram { font-size: 2rem; }
-            .scanlines-content { font-size: 1.5rem; }
-            .ascii-art { font-size: 0.6rem; }
-            .liquid-swipe-box { width: 280px; height: 200px; }
+        @media (max-width: 480px) {
+            body { font-size: 14px; }
+            .section-label { font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- SEÇÃO 1: Video Parallax Zoom -->
+    <!-- SEÇÃO 1: Swipe-to-Reveal -->
     <section class="section-1">
-        <div class="section-label">1. Video Parallax Zoom</div>
-        <div class="video-parallax-bg" id="videoParallaxBg"></div>
-        <div class="video-parallax-content">
-            <div class="video-parallax-text">Zoom Parallax com Vídeo</div>
+        <div class="section-label">1. Swipe-to-Reveal</div>
+        <div class="swipe-reveal-card" id="swipeCard">
+            <div class="swipe-reveal-content">Deslize para revelar</div>
+            <div class="swipe-reveal-content revealed">Conteúdo Secreto! 🎉</div>
         </div>
     </section>
 
-    <!-- SEÇÃO 2: Video Play/Pause ao Scroll -->
+    <!-- SEÇÃO 2: Pull-to-Refresh -->
     <section class="section-2">
-        <div class="section-label">2. Scrubable Video</div>
-        <div>
-            <div class="scrubable-video">
-                Vídeo Scrubável
-                <div class="video-time" id="videoTime">0:00</div>
+        <div class="section-label">2. Pull-to-Refresh</div>
+        <div class="pull-refresh-container" id="pullRefreshContainer">
+            <div class="pull-refresh-icon" id="refreshIcon">↓</div>
+            <div class="pull-refresh-content">
+                Puxa para cima para atualizar<br><br>
+                Conteúdo estático aqui
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO 3: Video Mask Reveal -->
+    <!-- SEÇÃO 3: Swipe Carousel -->
     <section class="section-3">
-        <div class="section-label">3. Video Mask Reveal</div>
-        <div class="masked-video">Circle</div>
-        <div class="masked-video">Star</div>
-        <div class="masked-video">Diamond</div>
+        <div class="section-label">3. Swipe Carousel</div>
+        <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">1</div>
+                <div class="carousel-slide">2</div>
+                <div class="carousel-slide">3</div>
+            </div>
+        </div>
+        <div class="carousel-indicator" id="carouselIndicator">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
+        </div>
     </section>
 
-    <!-- SEÇÃO 4: Background Video com Overlay Transition -->
+    <!-- SEÇÃO 4: Bounce on Edge -->
     <section class="section-4">
-        <div class="section-label">4. Video Overlay Transition</div>
-        <div class="video-overlay-bg"></div>
-        <div class="video-overlay-gradient"></div>
-        <div class="video-overlay-content">
-            <div class="video-overlay-text">Transição Suave com Overlay</div>
+        <div class="section-label">4. Bounce on Edge</div>
+        <div class="bounce-container">
+            <div class="bounce-item">Item 1</div>
+            <div class="bounce-item">Item 2</div>
+            <div class="bounce-item">Item 3</div>
+            <div class="bounce-item">Item 4</div>
+            <div class="bounce-item">Item 5</div>
+            <div class="bounce-item">Item 6</div>
+            <div class="bounce-item">Item 7</div>
         </div>
     </section>
 
-    <!-- SEÇÃO 5: Hologram Flicker -->
+    <!-- SEÇÃO 5: Floating Action Button -->
     <section class="section-5">
-        <div class="section-label">5. Hologram Flicker</div>
-        <div class="hologram-lines" id="hologramLines"></div>
-        <div class="hologram">HOLOSCAN</div>
+        <div class="section-label">5. FAB com Menu</div>
+        <div class="fab-content">
+            <h2 style="margin-bottom: 15px;">Floating Action Button</h2>
+            <p style="color: #aaa; font-size: 0.9rem;">Clique no botão flutuante</p>
+        </div>
+        <div class="fab-menu" id="fabMenu">
+            <button class="fab-menu-item">📞</button>
+            <button class="fab-menu-item">💬</button>
+            <button class="fab-menu-item">📧</button>
+        </div>
+        <button class="fab-button" id="fabButton">➕</button>
     </section>
 
-    <!-- SEÇÃO 6: Scanlines Overlay -->
+    <!-- SEÇÃO 6: Bottom Sheet -->
     <section class="section-6">
-        <div class="section-label">6. Scanlines CRT</div>
-        <div class="scanlines-overlay"></div>
-        <div class="scanlines-content">Efeito de Tubo Catódico</div>
+        <div class="section-label">6. Bottom Sheet</div>
+        <button class="bottom-sheet-trigger" id="bottomSheetTrigger">Abrir Menu</button>
     </section>
 
-    <!-- SEÇÃO 7: Digital Rain -->
+    <div class="bottom-sheet" id="bottomSheet">
+        <div class="bottom-sheet-handle"></div>
+        <div class="bottom-sheet-content">
+            <h3 style="margin-bottom: 15px;">Opções</h3>
+            <p style="margin-bottom: 15px;">Este é um bottom sheet que sobe do fundo. Deslize para baixo para fechar.</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button style="flex: 1; padding: 10px; background: rgba(0, 255, 200, 0.2); border: 1px solid rgba(0, 255, 200, 0.5); border-radius: 8px; color: #fff; cursor: pointer;">Opção 1</button>
+                <button style="flex: 1; padding: 10px; background: rgba(0, 255, 200, 0.2); border: 1px solid rgba(0, 255, 200, 0.5); border-radius: 8px; color: #fff; cursor: pointer;">Opção 2</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 7: Sticky Header -->
     <section class="section-7">
-        <div class="section-label">7. Digital Rain</div>
-        <canvas class="digital-rain-canvas" id="digitalRainCanvas"></canvas>
-        <div class="digital-rain-content">Matrix Style Digital Rain</div>
+        <div class="section-label">7. Sticky Header</div>
+        <div class="sticky-container">
+            <div class="sticky-header">Header Fixo</div>
+            <div class="sticky-item">Item 1</div>
+            <div class="sticky-item">Item 2</div>
+            <div class="sticky-item">Item 3</div>
+            <div class="sticky-item">Item 4</div>
+            <div class="sticky-item">Item 5</div>
+            <div class="sticky-item">Item 6</div>
+            <div class="sticky-item">Item 7</div>
+            <div class="sticky-item">Item 8</div>
+        </div>
     </section>
 
-    <!-- SEÇÃO 8: ASCII Art Animation -->
+    <!-- SEÇÃO 8: Skeleton Screen -->
     <section class="section-8">
-        <div class="section-label">8. ASCII Art</div>
-        <div class="ascii-art">
-    ╔═══════════════╗
-    ║   ASCII ART   ║
-    ║   ANIMATED    ║
-    ╚═══════════════╝
+        <div class="section-label">8. Skeleton Screen</div>
+        <div class="skeleton-card">
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
         </div>
     </section>
 
-    <!-- SEÇÃO 9: Noise/Grain Overlay -->
+    <!-- SEÇÃO 9: Haptic Feedback -->
     <section class="section-9">
-        <div class="section-label">9. Grain Overlay</div>
-        <div class="grain-overlay"></div>
-        <div class="grain-content">Ruído Analógico Animado</div>
+        <div class="section-label">9. Haptic Feedback</div>
+        <button class="haptic-button" id="hapticButton">Tap para Vibrar</button>
+        <div class="haptic-feedback" id="hapticFeedback"></div>
     </section>
 
-    <!-- SEÇÃO 10: Isometric 3D Animation -->
+    <!-- SEÇÃO 10: Swipe-to-Dismiss -->
     <section class="section-10">
-        <div class="section-label">10. Isometric 3D</div>
-        <div class="isometric-container">
-            <div class="isometric-box"></div>
-            <div class="isometric-box"></div>
-            <div class="isometric-box"></div>
+        <div class="section-label">10. Swipe-to-Dismiss</div>
+        <div class="dismissible-card" id="dismissCard">
+            <div>Deslize para os lados para descartar</div>
         </div>
     </section>
 
-    <!-- SEÇÃO 11: Liquid Swipe Transition -->
+    <!-- SEÇÃO 11: Button Press Animation -->
     <section class="section-11">
-        <div class="section-label">11. Liquid Swipe</div>
-        <div class="liquid-swipe-box">Liquid Swipe</div>
+        <div class="section-label">11. Button Press</div>
+        <div style="text-align: center; max-width: 300px;">
+            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem;">Clique para ver animação de pressão</p>
+        </div>
+        <button class="press-button">Pressione-me</button>
+    </section>
+
+    <!-- SEÇÃO 12: Toast Notification -->
+    <section class="section-12">
+        <div class="section-label">12. Toast Notification</div>
+        <button class="toast-trigger" id="toastSuccessBtn">Sucesso</button>
+        <button class="toast-trigger" id="toastErrorBtn" style="background: linear-gradient(135deg, #ff6600, #ff0066);">Erro</button>
     </section>
 
     <!-- FOOTER -->
     <section class="footer-section">
-        <h2 class="footer-title">Vídeo & Media + Experimentais</h2>
-        <p style="color: #aaa; margin-bottom: 30px; font-size: 1.1rem;">11 Efeitos Avançados de Vídeo e Experimental</p>
-        <button class="cta-button">Ver Todos os 50+ Efeitos</button>
+        <h2 class="footer-title">Mobile Gestures & Touch</h2>
+        <p style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem;">12 Efeitos Mobile-First com Gestos Completos</p>
+        <button class="cta-button">Ver Todos os Efeitos</button>
     </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // ===== SEÇÃO 1: Video Parallax Zoom =====
-        const videoParallaxBg = document.getElementById('videoParallaxBg');
+        // ===== SEÇÃO 1: Swipe-to-Reveal =====
+        const swipeCard = document.getElementById('swipeCard');
+        let startX = 0;
+        let currentX = 0;
 
-        ScrollTrigger.create({
-            trigger: '.section-1',
-            start: 'top top',
-            end: 'bottom bottom',
-            onUpdate: (self) => {
-                const scale = 1 + self.progress * 0.3;
-                gsap.to(videoParallaxBg, {
-                    scale: scale,
-                    duration: 0.1,
-                    ease: 'none'
+        swipeCard.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        swipeCard.addEventListener('touchmove', (e) => {
+            currentX = e.touches[0].clientX;
+            const diff = Math.abs(currentX - startX);
+            if (diff > 50) {
+                swipeCard.classList.add('revealed');
+            }
+        });
+
+        swipeCard.addEventListener('touchend', () => {
+            if (Math.abs(currentX - startX) < 50) {
+                swipeCard.classList.remove('revealed');
+            }
+        });
+
+        // ===== SEÇÃO 2: Pull-to-Refresh =====
+        const pullRefreshContainer = document.getElementById('pullRefreshContainer');
+        const refreshIcon = document.getElementById('refreshIcon');
+        let pullDistance = 0;
+        let isPulling = false;
+
+        pullRefreshContainer.addEventListener('touchstart', (e) => {
+            if (pullRefreshContainer.scrollTop === 0) {
+                isPulling = true;
+                pullDistance = 0;
+            }
+        });
+
+        pullRefreshContainer.addEventListener('touchmove', (e) => {
+            if (!isPulling) return;
+            pullDistance = e.touches[0].clientY;
+            if (pullDistance > 60) {
+                refreshIcon.classList.add('rotating');
+            } else {
+                refreshIcon.classList.remove('rotating');
+            }
+        });
+
+        pullRefreshContainer.addEventListener('touchend', () => {
+            if (pullDistance > 60) {
+                setTimeout(() => {
+                    refreshIcon.classList.remove('rotating');
+                    pullDistance = 0;
+                }, 1500);
+            }
+            isPulling = false;
+        });
+
+        // ===== SEÇÃO 3: Swipe Carousel =====
+        const carouselContainer = document.getElementById('carouselContainer');
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        let carouselIndex = 0;
+        let carouselStartX = 0;
+        let carouselEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            carouselStartX = e.touches[0].clientX;
+        });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            carouselEndX = e.changedTouches[0].clientX;
+            const diff = carouselStartX - carouselEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && carouselIndex < 2) {
+                    carouselIndex++;
+                } else if (diff < 0 && carouselIndex > 0) {
+                    carouselIndex--;
+                }
+                updateCarousel();
+            }
+        });
+
+        const updateCarousel = () => {
+            carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
+            carouselDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === carouselIndex);
+            });
+        };
+
+        // ===== SEÇÃO 5: FAB Menu =====
+        const fabButton = document.getElementById('fabButton');
+        const fabMenu = document.getElementById('fabMenu');
+
+        fabButton.addEventListener('click', () => {
+            fabMenu.classList.toggle('open');
+            fabButton.textContent = fabMenu.classList.contains('open') ? '✕' : '➕';
+        });
+
+        // ===== SEÇÃO 6: Bottom Sheet =====
+        const bottomSheetTrigger = document.getElementById('bottomSheetTrigger');
+        const bottomSheet = document.getElementById('bottomSheet');
+        let sheetStartY = 0;
+        let sheetCurrentY = 0;
+
+        bottomSheetTrigger.addEventListener('click', () => {
+            bottomSheet.classList.add('open');
+        });
+
+        bottomSheet.addEventListener('touchstart', (e) => {
+            sheetStartY = e.touches[0].clientY;
+        });
+
+        bottomSheet.addEventListener('touchmove', (e) => {
+            sheetCurrentY = e.touches[0].clientY;
+        });
+
+        bottomSheet.addEventListener('touchend', () => {
+            if (sheetCurrentY - sheetStartY > 100) {
+                bottomSheet.classList.remove('open');
+            }
+        });
+
+        // Fechar clicando fora
+        document.addEventListener('click', (e) => {
+            if (!bottomSheet.contains(e.target) && e.target !== bottomSheetTrigger) {
+                bottomSheet.classList.remove('open');
+            }
+        });
+
+        // ===== SEÇÃO 9: Haptic Feedback =====
+        const hapticButton = document.getElementById('hapticButton');
+        const hapticFeedback = document.getElementById('hapticFeedback');
+
+        hapticButton.addEventListener('click', () => {
+            hapticFeedback.classList.remove('pulse');
+            void hapticFeedback.offsetWidth;
+            hapticFeedback.classList.add('pulse');
+
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        });
+
+        hapticButton.addEventListener('touchstart', (e) => {
+            e.currentTarget.style.transform = 'scale(0.95)';
+        });
+
+        hapticButton.addEventListener('touchend', (e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+        });
+
+        // ===== SEÇÃO 10: Swipe-to-Dismiss =====
+        const dismissCard = document.getElementById('dismissCard');
+        let dismissStartX = 0;
+        let dismissEndX = 0;
+
+        dismissCard.addEventListener('touchstart', (e) => {
+            dismissStartX = e.touches[0].clientX;
+        });
+
+        dismissCard.addEventListener('touchmove', (e) => {
+            dismissEndX = e.touches[0].clientX;
+            const diff = dismissEndX - dismissStartX;
+            dismissCard.style.transform = `translateX(${diff}px)`;
+            dismissCard.style.opacity = 1 - Math.abs(diff) / 350;
+        });
+
+        dismissCard.addEventListener('touchend', () => {
+            const diff = dismissEndX - dismissStartX;
+            if (Math.abs(diff) > 100) {
+                gsap.to(dismissCard, {
+                    opacity: 0,
+                    x: diff > 0 ? 400 : -400,
+                    duration: 0.3,
+                    onComplete: () => {
+                        dismissCard.remove();
+                    }
+                });
+            } else {
+                gsap.to(dismissCard, {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.3
                 });
             }
         });
 
-        // ===== SEÇÃO 2: Video Play/Pause ao Scroll =====
-        const videoTime = document.getElementById('videoTime');
-        const maxDuration = 120;
+        // ===== SEÇÃO 12: Toast Notifications =====
+        const toastSuccessBtn = document.getElementById('toastSuccessBtn');
+        const toastErrorBtn = document.getElementById('toastErrorBtn');
 
-        window.addEventListener('scroll', () => {
-            const section2Start = document.querySelector('.section-2').offsetTop;
-            const section2Height = document.querySelector('.section-2').offsetHeight;
-            const scrollY = window.scrollY;
+        const showToast = (message, type = 'success') => {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${message === 'success' ? '✓' : '✕'}</span><span>${message === 'success' ? 'Ação concluída!' : 'Algo deu errado!'}</span>`;
+            document.body.appendChild(toast);
 
-            if (scrollY >= section2Start && scrollY <= section2Start + section2Height) {
-                const progress = (scrollY - section2Start) / section2Height;
-                const currentTime = Math.floor(progress * maxDuration);
-                const minutes = Math.floor(currentTime / 60);
-                const seconds = currentTime % 60;
-                videoTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            }
-        });
-
-        // ===== SEÇÃO 5: Hologram Lines =====
-        const hologramLines = document.getElementById('hologramLines');
-
-        for (let i = 0; i < 15; i++) {
-            const line = document.createElement('div');
-            line.className = 'hologram-line';
-            line.style.top = Math.random() * 100 + '%';
-            line.style.animationDelay = Math.random() * 0.1 + 's';
-            hologramLines.appendChild(line);
-        }
-
-        // ===== SEÇÃO 7: Digital Rain Canvas =====
-        const canvas = document.getElementById('digitalRainCanvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-
-        let drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
-        }
-
-        const drawRain = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00ff88';
-            ctx.font = fontSize + 'px monospace';
-            ctx.shadowColor = 'rgba(0, 255, 136, 0.5)';
-            ctx.shadowBlur = 10;
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
+            setTimeout(() => {
+                gsap.to(toast, {
+                    opacity: 0,
+                    y: 150,
+                    duration: 0.4,
+                    onComplete: () => toast.remove()
+                });
+            }, 3000);
         };
 
-        const rainInterval = setInterval(drawRain, 30);
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        toastSuccessBtn.addEventListener('click', () => {
+            showToast('success', 'success');
         });
 
-        // ===== Limpar animação quando deixar a seção =====
-        const section7 = document.querySelector('.section-7');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                }
-            });
+        toastErrorBtn.addEventListener('click', () => {
+            showToast('error', 'error');
         });
 
-        observer.observe(section7);
-
-        console.log('Todos os efeitos de vídeo e experimentais carregados com sucesso!');
+        console.log('Mobile Flow: Todos os gestos e interações carregados!');
     </script>
 
 </body>
