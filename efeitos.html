@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MobileFlow - Gestos e Interações Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depth of Field Blur - Melina</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -11,8 +11,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
         }
 
         html {
@@ -24,1052 +22,498 @@
             background: #0a0a0a;
             color: #fff;
             overflow-x: hidden;
-            font-size: 16px;
         }
 
-        .section-label {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(0, 255, 255, 0.2);
-            border: 1px solid rgba(0, 255, 255, 0.5);
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            z-index: 100;
-        }
-
-        /* ===== SEÇÃO 1: Swipe-to-Reveal ===== */
-        .section-1 {
+        /* ===== SEÇÃO 1: Depth of Field com Parallax ===== */
+        .section-dof {
             height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dof-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, #0a0a0a, #1a0033);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            gap: 30px;
-            padding: 20px;
+            z-index: 1;
         }
 
-        .swipe-reveal-card {
-            width: 90vw;
-            max-width: 350px;
-            height: 200px;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 150, 0.1));
-            border: 2px solid rgba(0, 255, 255, 0.5);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: grab;
-            position: relative;
-            overflow: hidden;
-            touch-action: pan-y;
-        }
-
-        .swipe-reveal-content {
+        .dof-image-container {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease;
-        }
-
-        .swipe-reveal-content.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .swipe-reveal-content.revealed {
-            opacity: 1;
-            color: #00ff88;
-        }
-
-        /* ===== SEÇÃO 2: Pull-to-Refresh ===== */
-        .section-2 {
-            height: 100vh;
-            background: linear-gradient(135deg, #1a0033, #003366);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .pull-refresh-container {
-            position: relative;
-            width: 90vw;
-            max-width: 350px;
-            height: 300px;
-            background: rgba(0, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            overflow: hidden;
-            touch-action: pan-x;
-        }
-
-        .pull-refresh-icon {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            z-index: 10;
-        }
-
-        .pull-refresh-icon.rotating {
-            animation: refresh-spin 1s linear infinite;
-        }
-
-        @keyframes refresh-spin {
-            0% { transform: translateX(-50%) rotate(0deg); }
-            100% { transform: translateX(-50%) rotate(360deg); }
-        }
-
-        .pull-refresh-content {
-            padding: 60px 20px 20px;
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* ===== SEÇÃO 3: Swipe Carousel ===== */
-        .section-3 {
-            height: 100vh;
-            background: linear-gradient(135deg, #003366, #1a0066);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        .carousel-container {
-            width: 90vw;
-            max-width: 350px;
-            height: 250px;
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid rgba(0, 255, 255, 0.4);
-        }
-
-        .carousel-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.3s ease-out;
-        }
-
-        .carousel-slide {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 2rem;
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
-            flex-shrink: 0;
-        }
-
-        .carousel-slide:nth-child(2) {
-            background: linear-gradient(135deg, #00ff88, #ff6600);
-        }
-
-        .carousel-slide:nth-child(3) {
-            background: linear-gradient(135deg, #ffaa00, #ff0066);
-        }
-
-        .carousel-indicator {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(0, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: #00ffff;
-            width: 24px;
-            border-radius: 4px;
-        }
-
-        /* ===== SEÇÃO 4: Bounce on Edge ===== */
-        .section-4 {
-            height: 100vh;
-            background: linear-gradient(135deg, #1a0066, #0a1a2e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 20px;
-        }
-
-        .bounce-container {
-            width: 90vw;
-            max-width: 350px;
-            height: 400px;
-            background: rgba(0, 255, 200, 0.05);
-            border-radius: 15px;
-            border: 2px solid rgba(0, 255, 200, 0.3);
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .bounce-item {
-            padding: 15px;
-            margin: 10px;
-            background: rgba(0, 255, 200, 0.1);
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 200, 0.4);
-        }
-
-        /* ===== SEÇÃO 5: Floating Action Button ===== */
-        .section-5 {
-            height: 100vh;
-            background: linear-gradient(135deg, #0a1a2e, #1a0a2e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .fab-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00ffff, #00ff88);
-            color: #000;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .fab-button:active {
-            transform: scale(0.9);
-            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.6);
-        }
-
-        .fab-menu {
-            position: absolute;
-            bottom: 80px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .fab-menu.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .fab-menu-item {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff00ff, #ff6600);
-            color: #fff;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(255, 100, 0, 0.3);
-            transition: all 0.2s ease;
-        }
-
-        .fab-menu-item:active {
-            transform: scale(0.9);
-        }
-
-        .fab-content {
-            text-align: center;
-            max-width: 300px;
-        }
-
-        /* ===== SEÇÃO 6: Bottom Sheet ===== */
-        .section-6 {
-            height: 100vh;
-            background: linear-gradient(135deg, #0a1a0a, #1a0a1a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 20px;
-        }
-
-        .bottom-sheet-trigger {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #00ffcc, #00ff88);
-            color: #000;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .bottom-sheet {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(180deg, #1a0a1a, #0a0a1a);
-            border-radius: 20px 20px 0 0;
-            padding: 20px;
-            max-height: 80vh;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            z-index: 200;
-            border: 2px solid rgba(0, 255, 200, 0.3);
-            overflow-y: auto;
-        }
-
-        .bottom-sheet.open {
-            transform: translateY(0);
-        }
-
-        .bottom-sheet-handle {
-            width: 40px;
-            height: 4px;
-            background: rgba(0, 255, 200, 0.4);
-            border-radius: 2px;
-            margin: 0 auto 20px;
-        }
-
-        .bottom-sheet-content {
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        /* ===== SEÇÃO 7: Sticky Header ===== */
-        .section-7 {
-            height: 100vh;
-            background: linear-gradient(135deg, #1a0a0a, #0a1a1a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 20px;
-        }
-
-        .sticky-container {
-            width: 90vw;
-            max-width: 350px;
-            height: 400px;
-            background: rgba(0, 255, 150, 0.03);
-            border-radius: 15px;
-            border: 2px solid rgba(0, 255, 150, 0.3);
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .sticky-header {
-            position: sticky;
             top: 0;
-            background: linear-gradient(135deg, rgba(0, 255, 150, 0.2), rgba(0, 255, 150, 0.1));
-            padding: 15px;
-            font-weight: bold;
-            color: #00ffaa;
-            border-bottom: 2px solid rgba(0, 255, 150, 0.3);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .dof-image-blurred {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(12px);
+            opacity: 0.7;
+            transform: scale(1.1);
+            will-change: transform, filter;
+        }
+
+        .dof-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 100, 200, 0.3));
+            z-index: 3;
+        }
+
+        .dof-content {
+            position: relative;
             z-index: 10;
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+            animation: content-fade-in 1.2s ease-out;
         }
 
-        .sticky-item {
-            padding: 15px;
-            border-bottom: 1px solid rgba(0, 255, 150, 0.2);
-            color: #ccc;
-        }
-
-        /* ===== SEÇÃO 8: Skeleton Screen ===== */
-        .section-8 {
-            height: 100vh;
-            background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        .skeleton-card {
-            width: 90vw;
-            max-width: 350px;
-            padding: 15px;
-            background: rgba(0, 255, 200, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 255, 200, 0.2);
-        }
-
-        .skeleton-line {
-            height: 12px;
-            background: rgba(0, 255, 200, 0.1);
-            border-radius: 6px;
-            margin: 10px 0;
-            animation: skeleton-shimmer 2s infinite;
-        }
-
-        @keyframes skeleton-shimmer {
-            0% {
-                background: linear-gradient(90deg, rgba(0, 255, 200, 0.1), rgba(0, 255, 200, 0.2), rgba(0, 255, 200, 0.1));
-                background-position: -1000px 0;
-            }
-            100% {
-                background: linear-gradient(90deg, rgba(0, 255, 200, 0.1), rgba(0, 255, 200, 0.2), rgba(0, 255, 200, 0.1));
-                background-position: 1000px 0;
-            }
-        }
-
-        .skeleton-line:nth-child(1) {
-            width: 60%;
-            height: 16px;
-        }
-
-        .skeleton-line:nth-child(2) {
-            width: 100%;
-        }
-
-        .skeleton-line:nth-child(3) {
-            width: 100%;
-        }
-
-        .skeleton-line:nth-child(4) {
-            width: 80%;
-        }
-
-        /* ===== SEÇÃO 9: Haptic Feedback Visual ===== */
-        .section-9 {
-            height: 100vh;
-            background: linear-gradient(135deg, #0a1a1a, #1a0a0a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .haptic-button {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #ffaa00, #ff6600);
-            color: #000;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .haptic-feedback {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 170, 0, 0.3), rgba(255, 170, 0, 0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            opacity: 0;
-        }
-
-        .haptic-feedback.pulse {
-            animation: haptic-pulse 0.6s ease-out;
-        }
-
-        @keyframes haptic-pulse {
-            0% {
-                opacity: 1;
-                transform: scale(0.5);
-            }
-            100% {
+        @keyframes content-fade-in {
+            from {
                 opacity: 0;
-                transform: scale(1.5);
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* ===== SEÇÃO 10: Swipe-to-Dismiss ===== */
-        .section-10 {
-            height: 100vh;
-            background: linear-gradient(135deg, #1a0a0a, #0a1a1a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
+        .dof-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 30px rgba(0, 255, 200, 0.6);
+            line-height: 1.2;
         }
 
-        .dismissible-card {
-            width: 90vw;
-            max-width: 350px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 150, 0.1));
-            border: 2px solid rgba(0, 255, 255, 0.5);
-            border-radius: 15px;
-            cursor: grab;
-            touch-action: pan-y;
-            position: relative;
-            overflow: hidden;
+        .dof-subtitle {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
 
-        .dismissible-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(255, 0, 150, 0.3), transparent);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease;
-        }
-
-        /* ===== SEÇÃO 11: Button Press Animation ===== */
-        .section-11 {
-            height: 100vh;
-            background: linear-gradient(135deg, #0a1a1a, #1a0a1a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .press-button {
+        .dof-button {
             padding: 15px 40px;
             background: linear-gradient(135deg, #00ffcc, #00ff88);
             color: #000;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             font-weight: bold;
+            font-size: 1.1rem;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.1s ease;
+            box-shadow: 0 10px 40px rgba(0, 255, 200, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .dof-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 255, 200, 0.6);
+        }
+
+        .dof-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* ===== SEÇÃO 2: Comparativo DoF ===== */
+        .section-comparison {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a, #1a0a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .comparison-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .comparison-item {
             position: relative;
-            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.3);
         }
 
-        .press-button:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 8px rgba(0, 255, 136, 0.4);
+        .comparison-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        /* ===== SEÇÃO 12: Toast Notification ===== */
-        .section-12 {
+        .comparison-item.blur img {
+            filter: blur(10px);
+        }
+
+        .comparison-item.sharp img {
+            filter: blur(0px);
+        }
+
+        .comparison-label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        /* ===== SEÇÃO 3: Interactive DoF Slider ===== */
+        .section-slider {
             height: 100vh;
             background: linear-gradient(135deg, #1a0a1a, #0a1a0a);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            padding: 40px 20px;
             flex-direction: column;
-            gap: 20px;
-            padding: 20px;
+            gap: 30px;
         }
 
-        .toast-trigger {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #ff00ff, #ff6600);
-            color: #fff;
-            border: none;
-            border-radius: 25px;
+        .slider-title {
+            font-size: 2rem;
             font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
+            text-align: center;
         }
 
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 20px;
-            right: 20px;
-            max-width: 350px;
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 15px 20px;
-            border-radius: 12px;
-            border-left: 4px solid #00ffcc;
+        .slider-container {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .slider-image-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.4);
+        }
+
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-blur-text {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #00ffcc;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .slider-control {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .blur-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(0, 255, 200, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .blur-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffcc, #00ff88);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
+        }
+
+        .blur-slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ffcc, #00ff88);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
+        }
+
+        .slider-label {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* ===== SEÇÃO 4: Scroll Reveal DoF ===== */
+        .section-scroll-reveal {
+            height: 200vh;
+            background: linear-gradient(135deg, #0a1a1a, #1a0a0a);
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 15px;
-            animation: toast-slide 0.4s ease-out;
-            z-index: 1000;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            padding: 40px 20px;
         }
 
-        @keyframes toast-slide {
-            from {
-                transform: translateY(150px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .scroll-reveal-container {
+            position: sticky;
+            top: 50vh;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 255, 200, 0.3);
         }
 
-        .toast.error {
-            border-left-color: #ff6600;
+        .scroll-reveal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(20px);
         }
 
-        .toast.success {
-            border-left-color: #00ff88;
+        .scroll-reveal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 10;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 255, 200, 0.4);
+            max-width: 400px;
+        }
+
+        .scroll-reveal-content h3 {
+            margin-bottom: 15px;
+            color: #00ffcc;
         }
 
         /* ===== FOOTER ===== */
         .footer-section {
-            padding: 60px 20px;
+            padding: 80px 40px;
             background: linear-gradient(135deg, #000, #1a0033);
             text-align: center;
-            position: relative;
-            z-index: 50;
         }
 
         .footer-title {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
         }
 
-        .cta-button {
-            padding: 12px 30px;
-            font-size: 1rem;
+        .footer-subtitle {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .footer-button {
+            padding: 15px 40px;
             background: linear-gradient(45deg, #00ffff, #ff00ff);
             color: #000;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
+            font-size: 1rem;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
         }
 
-        .cta-button:active {
-            transform: scale(0.95);
+        .footer-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.8);
         }
 
-        @media (max-width: 480px) {
-            body { font-size: 14px; }
-            .section-label { font-size: 0.65rem; }
+        @media (max-width: 768px) {
+            .dof-title {
+                font-size: 2.5rem;
+            }
+
+            .dof-subtitle {
+                font-size: 1rem;
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-item {
+                height: 300px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- SEÇÃO 1: Swipe-to-Reveal -->
-    <section class="section-1">
-        <div class="section-label">1. Swipe-to-Reveal</div>
-        <div class="swipe-reveal-card" id="swipeCard">
-            <div class="swipe-reveal-content">Deslize para revelar</div>
-            <div class="swipe-reveal-content revealed">Conteúdo Secreto! 🎉</div>
+    <!-- SEÇÃO 1: Depth of Field Hero -->
+    <section class="section-dof">
+        <div class="dof-background"></div>
+        <div class="dof-image-container">
+            <img class="dof-image-blurred" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+        </div>
+        <div class="dof-overlay"></div>
+        <div class="dof-content">
+            <h1 class="dof-title">Dra. Melina Luna</h1>
+            <p class="dof-subtitle">
+                Odontologia de Excelência<br>
+                Cuidando do seu Sorriso com Profissionalismo
+            </p>
+            <button class="dof-button">Agende sua Consulta</button>
         </div>
     </section>
 
-    <!-- SEÇÃO 2: Pull-to-Refresh -->
-    <section class="section-2">
-        <div class="section-label">2. Pull-to-Refresh</div>
-        <div class="pull-refresh-container" id="pullRefreshContainer">
-            <div class="pull-refresh-icon" id="refreshIcon">↓</div>
-            <div class="pull-refresh-content">
-                Puxa para cima para atualizar<br><br>
-                Conteúdo estático aqui
+    <!-- SEÇÃO 2: Comparativo DoF -->
+    <section class="section-comparison">
+        <h2 class="comparison-title">Entenda o Efeito Depth of Field</h2>
+        <div class="comparison-container">
+            <div class="comparison-item blur">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina Blur">
+                <div class="comparison-label">Com Blur (Desfocado)</div>
+            </div>
+            <div class="comparison-item sharp">
+                <img src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina Sharp">
+                <div class="comparison-label">Sem Blur (Nítido)</div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO 3: Swipe Carousel -->
-    <section class="section-3">
-        <div class="section-label">3. Swipe Carousel</div>
-        <div class="carousel-container" id="carouselContainer">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">1</div>
-                <div class="carousel-slide">2</div>
-                <div class="carousel-slide">3</div>
+    <!-- SEÇÃO 3: Interactive Slider -->
+    <section class="section-slider">
+        <h2 class="slider-title">Ajuste o Blur em Tempo Real</h2>
+        <div class="slider-container">
+            <div class="slider-image-container">
+                <img class="slider-image" id="sliderImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+                <div class="slider-blur-text" id="blurValue">Blur: 0px</div>
+            </div>
+            <div class="slider-control">
+                <input type="range" class="blur-slider" id="blurSlider" min="0" max="25" value="0">
+                <div class="slider-label">Deslize para aumentar ou diminuir o desfoque</div>
             </div>
         </div>
-        <div class="carousel-indicator" id="carouselIndicator">
-            <div class="carousel-dot active"></div>
-            <div class="carousel-dot"></div>
-            <div class="carousel-dot"></div>
-        </div>
     </section>
 
-    <!-- SEÇÃO 4: Bounce on Edge -->
-    <section class="section-4">
-        <div class="section-label">4. Bounce on Edge</div>
-        <div class="bounce-container">
-            <div class="bounce-item">Item 1</div>
-            <div class="bounce-item">Item 2</div>
-            <div class="bounce-item">Item 3</div>
-            <div class="bounce-item">Item 4</div>
-            <div class="bounce-item">Item 5</div>
-            <div class="bounce-item">Item 6</div>
-            <div class="bounce-item">Item 7</div>
+    <!-- SEÇÃO 4: Scroll Reveal -->
+    <section class="section-scroll-reveal">
+        <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
+            <h2 style="font-size: 2rem; text-align: center; max-width: 400px;">
+                Conforme você scrolleia, o fundo desblurra e revela o conteúdo
+            </h2>
         </div>
-    </section>
-
-    <!-- SEÇÃO 5: Floating Action Button -->
-    <section class="section-5">
-        <div class="section-label">5. FAB com Menu</div>
-        <div class="fab-content">
-            <h2 style="margin-bottom: 15px;">Floating Action Button</h2>
-            <p style="color: #aaa; font-size: 0.9rem;">Clique no botão flutuante</p>
-        </div>
-        <div class="fab-menu" id="fabMenu">
-            <button class="fab-menu-item">📞</button>
-            <button class="fab-menu-item">💬</button>
-            <button class="fab-menu-item">📧</button>
-        </div>
-        <button class="fab-button" id="fabButton">➕</button>
-    </section>
-
-    <!-- SEÇÃO 6: Bottom Sheet -->
-    <section class="section-6">
-        <div class="section-label">6. Bottom Sheet</div>
-        <button class="bottom-sheet-trigger" id="bottomSheetTrigger">Abrir Menu</button>
-    </section>
-
-    <div class="bottom-sheet" id="bottomSheet">
-        <div class="bottom-sheet-handle"></div>
-        <div class="bottom-sheet-content">
-            <h3 style="margin-bottom: 15px;">Opções</h3>
-            <p style="margin-bottom: 15px;">Este é um bottom sheet que sobe do fundo. Deslize para baixo para fechar.</p>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button style="flex: 1; padding: 10px; background: rgba(0, 255, 200, 0.2); border: 1px solid rgba(0, 255, 200, 0.5); border-radius: 8px; color: #fff; cursor: pointer;">Opção 1</button>
-                <button style="flex: 1; padding: 10px; background: rgba(0, 255, 200, 0.2); border: 1px solid rgba(0, 255, 200, 0.5); border-radius: 8px; color: #fff; cursor: pointer;">Opção 2</button>
+        <div class="scroll-reveal-container">
+            <img class="scroll-reveal-image" id="scrollImage" src="https://raw.githubusercontent.com/assessoriarasecmidias/lp-assets/refs/heads/main/melina01.png" alt="Melina">
+            <div class="scroll-reveal-content">
+                <h3>Transformação Visual</h3>
+                <p>Veja como o blur diminui conforme você scrolleia. Efeito cinematográfico!</p>
             </div>
         </div>
-    </div>
-
-    <!-- SEÇÃO 7: Sticky Header -->
-    <section class="section-7">
-        <div class="section-label">7. Sticky Header</div>
-        <div class="sticky-container">
-            <div class="sticky-header">Header Fixo</div>
-            <div class="sticky-item">Item 1</div>
-            <div class="sticky-item">Item 2</div>
-            <div class="sticky-item">Item 3</div>
-            <div class="sticky-item">Item 4</div>
-            <div class="sticky-item">Item 5</div>
-            <div class="sticky-item">Item 6</div>
-            <div class="sticky-item">Item 7</div>
-            <div class="sticky-item">Item 8</div>
+        <div style="height: 50vh; display: flex; align-items: center; justify-content: center;">
+            <h2 style="font-size: 2rem; text-align: center; max-width: 400px;">
+                Continue scrolleando para completar o efeito
+            </h2>
         </div>
-    </section>
-
-    <!-- SEÇÃO 8: Skeleton Screen -->
-    <section class="section-8">
-        <div class="section-label">8. Skeleton Screen</div>
-        <div class="skeleton-card">
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line"></div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO 9: Haptic Feedback -->
-    <section class="section-9">
-        <div class="section-label">9. Haptic Feedback</div>
-        <button class="haptic-button" id="hapticButton">Tap para Vibrar</button>
-        <div class="haptic-feedback" id="hapticFeedback"></div>
-    </section>
-
-    <!-- SEÇÃO 10: Swipe-to-Dismiss -->
-    <section class="section-10">
-        <div class="section-label">10. Swipe-to-Dismiss</div>
-        <div class="dismissible-card" id="dismissCard">
-            <div>Deslize para os lados para descartar</div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO 11: Button Press Animation -->
-    <section class="section-11">
-        <div class="section-label">11. Button Press</div>
-        <div style="text-align: center; max-width: 300px;">
-            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem;">Clique para ver animação de pressão</p>
-        </div>
-        <button class="press-button">Pressione-me</button>
-    </section>
-
-    <!-- SEÇÃO 12: Toast Notification -->
-    <section class="section-12">
-        <div class="section-label">12. Toast Notification</div>
-        <button class="toast-trigger" id="toastSuccessBtn">Sucesso</button>
-        <button class="toast-trigger" id="toastErrorBtn" style="background: linear-gradient(135deg, #ff6600, #ff0066);">Erro</button>
     </section>
 
     <!-- FOOTER -->
     <section class="footer-section">
-        <h2 class="footer-title">Mobile Gestures & Touch</h2>
-        <p style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem;">12 Efeitos Mobile-First com Gestos Completos</p>
-        <button class="cta-button">Ver Todos os Efeitos</button>
+        <h2 class="footer-title">Depth of Field Blur</h2>
+        <p class="footer-subtitle">Um efeito poderoso para destacar conteúdo importante</p>
+        <button class="footer-button">Explorar Mais Efeitos</button>
     </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // ===== SEÇÃO 1: Swipe-to-Reveal =====
-        const swipeCard = document.getElementById('swipeCard');
-        let startX = 0;
-        let currentX = 0;
+        // ===== SEÇÃO 3: Interactive Blur Slider =====
+        const blurSlider = document.getElementById('blurSlider');
+        const sliderImage = document.getElementById('sliderImage');
+        const blurValue = document.getElementById('blurValue');
 
-        swipeCard.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
+        blurSlider.addEventListener('input', (e) => {
+            const blurAmount = e.target.value;
+            sliderImage.style.filter = `blur(${blurAmount}px)`;
+            blurValue.textContent = `Blur: ${blurAmount}px`;
         });
 
-        swipeCard.addEventListener('touchmove', (e) => {
-            currentX = e.touches[0].clientX;
-            const diff = Math.abs(currentX - startX);
-            if (diff > 50) {
-                swipeCard.classList.add('revealed');
+        // ===== SEÇÃO 4: Scroll Reveal Blur =====
+        const scrollImage = document.getElementById('scrollImage');
+
+        ScrollTrigger.create({
+            trigger: '.section-scroll-reveal',
+            start: 'top center',
+            end: 'bottom center',
+            onUpdate: (self) => {
+                const blurAmount = 20 * (1 - self.progress);
+                scrollImage.style.filter = `blur(${Math.max(blurAmount, 0)}px)`;
             }
         });
 
-        swipeCard.addEventListener('touchend', () => {
-            if (Math.abs(currentX - startX) < 50) {
-                swipeCard.classList.remove('revealed');
-            }
+        // ===== PARALLAX DoF Hero =====
+        gsap.to('.dof-image-blurred', {
+            scrollTrigger: {
+                trigger: '.section-dof',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 0.5
+            },
+            y: -100,
+            scale: 1.15,
+            filter: 'blur(15px)',
+            duration: 1
         });
 
-        // ===== SEÇÃO 2: Pull-to-Refresh =====
-        const pullRefreshContainer = document.getElementById('pullRefreshContainer');
-        const refreshIcon = document.getElementById('refreshIcon');
-        let pullDistance = 0;
-        let isPulling = false;
-
-        pullRefreshContainer.addEventListener('touchstart', (e) => {
-            if (pullRefreshContainer.scrollTop === 0) {
-                isPulling = true;
-                pullDistance = 0;
-            }
-        });
-
-        pullRefreshContainer.addEventListener('touchmove', (e) => {
-            if (!isPulling) return;
-            pullDistance = e.touches[0].clientY;
-            if (pullDistance > 60) {
-                refreshIcon.classList.add('rotating');
-            } else {
-                refreshIcon.classList.remove('rotating');
-            }
-        });
-
-        pullRefreshContainer.addEventListener('touchend', () => {
-            if (pullDistance > 60) {
-                setTimeout(() => {
-                    refreshIcon.classList.remove('rotating');
-                    pullDistance = 0;
-                }, 1500);
-            }
-            isPulling = false;
-        });
-
-        // ===== SEÇÃO 3: Swipe Carousel =====
-        const carouselContainer = document.getElementById('carouselContainer');
-        const carouselTrack = document.getElementById('carouselTrack');
-        const carouselDots = document.querySelectorAll('.carousel-dot');
-        let carouselIndex = 0;
-        let carouselStartX = 0;
-        let carouselEndX = 0;
-
-        carouselContainer.addEventListener('touchstart', (e) => {
-            carouselStartX = e.touches[0].clientX;
-        });
-
-        carouselContainer.addEventListener('touchend', (e) => {
-            carouselEndX = e.changedTouches[0].clientX;
-            const diff = carouselStartX - carouselEndX;
-
-            if (Math.abs(diff) > 50) {
-                if (diff > 0 && carouselIndex < 2) {
-                    carouselIndex++;
-                } else if (diff < 0 && carouselIndex > 0) {
-                    carouselIndex--;
-                }
-                updateCarousel();
-            }
-        });
-
-        const updateCarousel = () => {
-            carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
-            carouselDots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === carouselIndex);
-            });
-        };
-
-        // ===== SEÇÃO 5: FAB Menu =====
-        const fabButton = document.getElementById('fabButton');
-        const fabMenu = document.getElementById('fabMenu');
-
-        fabButton.addEventListener('click', () => {
-            fabMenu.classList.toggle('open');
-            fabButton.textContent = fabMenu.classList.contains('open') ? '✕' : '➕';
-        });
-
-        // ===== SEÇÃO 6: Bottom Sheet =====
-        const bottomSheetTrigger = document.getElementById('bottomSheetTrigger');
-        const bottomSheet = document.getElementById('bottomSheet');
-        let sheetStartY = 0;
-        let sheetCurrentY = 0;
-
-        bottomSheetTrigger.addEventListener('click', () => {
-            bottomSheet.classList.add('open');
-        });
-
-        bottomSheet.addEventListener('touchstart', (e) => {
-            sheetStartY = e.touches[0].clientY;
-        });
-
-        bottomSheet.addEventListener('touchmove', (e) => {
-            sheetCurrentY = e.touches[0].clientY;
-        });
-
-        bottomSheet.addEventListener('touchend', () => {
-            if (sheetCurrentY - sheetStartY > 100) {
-                bottomSheet.classList.remove('open');
-            }
-        });
-
-        // Fechar clicando fora
-        document.addEventListener('click', (e) => {
-            if (!bottomSheet.contains(e.target) && e.target !== bottomSheetTrigger) {
-                bottomSheet.classList.remove('open');
-            }
-        });
-
-        // ===== SEÇÃO 9: Haptic Feedback =====
-        const hapticButton = document.getElementById('hapticButton');
-        const hapticFeedback = document.getElementById('hapticFeedback');
-
-        hapticButton.addEventListener('click', () => {
-            hapticFeedback.classList.remove('pulse');
-            void hapticFeedback.offsetWidth;
-            hapticFeedback.classList.add('pulse');
-
-            if (navigator.vibrate) {
-                navigator.vibrate(50);
-            }
-        });
-
-        hapticButton.addEventListener('touchstart', (e) => {
-            e.currentTarget.style.transform = 'scale(0.95)';
-        });
-
-        hapticButton.addEventListener('touchend', (e) => {
-            e.currentTarget.style.transform = 'scale(1)';
-        });
-
-        // ===== SEÇÃO 10: Swipe-to-Dismiss =====
-        const dismissCard = document.getElementById('dismissCard');
-        let dismissStartX = 0;
-        let dismissEndX = 0;
-
-        dismissCard.addEventListener('touchstart', (e) => {
-            dismissStartX = e.touches[0].clientX;
-        });
-
-        dismissCard.addEventListener('touchmove', (e) => {
-            dismissEndX = e.touches[0].clientX;
-            const diff = dismissEndX - dismissStartX;
-            dismissCard.style.transform = `translateX(${diff}px)`;
-            dismissCard.style.opacity = 1 - Math.abs(diff) / 350;
-        });
-
-        dismissCard.addEventListener('touchend', () => {
-            const diff = dismissEndX - dismissStartX;
-            if (Math.abs(diff) > 100) {
-                gsap.to(dismissCard, {
-                    opacity: 0,
-                    x: diff > 0 ? 400 : -400,
-                    duration: 0.3,
-                    onComplete: () => {
-                        dismissCard.remove();
-                    }
-                });
-            } else {
-                gsap.to(dismissCard, {
-                    x: 0,
-                    opacity: 1,
-                    duration: 0.3
-                });
-            }
-        });
-
-        // ===== SEÇÃO 12: Toast Notifications =====
-        const toastSuccessBtn = document.getElementById('toastSuccessBtn');
-        const toastErrorBtn = document.getElementById('toastErrorBtn');
-
-        const showToast = (message, type = 'success') => {
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `<span>${message === 'success' ? '✓' : '✕'}</span><span>${message === 'success' ? 'Ação concluída!' : 'Algo deu errado!'}</span>`;
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                gsap.to(toast, {
-                    opacity: 0,
-                    y: 150,
-                    duration: 0.4,
-                    onComplete: () => toast.remove()
-                });
-            }, 3000);
-        };
-
-        toastSuccessBtn.addEventListener('click', () => {
-            showToast('success', 'success');
-        });
-
-        toastErrorBtn.addEventListener('click', () => {
-            showToast('error', 'error');
-        });
-
-        console.log('Mobile Flow: Todos os gestos e interações carregados!');
+        console.log('Depth of Field Blur: Carregado com sucesso!');
     </script>
 
 </body>
